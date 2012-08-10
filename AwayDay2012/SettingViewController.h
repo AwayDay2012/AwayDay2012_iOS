@@ -8,7 +8,14 @@
 //  user settings view
 
 #import <UIKit/UIKit.h>
+#import "InputNameViewController.h"
 
 @interface SettingViewController : UIViewController
+
+@property (atomic, retain) InputNameViewController *inputNameViewController;
+
+@property (atomic, retain) IBOutlet UILabel *userNameLabel;
+
+-(IBAction)goInputNameView:(id)sender;
 
 @end
