@@ -59,9 +59,9 @@
         self.userState=dic;
         [dic release];
         
-        NSMutableArray *reminders=[[NSMutableArray alloc]init];
-        [self.userState setObject:reminders forKey:kUserReminderKey];
-        [reminders release];
+        NSMutableArray *userPath=[[NSMutableArray alloc]init];
+        [self.userState setObject:userPath forKey:kUserPathKey];
+        [userPath release];
     }
     
     if(self.agendaViewController==nil){
@@ -184,6 +184,7 @@
     NSArray *documentPaths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDir=[documentPaths objectAtIndex:0];
     NSString *databasePath=[documentsDir stringByAppendingPathComponent:databaseName];
+    NSLog(@"%@", databasePath);
     sqlite3_open([databasePath UTF8String], &database);
 }
 

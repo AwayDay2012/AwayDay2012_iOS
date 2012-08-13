@@ -82,6 +82,9 @@
 }
 
 #pragma mark - util method
+-(void)removeInfoView{
+    [AppHelper removeInfoView:self.view];
+}
 /**
  load the agenda list and their sessions
  */
@@ -301,7 +304,18 @@
 
 #pragma mark - UIAction method
 -(IBAction)attendButtonPressed:(id)sender{
+    Agenda *agenda=[self.agendaList objectAtIndex:self.selectedCell.section];
+    Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
     
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSMutableArray *userPath=[appDelegate.userState objectForKey:kUserPathKey];
+    
+    if(![userPath containsObject:session.sessionID]){
+        [userPath addObject:session.sessionID];
+        [appDelegate saveUserState];
+    }
+    [AppHelper showInfoView:self.view withText:@"Operation Done!"];
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
 -(IBAction)remindButtonPressed:(id)sender{
     Agenda *agenda=[self.agendaList objectAtIndex:self.selectedCell.section];

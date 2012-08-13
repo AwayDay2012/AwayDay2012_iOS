@@ -8,8 +8,8 @@
 
 #import "AppConstant.h"
 
-NSString const *kUserReminderKey=@"user_reminder";
 NSString const *kUserNameKey=@"user_name";
+NSString const *kUserPathKey=@"user_path";
 
 NSString const *kSessionIDKey=@"session_id";
 NSString const *kSessionTitleKey=@"settion_title";

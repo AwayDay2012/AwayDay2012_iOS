@@ -10,6 +10,7 @@
 #import "ReminderViewController.h"
 #import "AppDelegate.h"
 #import "AppHelper.h"
+#import "Reminder.h"
 
 #define key_notification_session_id @"session_id"
 #define key_notification_time_index @"time_index"
@@ -113,6 +114,11 @@
             }
         }
     }
+    
+    Reminder *reminder=[Reminder getReminderBySessionID:self.session.sessionID];
+    if(reminder!=nil){
+        [reminder drop];
+    }
 }
 
 /**
@@ -140,6 +146,12 @@
     [[UIApplication sharedApplication] scheduleLocalNotification:notification];
     
     [notification release];
+    
+    Reminder *reminder=[[Reminder alloc]init];
+    [reminder setSessionID:self.session.sessionID];
+    [reminder setReminderMinute:[NSNumber numberWithInt:[self.timePicker selectedRowInComponent:0]]];
+    [reminder save];
+    [reminder release];
 }
 
 -(void)addReminderForSession:(NSTimer *)timer{

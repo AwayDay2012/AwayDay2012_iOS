@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-extern NSString const *kUserReminderKey;
 extern NSString const *kUserNameKey;
+extern NSString const *kUserPathKey;
 
 extern NSString const *kServiceLoadSessionList;
 

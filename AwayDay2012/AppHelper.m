@@ -13,6 +13,10 @@
 @implementation AppHelper
 
 +(void)showInfoView:(UIView *)parentView{
+    [self showInfoView:parentView withText:@"Loading..."];
+}
+
++(void)showInfoView:(UIView *)parentView withText:(NSString *)text{
     if(parentView==nil) return;
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 150, 80)];
     [view setCenter:parentView.center];
@@ -38,7 +42,7 @@
     [label setTextColor:[UIColor whiteColor]];
     [label setFont:[UIFont systemFontOfSize:14.0f]];
     [label setTextAlignment:UITextAlignmentCenter];
-    [label setText:@"Loading"];
+    [label setText:text];
     [view addSubview:label];
     [label release];
     
@@ -46,6 +50,7 @@
     
     [view release];
 }
+
 +(void)removeInfoView:(UIView *)parentView{
     if(parentView==nil) return;
     

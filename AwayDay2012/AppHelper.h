@@ -12,6 +12,7 @@
 @interface AppHelper : NSObject
 
 +(void)showInfoView:(UIView *)parentView;
++(void)showInfoView:(UIView *)parentView withText:(NSString *)text;
 +(void)removeInfoView:(UIView *)parentView;
 
 @end

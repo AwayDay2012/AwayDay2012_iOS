@@ -11,8 +11,6 @@
 		49073B4A15CB774A00BB1522 /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49073B4815CB774A00BB1522 /* MenuViewController.xib */; };
 		49073B4E15CB7A5900BB1522 /* SettingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49073B4C15CB7A5900BB1522 /* SettingViewController.m */; };
 		49073B4F15CB7A5900BB1522 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49073B4D15CB7A5900BB1522 /* SettingViewController.xib */; };
-		490B91D815D4B50800539E2A /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 490B91D715D4B50800539E2A /* user_db.sqlite */; };
-		490B91DA15D4B52A00539E2A /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 490B91D715D4B50800539E2A /* user_db.sqlite */; };
 		490B91E015D4B60E00539E2A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 490B91DF15D4B60E00539E2A /* libsqlite3.dylib */; };
 		490B91EC15D4B78B00539E2A /* DBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 490B91EB15D4B78B00539E2A /* DBService.m */; };
 		49168F5215C769D300DEA67C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5115C769D300DEA67C /* UIKit.framework */; };
@@ -83,6 +81,11 @@
 		4969AD6915C7A0AC005B6A54 /* SessionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969AD6815C7A0AC005B6A54 /* SessionAddress.m */; };
 		4969AD7515C7D6A2005B6A54 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969AD7315C7D6A2005B6A54 /* ReminderViewController.m */; };
 		4969AD7615C7D6A2005B6A54 /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4969AD7415C7D6A2005B6A54 /* ReminderViewController.xib */; };
+		49B99D3415D887A5009B02A8 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B99D3315D887A5009B02A8 /* Reminder.m */; };
+		49B99D3815D888F0009B02A8 /* DBServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B99D3715D888F0009B02A8 /* DBServiceTest.m */; };
+		49B99D3915D889F2009B02A8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493697C915C8D86400941C94 /* QuartzCore.framework */; };
+		49B99D4515D88EA6009B02A8 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 49B99D4415D88EA6009B02A8 /* user_db.sqlite */; };
+		49B99D4615D88F11009B02A8 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 49B99D4415D88EA6009B02A8 /* user_db.sqlite */; };
 		49D96BEA15C8EABB00E1C5C8 /* TopSessionClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D96BE915C8EABB00E1C5C8 /* TopSessionClockView.m */; };
 		49EBEFBF15D20C9000D1DB4F /* InputNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EBEFBD15D20C9000D1DB4F /* InputNameViewController.m */; };
 		49EBEFC015D20C9000D1DB4F /* InputNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EBEFBE15D20C9000D1DB4F /* InputNameViewController.xib */; };
@@ -119,7 +122,6 @@
 		49073B4B15CB7A5900BB1522 /* SettingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingViewController.h; sourceTree = "<group>"; };
 		49073B4C15CB7A5900BB1522 /* SettingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingViewController.m; sourceTree = "<group>"; };
 		49073B4D15CB7A5900BB1522 /* SettingViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SettingViewController.xib; path = AwayDay2012/SettingViewController.xib; sourceTree = "<group>"; };
-		490B91D715D4B50800539E2A /* user_db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = user_db.sqlite; sourceTree = "<group>"; };
 		490B91DF15D4B60E00539E2A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		490B91EA15D4B78B00539E2A /* DBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBService.h; sourceTree = "<group>"; };
 		490B91EB15D4B78B00539E2A /* DBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBService.m; sourceTree = "<group>"; };
@@ -221,6 +223,11 @@
 		4969AD7215C7D6A2005B6A54 /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
 		4969AD7315C7D6A2005B6A54 /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
 		4969AD7415C7D6A2005B6A54 /* ReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ReminderViewController.xib; path = AwayDay2012/ReminderViewController.xib; sourceTree = "<group>"; };
+		49B99D3215D887A5009B02A8 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
+		49B99D3315D887A5009B02A8 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
+		49B99D3615D888F0009B02A8 /* DBServiceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBServiceTest.h; sourceTree = "<group>"; };
+		49B99D3715D888F0009B02A8 /* DBServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBServiceTest.m; sourceTree = "<group>"; };
+		49B99D4415D88EA6009B02A8 /* user_db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = user_db.sqlite; path = ../AwayDay2012/user_db.sqlite; sourceTree = "<group>"; };
 		49D96BE815C8EABB00E1C5C8 /* TopSessionClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopSessionClockView.h; sourceTree = "<group>"; };
 		49D96BE915C8EABB00E1C5C8 /* TopSessionClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopSessionClockView.m; sourceTree = "<group>"; };
 		49EBEFBC15D20C9000D1DB4F /* InputNameViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputNameViewController.h; sourceTree = "<group>"; };
@@ -267,6 +274,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49B99D3915D889F2009B02A8 /* QuartzCore.framework in Frameworks */,
 				49168F6A15C769D300DEA67C /* SenTestingKit.framework in Frameworks */,
 				49168F6B15C769D300DEA67C /* UIKit.framework in Frameworks */,
 				49168F6C15C769D300DEA67C /* Foundation.framework in Frameworks */,
@@ -356,6 +364,8 @@
 				49168F7515C769D300DEA67C /* AwayDay2012Tests.h */,
 				49168F7615C769D300DEA67C /* AwayDay2012Tests.m */,
 				49168F7015C769D300DEA67C /* Supporting Files */,
+				49B99D3615D888F0009B02A8 /* DBServiceTest.h */,
+				49B99D3715D888F0009B02A8 /* DBServiceTest.m */,
 			);
 			path = AwayDay2012Tests;
 			sourceTree = "<group>";
@@ -372,7 +382,7 @@
 		49168F8015C76A3A00DEA67C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				490B91D715D4B50800539E2A /* user_db.sqlite */,
+				49B99D4415D88EA6009B02A8 /* user_db.sqlite */,
 				49EC240315CA129000DF9B34 /* Image */,
 				49168F8715C76A6700DEA67C /* XIB */,
 				49168F5815C769D300DEA67C /* Supporting Files */,
@@ -385,20 +395,20 @@
 			children = (
 				49073B4615CB774A00BB1522 /* MenuViewController.h */,
 				49073B4715CB774A00BB1522 /* MenuViewController.m */,
-				4934FA0015CA703200427597 /* AgendaViewController.h */,
-				4934F9FF15CA703200427597 /* AgendaViewController.m */,
 				49EBEFBC15D20C9000D1DB4F /* InputNameViewController.h */,
 				49EBEFBD15D20C9000D1DB4F /* InputNameViewController.m */,
+				4934FA0015CA703200427597 /* AgendaViewController.h */,
+				4934F9FF15CA703200427597 /* AgendaViewController.m */,
 				4969AD7215C7D6A2005B6A54 /* ReminderViewController.h */,
 				4969AD7315C7D6A2005B6A54 /* ReminderViewController.m */,
-				49073B4B15CB7A5900BB1522 /* SettingViewController.h */,
-				49073B4C15CB7A5900BB1522 /* SettingViewController.m */,
+				4959E24E15D39DD200091D6F /* UserActivityViewController.h */,
+				4959E24F15D39DD200091D6F /* UserActivityViewController.m */,
 				49EBEFC915D21B0300D1DB4F /* ShareListViewController.h */,
 				49EBEFCA15D21B0300D1DB4F /* ShareListViewController.m */,
 				49EBEFCE15D21BB700D1DB4F /* PostShareViewController.h */,
 				49EBEFCF15D21BB700D1DB4F /* PostShareViewController.m */,
-				4959E24E15D39DD200091D6F /* UserActivityViewController.h */,
-				4959E24F15D39DD200091D6F /* UserActivityViewController.m */,
+				49073B4B15CB7A5900BB1522 /* SettingViewController.h */,
+				49073B4C15CB7A5900BB1522 /* SettingViewController.m */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -429,6 +439,8 @@
 				4969AD6815C7A0AC005B6A54 /* SessionAddress.m */,
 				4959E24A15D39BA100091D6F /* UserPath.h */,
 				4959E24B15D39BA100091D6F /* UserPath.m */,
+				49B99D3215D887A5009B02A8 /* Reminder.h */,
+				49B99D3315D887A5009B02A8 /* Reminder.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -612,7 +624,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				490B91DA15D4B52A00539E2A /* user_db.sqlite in Resources */,
+				49B99D4615D88F11009B02A8 /* user_db.sqlite in Resources */,
 				4934F9F215CA6B2D00427597 /* blackArrow.png in Resources */,
 				4934F9F315CA6B2D00427597 /* blackArrow@2x.png in Resources */,
 				4934F9F415CA6B2D00427597 /* blueArrow.png in Resources */,
@@ -656,7 +668,7 @@
 				4934F9EF15CA671700427597 /* grayArrow@2x.png in Resources */,
 				4934F9F015CA671700427597 /* whiteArrow.png in Resources */,
 				4934F9F115CA671700427597 /* whiteArrow@2x.png in Resources */,
-				490B91D815D4B50800539E2A /* user_db.sqlite in Resources */,
+				49B99D4515D88EA6009B02A8 /* user_db.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -723,6 +735,7 @@
 				4959E28A15D3C87600091D6F /* SBJsonUTF8Stream.m in Sources */,
 				4959E28B15D3C87600091D6F /* SBJsonWriter.m in Sources */,
 				490B91EC15D4B78B00539E2A /* DBService.m in Sources */,
+				49B99D3415D887A5009B02A8 /* Reminder.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -733,6 +746,7 @@
 				49168F7715C769D300DEA67C /* AwayDay2012Tests.m in Sources */,
 				4934F9DF15CA65CE00427597 /* EGORefreshTableHeaderView.m in Sources */,
 				4934FA0115CA703200427597 /* AgendaViewController.m in Sources */,
+				49B99D3815D888F0009B02A8 /* DBServiceTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
