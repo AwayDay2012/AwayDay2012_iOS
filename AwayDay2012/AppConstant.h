@@ -11,6 +11,7 @@
 @interface AppConstant : NSObject
 
 extern NSString const *kUserNameKey;
+extern NSString *kUserPathImageFolder;
 
 extern NSString const *kServiceLoadSessionList;
 

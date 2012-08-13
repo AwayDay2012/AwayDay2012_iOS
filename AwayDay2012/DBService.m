@@ -147,11 +147,8 @@
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
     
-    NSString *pathID=[AppHelper generateUDID];
-    if(path.pathImage==nil) path.pathImage=@"";
-    
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSString *save=[NSString stringWithFormat:@"insert into user_path(path_id, path_content, create_time,path_image) values('%@','%@','%@','%@')",pathID, path.pathContent, [formatter stringFromDate:[NSDate date]], path.pathImage];
+    NSString *save=[NSString stringWithFormat:@"insert into user_path(path_id, path_content, create_time, has_image) values('%@','%@','%@', %d)",path.pathID, path.pathContent, [formatter stringFromDate:[NSDate date]], path.hasImage.intValue];
     [formatter release];
     
     sqlite3_stmt *stmt;
@@ -176,14 +173,14 @@
         char *pathID=(char *)sqlite3_column_text(stmt, 1);
         char *pathContent=(char *)sqlite3_column_text(stmt, 2);
         char *createTime=(char *)sqlite3_column_text(stmt, 3);
-        char *pathImage=(char *)sqlite3_column_text(stmt, 4);
+        int hasImage=sqlite3_column_int(stmt, 4);
         
         UserPath *path=[[UserPath alloc]init];
         
         if(pathID!=nil) [path setPathID:[NSString stringWithUTF8String:pathID]];
         if(pathContent!=nil) [path setPathContent:[NSString stringWithUTF8String:pathContent]];
         if(createTime!=nil) [path setPathCreateTime:[formatter dateFromString:[NSString stringWithUTF8String:createTime]]];
-        if(pathImage!=nil) [path setPathImage:[NSString stringWithUTF8String:pathImage]];
+        [path setHasImage:[NSNumber numberWithInt:hasImage]];
         
         [result addObject:path];
         [path release];

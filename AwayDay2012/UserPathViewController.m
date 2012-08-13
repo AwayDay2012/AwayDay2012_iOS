@@ -12,13 +12,17 @@
 #import "AppConstant.h"
 #import "UserPath.h"
 
-#define tag_view_table_child_view   1001
+#define tag_view_table_child_view   10001
+#define tag_view_table_path_image   tag_view_table_child_view+1
+#define key_timer_table_cell        @"timer_key_cell"
+#define key_timer_user_path         @"timer_key_path"
 
 @implementation UserPathViewController
 @synthesize pathList=_pathList;
 @synthesize userPathTable=_userPathTable;
 @synthesize userNameLabel=_userNameLabel;
 @synthesize userRecordsCountLabel=_userRecordsCountLabel;
+@synthesize operationQueue=_operationQueue;
 
 - (void)viewDidLoad
 {
@@ -28,6 +32,13 @@
         self.pathList=list;
         [list release];
     }
+    
+    if(self.operationQueue==nil){
+        NSOperationQueue *queue=[[NSOperationQueue alloc]init];
+        self.operationQueue=queue;
+        [queue release];
+    }
+    [self.operationQueue setMaxConcurrentOperationCount:5];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -86,6 +97,8 @@
     [cell addSubview:dateLabel];
     [dateLabel release];
     
+    [formatter release];
+    
     UIView *seperator=[[UIView alloc]initWithFrame:CGRectMake(65, 0, 2, 80.0f)];
     [seperator setTag:tag_view_table_child_view];
     [seperator setBackgroundColor:[UIColor colorWithRed:186/255.0 green:233/255.0 blue:236/255.0 alpha:1.0f]];
@@ -102,7 +115,26 @@
     [cell addSubview:pathContent];
     [pathContent release];
     
-    [formatter release];
+    if(path.hasImage!=nil && path.hasImage.boolValue){
+        UIImageView *image=[[UIImageView alloc]initWithFrame:CGRectMake(67, 60, 250, 60)];
+        [image setTag:tag_view_table_path_image];
+        [cell addSubview:image];
+        [image release];
+        
+        NSMutableDictionary *userInfo=[[NSMutableDictionary alloc]initWithCapacity:0];
+        [userInfo setObject:cell forKey:key_timer_table_cell];
+        [userInfo setObject:path forKey:key_timer_user_path];
+        [NSTimer scheduledTimerWithTimeInterval:0.1f target:self selector:@selector(loadPathImage:) userInfo:userInfo repeats:NO];
+        [userInfo release];
+    }
+}
+
+-(void)loadPathImage:(NSTimer *)timer{
+    
+}
+
+-(void)pathImageLoaded:(UIImage *)image forCell:(UITableViewCell *)cell{
+    
 }
 
 #pragma mark - UITableView method
@@ -113,7 +145,11 @@
     return self.pathList.count;
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 80.0;
+    UserPath *userPath=[self.pathList objectAtIndex:indexPath.row];
+    if(userPath.hasImage!=nil && userPath.hasImage.boolValue){
+        return 120.0f;
+    }
+    return 70.0f;
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     static NSString *CellIdentifier = @"Cell";
@@ -146,6 +182,8 @@
     [_userPathTable release];
     [_userNameLabel release];
     [_userRecordsCountLabel release];
+    [self.operationQueue cancelAllOperations];
+    [_operationQueue release];
 }
 
 @end

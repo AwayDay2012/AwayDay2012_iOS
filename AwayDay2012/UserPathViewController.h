@@ -14,6 +14,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *userNameLabel;
 @property(nonatomic, retain) IBOutlet UILabel *userRecordsCountLabel;
 @property(nonatomic, retain) IBOutlet UITableView *userPathTable;
+@property(nonatomic, retain) NSOperationQueue *operationQueue;
 
 -(IBAction)backButtonPressed:(id)sender;
 -(IBAction)addPathButtonPressed:(id)sender;

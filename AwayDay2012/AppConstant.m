@@ -11,6 +11,7 @@
 @implementation AppConstant
 
 NSString const *kUserNameKey=@"user_name";
+NSString *kUserPathImageFolder=@"user_path_image";
 
 NSString const *kSessionIDKey=@"session_id";
 NSString const *kSessionTitleKey=@"settion_title";

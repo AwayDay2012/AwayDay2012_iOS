@@ -311,6 +311,7 @@
     Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
     
     UserPath *path=[[UserPath alloc]init];
+    [path setPathID:[AppHelper generateUDID]];
     [path setPathContent:[NSString stringWithFormat:@"Join %@", session.sessionTitle]];
     [path setPathCreateTime:[NSDate date]];
     [path save];

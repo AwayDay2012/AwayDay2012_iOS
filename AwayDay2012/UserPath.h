@@ -12,10 +12,12 @@
 
 @property(nonatomic, retain) NSString *pathID;
 @property(nonatomic, retain) NSString *pathContent;
-@property(nonatomic, retain) NSString *pathImage;
 @property(nonatomic, retain) NSDate *pathCreateTime;
+@property(nonatomic, retain) UIImage *pathImage;
+@property(nonatomic, retain) NSNumber *hasImage;
 
 -(void)save;
 +(NSMutableArray *)getAllUserPath;
+-(UIImage *)loadLocalPathImage;
 
 @end
