@@ -79,7 +79,7 @@
         
         [self loadAgendaList];
     }
-    [self updateTopSession];
+    [self updateTopSession];    
 }
 
 #pragma mark - util method

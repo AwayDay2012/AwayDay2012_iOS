@@ -36,7 +36,7 @@
     swipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeGesture:)];
     [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipe];
-    [swipe release];
+    [swipe release];    
 }
 
 #pragma mark - UIAction method

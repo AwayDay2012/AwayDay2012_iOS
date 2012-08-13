@@ -35,6 +35,7 @@
         self.inputNameViewController = tempView;
         [tempView release];
     }
+    
     [self presentModalViewController:self.inputNameViewController animated:YES];
 }
 
