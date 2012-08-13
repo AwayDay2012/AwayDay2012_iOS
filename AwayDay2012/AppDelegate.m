@@ -22,7 +22,7 @@
 @synthesize shareListViewController=_shareListViewController;
 @synthesize menuViewController=_menuViewController;
 @synthesize settingViewController=_settingViewController;
-@synthesize userActivityViewController=_userActivityViewController;
+@synthesize userPathViewController=_userPathViewController;
 @synthesize database;
 
 - (void)dealloc
@@ -34,7 +34,7 @@
     [_shareListViewController release];
     [_menuViewController release];
     [_settingViewController release];
-    [_userActivityViewController release];
+    [_userPathViewController release];
     sqlite3_close(database);
     [super dealloc];
 }
@@ -58,10 +58,6 @@
         NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
         self.userState=dic;
         [dic release];
-        
-        NSMutableArray *userPath=[[NSMutableArray alloc]init];
-        [self.userState setObject:userPath forKey:kUserPathKey];
-        [userPath release];
     }
     
     if(self.agendaViewController==nil){
@@ -79,9 +75,9 @@
         self.settingViewController=svc;
         [svc release];
     }
-    if(self.userActivityViewController==nil){
-        UserActivityViewController *uavc=[[UserActivityViewController alloc]initWithNibName:@"UserActivityViewController" bundle:nil];
-        self.userActivityViewController=uavc;
+    if(self.userPathViewController==nil){
+        UserPathViewController *uavc=[[UserPathViewController alloc]initWithNibName:@"UserPathViewController" bundle:nil];
+        self.userPathViewController=uavc;
         [uavc release];
     }
     

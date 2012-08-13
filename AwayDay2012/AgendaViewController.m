@@ -11,6 +11,7 @@
 #import "AppHelper.h"
 #import "AppDelegate.h"
 #import "AppConstant.h"
+#import "UserPath.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_view_session_detail_view   10002
@@ -304,17 +305,18 @@
 
 #pragma mark - UIAction method
 -(IBAction)attendButtonPressed:(id)sender{
+    //to create a user path
+    
     Agenda *agenda=[self.agendaList objectAtIndex:self.selectedCell.section];
     Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
     
-    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSMutableArray *userPath=[appDelegate.userState objectForKey:kUserPathKey];
+    UserPath *path=[[UserPath alloc]init];
+    [path setPathContent:[NSString stringWithFormat:@"Join %@", session.sessionTitle]];
+    [path setPathCreateTime:[NSDate date]];
+    [path save];
+    [path release];
     
-    if(![userPath containsObject:session.sessionID]){
-        [userPath addObject:session.sessionID];
-        [appDelegate saveUserState];
-    }
-    [AppHelper showInfoView:self.view withText:@"Operation Done!"];
+    [AppHelper showInfoView:self.view withText:@"Operation Done!" withLoading:NO];
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
 -(IBAction)remindButtonPressed:(id)sender{

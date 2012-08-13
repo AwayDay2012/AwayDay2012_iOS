@@ -8,14 +8,20 @@
 
 #import <Foundation/Foundation.h>
 #import <sqlite3.h>
+#import "UserPath.h"
 @class Reminder;
 
 @interface DBService : NSObject
 
 +(void)saveSessionList:(NSArray *)sessionList;
++(NSMutableArray *)getSessionListBySessionIDList:(NSMutableArray *)list;
+
 +(void)deleteUserReminder:(NSString *)sessionID;
 +(void)saveUserReminder:(NSString *)sessionID withMinutes:(int)min;
 +(NSMutableArray *)getAllUserReminder;
 +(Reminder *)getReminderBySessionID:(NSString *)sessionID;
+
++(void)saveUserPath:(UserPath *)path;
++(NSMutableArray *)getAllUserPath;
 
 @end

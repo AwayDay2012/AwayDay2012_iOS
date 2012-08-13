@@ -12,7 +12,10 @@
 @interface AppHelper : NSObject
 
 +(void)showInfoView:(UIView *)parentView;
-+(void)showInfoView:(UIView *)parentView withText:(NSString *)text;
++(void)showInfoView:(UIView *)parentView withText:(NSString *)text withLoading:(BOOL)withLoading;
 +(void)removeInfoView:(UIView *)parentView;
++(NSString *)macaddress;
++(NSString *)md5:(NSString *)str;
++(NSString *)generateUDID;
 
 @end

@@ -8,8 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
+@interface AppConstant : NSObject
+
 extern NSString const *kUserNameKey;
-extern NSString const *kUserPathKey;
 
 extern NSString const *kServiceLoadSessionList;
 
@@ -20,7 +21,5 @@ extern NSString const *kSessionSpeakerKey;
 extern NSString const *kSessionStartKey;
 extern NSString const *kSessionEndKey;
 extern NSString const *kSessionLocationKey;
-
-@interface AppConstant : NSObject
 
 @end

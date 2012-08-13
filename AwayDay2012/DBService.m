@@ -11,9 +11,11 @@
 #import "AppConstant.h"
 #import "Session.h"
 #import "Reminder.h"
+#import "AppHelper.h"
 
 @implementation DBService
 
+#pragma mark - session list method
 +(void)saveSessionList:(NSArray *)sessionList{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSString *del=@"delete from session_lis";
@@ -28,6 +30,57 @@
     }
 }
 
++(NSMutableArray *)getSessionListBySessionIDList:(NSMutableArray *)list{
+    if(list==nil || list.count==0) return nil;
+    
+    NSMutableArray *result=[[NSMutableArray alloc]initWithCapacity:0];
+    [result autorelease];
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSString *sql=@"select * from session_lis where session_id in (";
+    for(NSString *sid in list){
+        sql=[sql stringByAppendingFormat:@"%@,",sid];
+    }
+    sql=[sql substringToIndex:sql.length-1];
+    sql=[sql stringByAppendingString:@")"];
+    
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm ZZZ"];
+    
+    sqlite3_stmt *stmt;
+    sqlite3_prepare_v2(appDelegate.database, [sql UTF8String], -1, &stmt, NULL);
+    while(sqlite3_step(stmt) == SQLITE_ROW){
+        char *sessionID=(char *)sqlite3_column_text(stmt, 1);
+        char *sessionTitle=(char *)sqlite3_column_text(stmt, 2);
+        char *sessionDescription=(char *)sqlite3_column_text(stmt, 3);
+        char *sessionSpeaker=(char *)sqlite3_column_text(stmt, 4);
+        char *sessionStart=(char *)sqlite3_column_text(stmt, 5);
+        char *sessionEnd=(char *)sqlite3_column_text(stmt, 6);
+        char *sessionLocation=(char *)sqlite3_column_text(stmt, 7);
+        
+        Session *session=[[Session alloc]init];
+        
+        if(sessionID!=nil)[session setSessionID:[NSString stringWithUTF8String:sessionID]];
+        if(sessionTitle!=nil)[session setSessionTitle:[NSString stringWithUTF8String:sessionTitle]];
+        if(sessionDescription!=nil)[session setSessionNote:[NSString stringWithUTF8String:sessionDescription]];
+        if(sessionSpeaker!=nil)[session setSessionSpeaker:[NSString stringWithUTF8String:sessionSpeaker]];
+        if(sessionStart!=nil)[session setSessionStartTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionStart]]];
+        if(sessionEnd!=nil)[session setSessionEndTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionEnd]]];
+        if(sessionLocation!=nil){
+            SessionAddress *add=[[SessionAddress alloc]init];
+            [add setAddress:[NSString stringWithUTF8String:sessionLocation]];
+            [session setSessionAddress:add];
+            [add release];
+        }
+        
+        [result addObject:session];
+        [session release];
+    }
+    [formatter release];
+    if(stmt)sqlite3_finalize(stmt);
+    return result;
+}
+
+#pragma mark - reminder method
 +(void)deleteUserReminder:(NSString *)sessionID{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSString *del=[NSString stringWithFormat:@"delete from user_reminder where session_id='%@'", sessionID];
@@ -86,6 +139,57 @@
     }
     
     if(stmt)sqlite3_finalize(stmt);
+    return result;
+}
+
+#pragma mark - UserPath method
++(void)saveUserPath:(UserPath *)path{
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+    
+    NSString *pathID=[AppHelper generateUDID];
+    if(path.pathImage==nil) path.pathImage=@"";
+    
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSString *save=[NSString stringWithFormat:@"insert into user_path(path_id, path_content, create_time,path_image) values('%@','%@','%@','%@')",pathID, path.pathContent, [formatter stringFromDate:[NSDate date]], path.pathImage];
+    [formatter release];
+    
+    sqlite3_stmt *stmt;
+    
+    char *errorMsg;
+    if(sqlite3_exec(appDelegate.database, [save UTF8String], nil, &stmt, &errorMsg)!=SQLITE_OK){
+        NSLog(@"%@", [NSString stringWithUTF8String:errorMsg]);
+    }
+}
++(NSMutableArray *)getAllUserPath{
+    NSMutableArray *result=[[NSMutableArray alloc]initWithCapacity:0];
+    [result autorelease];
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSString *sql=@"select * from user_path order by id desc";
+    
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
+    
+    sqlite3_stmt *stmt;
+    sqlite3_prepare_v2(appDelegate.database, [sql UTF8String], -1, &stmt, NULL);
+    while(sqlite3_step(stmt) == SQLITE_ROW){
+        char *pathID=(char *)sqlite3_column_text(stmt, 1);
+        char *pathContent=(char *)sqlite3_column_text(stmt, 2);
+        char *createTime=(char *)sqlite3_column_text(stmt, 3);
+        char *pathImage=(char *)sqlite3_column_text(stmt, 4);
+        
+        UserPath *path=[[UserPath alloc]init];
+        
+        if(pathID!=nil) [path setPathID:[NSString stringWithUTF8String:pathID]];
+        if(pathContent!=nil) [path setPathContent:[NSString stringWithUTF8String:pathContent]];
+        if(createTime!=nil) [path setPathCreateTime:[formatter dateFromString:[NSString stringWithUTF8String:createTime]]];
+        if(pathImage!=nil) [path setPathImage:[NSString stringWithUTF8String:pathImage]];
+        
+        [result addObject:path];
+        [path release];
+    }
+    [formatter release];
+    if(stmt) sqlite3_finalize(stmt);
     return result;
 }
 

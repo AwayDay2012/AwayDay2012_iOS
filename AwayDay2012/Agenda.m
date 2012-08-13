@@ -25,9 +25,9 @@
 }
 
 -(void)dealloc{
-    [super dealloc];
     [_agendaDate release];
     [_sessions release];
+    [super dealloc];
 }
 
 @end

@@ -45,21 +45,25 @@
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.agendaViewController] animated:NO];
     
     [self.chooseFlagImageView setFrame:CGRectMake(0, 29, 4, 43)];
+    [self handleTapGesture:nil];
 }
 -(IBAction)reminderListButtonPressed:(id)sender{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.shareListViewController] animated:NO];
     [self.chooseFlagImageView setFrame:CGRectMake(0, 74, 4, 43)];
+    [self handleTapGesture:nil];
 }
 -(IBAction)myPathButtonPressed:(id)sender{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.userActivityViewController] animated:NO];
+    [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.userPathViewController] animated:NO];
     [self.chooseFlagImageView setFrame:CGRectMake(0, 119, 4, 43)];
+    [self handleTapGesture:nil];
 }
 -(IBAction)settingButtonPressed:(id)sender{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.settingViewController] animated:NO];
     [self.chooseFlagImageView setFrame:CGRectMake(0, 162, 4, 43)];
+    [self handleTapGesture:nil];
 }
 
 -(IBAction)handleTapGesture:(UITapGestureRecognizer *)sender{

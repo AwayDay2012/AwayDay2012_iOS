@@ -23,6 +23,7 @@
     [super viewWillAppear:animated];
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate hideMenuView];
+    [self.userNameField becomeFirstResponder];
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -34,7 +35,12 @@
 #pragma mark - UIAction method
 -(IBAction)inputDoneButtonPressed:(id)sender{
     NSString *name=[self.userNameField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if(name.length==0) return;
+    if(name.length==0){
+        UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Please input your name" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return;
+    }
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.userState setObject:self.userNameField.text forKey:kUserNameKey];

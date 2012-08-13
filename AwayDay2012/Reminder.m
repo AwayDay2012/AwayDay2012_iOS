@@ -29,9 +29,9 @@
 }
 
 -(void)dealloc{
-    [super dealloc];
     [_sessionID release];
     [_reminderMinute release];
+    [super dealloc];
 }
 
 @end

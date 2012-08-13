@@ -12,7 +12,7 @@
 #import "ShareListViewController.h"
 #import "MenuViewController.h"
 #import "SettingViewController.h"
-#import "UserActivityViewController.h"
+#import "UserPathViewController.h"
 #import <sqlite3.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
@@ -23,7 +23,7 @@
 @property(nonatomic, retain) ShareListViewController *shareListViewController;
 @property(nonatomic, retain) SettingViewController *settingViewController;
 @property(nonatomic, retain) MenuViewController *menuViewController;
-@property(nonatomic, retain) UserActivityViewController *userActivityViewController;
+@property(nonatomic, retain) UserPathViewController *userPathViewController;
 @property(nonatomic, retain) NSMutableDictionary *userState;
 @property(nonatomic, readonly) sqlite3 *database;
 

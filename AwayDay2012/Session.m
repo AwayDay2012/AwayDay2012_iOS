@@ -18,7 +18,6 @@
 @synthesize sessionAddress=_sessionAddress;
 
 -(void)dealloc{
-    [super dealloc];
     [_sessionID release];
     [_sessionNote release];
     [_sessionSpeaker release];
@@ -26,6 +25,7 @@
     [_sessionEndTime release];
     [_sessionTitle release];
     [_sessionAddress release];
+    [super dealloc];
 }
 
 @end

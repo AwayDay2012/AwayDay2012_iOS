@@ -8,6 +8,7 @@
 
 #import "PostShareViewController.h"
 #import "AppDelegate.h"
+#import "UserPath.h"
 
 #define text_length_limit   140
 
@@ -40,6 +41,9 @@
 }
 -(IBAction)sendButtonPressed:(id)sender{
     //to send the share
+    
+    
+    
     self.userImage=nil;
 }
 -(IBAction)addImageButtonPressed:(id)sender{

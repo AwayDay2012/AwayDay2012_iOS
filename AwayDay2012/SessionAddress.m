@@ -15,10 +15,10 @@
 @synthesize longitude=_longitude;
 
 -(void)dealloc{
-    [super dealloc];
     [_address release];
     [_latitude release];
     [_longitude release];
+    [super dealloc];
 }
 
 @end

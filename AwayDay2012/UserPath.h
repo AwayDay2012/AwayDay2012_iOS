@@ -10,6 +10,12 @@
 
 @interface UserPath : NSObject
 
-@property(nonatomic, retain) NSMutableArray *sessions;
+@property(nonatomic, retain) NSString *pathID;
+@property(nonatomic, retain) NSString *pathContent;
+@property(nonatomic, retain) NSString *pathImage;
+@property(nonatomic, retain) NSDate *pathCreateTime;
+
+-(void)save;
++(NSMutableArray *)getAllUserPath;
 
 @end

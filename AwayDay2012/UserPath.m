@@ -7,25 +7,38 @@
 //
 
 #import "UserPath.h"
+#import "DBService.h"
 
 @implementation UserPath
-@synthesize sessions=_sessions;
+@synthesize pathID=_pathID;
+@synthesize pathImage=_pathImage;
+@synthesize pathContent=_pathContent;
+@synthesize pathCreateTime=_pathCreateTime;
 
 -(id)init{
     self=[super init];
     if(self){
-        if(self.sessions==nil){
-            NSMutableArray *array=[[NSMutableArray alloc]init];
-            self.sessions=array;
-            [array release];
-        }
+        _pathID=nil;
+        _pathImage=nil;
+        _pathContent=nil;
+        _pathCreateTime=nil;
     }
     return self;
 }
 
+-(void)save{
+    [DBService saveUserPath:self];
+}
++(NSMutableArray *)getAllUserPath{
+    return [DBService getAllUserPath];
+}
+
 -(void)dealloc{
+    [_pathID release];
+    [_pathImage release];
+    [_pathContent release];
+    [_pathCreateTime release];
     [super dealloc];
-    [_sessions release];
 }
 
 @end
