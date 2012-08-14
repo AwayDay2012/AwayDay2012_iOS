@@ -42,6 +42,7 @@
 }
 -(IBAction)sendButtonPressed:(id)sender{
     //to send the share
+    
     NSString *content=self.textView.text;
     if(content.length==0 || self.userImage==nil){
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Input something please" message:@"you need to input something or put a photo" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
