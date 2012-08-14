@@ -15,7 +15,6 @@
 @property(nonatomic, retain) IBOutlet UIImageView *chooseFlagImageView;
 
 -(IBAction)agendaButtonPressed:(id)sender;
--(IBAction)reminderListButtonPressed:(id)sender;
 -(IBAction)settingButtonPressed:(id)sender;
 -(IBAction)myPathButtonPressed:(id)sender;
 

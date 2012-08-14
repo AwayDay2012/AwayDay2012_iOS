@@ -26,7 +26,7 @@
     [tap setNumberOfTouchesRequired:1];
     [tap release];
     
-    [self.chooseFlagImageView setFrame:CGRectMake(0, 29, 4, 43)];
+    [self.chooseFlagImageView setFrame:CGRectMake(0, 38, 4, 43)];
     
     UISwipeGestureRecognizer *swipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeGesture:)];
     [swipe setDirection:UISwipeGestureRecognizerDirectionUp];
@@ -44,25 +44,19 @@
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.agendaViewController] animated:NO];
     
-    [self.chooseFlagImageView setFrame:CGRectMake(0, 29, 4, 43)];
-    [self handleTapGesture:nil];
-}
--(IBAction)reminderListButtonPressed:(id)sender{
-    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.shareListViewController] animated:NO];
-    [self.chooseFlagImageView setFrame:CGRectMake(0, 74, 4, 43)];
+    [self.chooseFlagImageView setFrame:CGRectMake(0, 38, 4, 43)];
     [self handleTapGesture:nil];
 }
 -(IBAction)myPathButtonPressed:(id)sender{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.userPathViewController] animated:NO];
-    [self.chooseFlagImageView setFrame:CGRectMake(0, 119, 4, 43)];
+    [self.chooseFlagImageView setFrame:CGRectMake(0, 83, 4, 43)];
     [self handleTapGesture:nil];
 }
 -(IBAction)settingButtonPressed:(id)sender{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.settingViewController] animated:NO];
-    [self.chooseFlagImageView setFrame:CGRectMake(0, 162, 4, 43)];
+    [self.chooseFlagImageView setFrame:CGRectMake(0, 123, 4, 43)];
     [self handleTapGesture:nil];
 }
 
@@ -71,7 +65,7 @@
     [UIView setAnimationCurve:UIViewAnimationCurveEaseInOut];
     [UIView setAnimationDuration:0.1f];
     if(self.view.frame.origin.y>400){
-        [self.view setFrame:CGRectMake(0, 281,self.view.frame.size.width, self.view.frame.size.height)];
+        [self.view setFrame:CGRectMake(0, 320,self.view.frame.size.width, self.view.frame.size.height)];
     }else{
         [self.view setFrame:CGRectMake(0, 450, self.view.frame.size.width, self.view.frame.size.height)];
     }

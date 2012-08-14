@@ -19,7 +19,6 @@
 @synthesize agendaViewController=_agendaViewController;
 @synthesize userState=_userState;
 @synthesize navigationController=_navigationController;
-@synthesize shareListViewController=_shareListViewController;
 @synthesize menuViewController=_menuViewController;
 @synthesize settingViewController=_settingViewController;
 @synthesize userPathViewController=_userPathViewController;
@@ -31,7 +30,6 @@
     [_agendaViewController release];
     [_userState release];
     [_navigationController release];
-    [_shareListViewController release];
     [_menuViewController release];
     [_settingViewController release];
     [_userPathViewController release];
@@ -65,11 +63,6 @@
         self.agendaViewController=rvc;
         [rvc release];
     }
-    if(self.shareListViewController==nil){
-        ShareListViewController *slvc=[[ShareListViewController alloc]initWithNibName:@"ShareListViewController" bundle:nil];
-        self.shareListViewController=slvc;
-        [slvc release];
-    }
     if(self.settingViewController==nil){
         SettingViewController *svc=[[SettingViewController alloc]initWithNibName:@"SettingViewController" bundle:nil];
         self.settingViewController=svc;
@@ -94,7 +87,7 @@
         self.menuViewController=mvc;
         [mvc release];
     }
-    [self.menuViewController.view setFrame:CGRectMake(0, 450, 320, 199)];
+    [self.menuViewController.view setFrame:CGRectMake(0, 450, 320, 160)];
     [self.window addSubview:self.menuViewController.view];
     
     self.window.backgroundColor = [UIColor whiteColor];

@@ -92,8 +92,6 @@
 		49EBEFBF15D20C9000D1DB4F /* InputNameViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EBEFBD15D20C9000D1DB4F /* InputNameViewController.m */; };
 		49EBEFC015D20C9000D1DB4F /* InputNameViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EBEFBE15D20C9000D1DB4F /* InputNameViewController.xib */; };
 		49EBEFC315D20D2500D1DB4F /* AppConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EBEFC215D20D2500D1DB4F /* AppConstant.m */; };
-		49EBEFCC15D21B0300D1DB4F /* ShareListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EBEFCA15D21B0300D1DB4F /* ShareListViewController.m */; };
-		49EBEFCD15D21B0300D1DB4F /* ShareListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EBEFCB15D21B0300D1DB4F /* ShareListViewController.xib */; };
 		49EBEFD115D21BB700D1DB4F /* PostShareViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 49EBEFCF15D21BB700D1DB4F /* PostShareViewController.m */; };
 		49EBEFD215D21BB700D1DB4F /* PostShareViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49EBEFD015D21BB700D1DB4F /* PostShareViewController.xib */; };
 		49EC240815CA129000DF9B34 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EC240415CA129000DF9B34 /* back.png */; };
@@ -240,9 +238,6 @@
 		49EBEFBE15D20C9000D1DB4F /* InputNameViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = InputNameViewController.xib; path = AwayDay2012/InputNameViewController.xib; sourceTree = "<group>"; };
 		49EBEFC115D20D2500D1DB4F /* AppConstant.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppConstant.h; sourceTree = "<group>"; };
 		49EBEFC215D20D2500D1DB4F /* AppConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppConstant.m; sourceTree = "<group>"; };
-		49EBEFC915D21B0300D1DB4F /* ShareListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShareListViewController.h; sourceTree = "<group>"; };
-		49EBEFCA15D21B0300D1DB4F /* ShareListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShareListViewController.m; sourceTree = "<group>"; };
-		49EBEFCB15D21B0300D1DB4F /* ShareListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShareListViewController.xib; path = AwayDay2012/ShareListViewController.xib; sourceTree = "<group>"; };
 		49EBEFCE15D21BB700D1DB4F /* PostShareViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PostShareViewController.h; sourceTree = "<group>"; };
 		49EBEFCF15D21BB700D1DB4F /* PostShareViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PostShareViewController.m; sourceTree = "<group>"; };
 		49EBEFD015D21BB700D1DB4F /* PostShareViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = PostShareViewController.xib; path = AwayDay2012/PostShareViewController.xib; sourceTree = "<group>"; };
@@ -410,8 +405,6 @@
 				4969AD7315C7D6A2005B6A54 /* ReminderViewController.m */,
 				4959E24E15D39DD200091D6F /* UserPathViewController.h */,
 				4959E24F15D39DD200091D6F /* UserPathViewController.m */,
-				49EBEFC915D21B0300D1DB4F /* ShareListViewController.h */,
-				49EBEFCA15D21B0300D1DB4F /* ShareListViewController.m */,
 				49EBEFCE15D21BB700D1DB4F /* PostShareViewController.h */,
 				49EBEFCF15D21BB700D1DB4F /* PostShareViewController.m */,
 				49073B4B15CB7A5900BB1522 /* SettingViewController.h */,
@@ -425,7 +418,6 @@
 			children = (
 				49073B4815CB774A00BB1522 /* MenuViewController.xib */,
 				49EBEFBE15D20C9000D1DB4F /* InputNameViewController.xib */,
-				49EBEFCB15D21B0300D1DB4F /* ShareListViewController.xib */,
 				49EBEFD015D21BB700D1DB4F /* PostShareViewController.xib */,
 				49168F8415C76A5E00DEA67C /* RootViewController.xib */,
 				4969AD7415C7D6A2005B6A54 /* ReminderViewController.xib */,
@@ -657,7 +649,6 @@
 				495CA18E15CBC7D400C09F48 /* action_button.png in Resources */,
 				495CA19115CBC97100C09F48 /* choose_flag.png in Resources */,
 				49EBEFC015D20C9000D1DB4F /* InputNameViewController.xib in Resources */,
-				49EBEFCD15D21B0300D1DB4F /* ShareListViewController.xib in Resources */,
 				49EBEFD215D21BB700D1DB4F /* PostShareViewController.xib in Resources */,
 				4959E25415D39FCB00091D6F /* UserPathViewController.xib in Resources */,
 				49B99D5E15D8D80B009B02A8 /* path_content_back.png in Resources */,
@@ -727,7 +718,6 @@
 				49073B4E15CB7A5900BB1522 /* SettingViewController.m in Sources */,
 				49EBEFBF15D20C9000D1DB4F /* InputNameViewController.m in Sources */,
 				49EBEFC315D20D2500D1DB4F /* AppConstant.m in Sources */,
-				49EBEFCC15D21B0300D1DB4F /* ShareListViewController.m in Sources */,
 				49EBEFD115D21BB700D1DB4F /* PostShareViewController.m in Sources */,
 				4959E24C15D39BA100091D6F /* UserPath.m in Sources */,
 				4959E25115D39DD200091D6F /* UserPathViewController.m in Sources */,

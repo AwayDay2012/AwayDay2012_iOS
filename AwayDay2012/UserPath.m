@@ -19,7 +19,6 @@
 
 -(void)save{
     if(self.pathImage!=nil){
-        [self setHasImage:[NSNumber numberWithBool:YES]];
         @autoreleasepool {
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
             NSString *documentsDir = [paths objectAtIndex:0];
@@ -34,8 +33,6 @@
             NSData *data=UIImageJPEGRepresentation(self.pathImage, 0.9f);
             [data writeToFile:documentsDir atomically:YES];
         }
-    }else{
-        [self setHasImage:[NSNumber numberWithBool:NO]];
     }
     [DBService saveUserPath:self];
 }

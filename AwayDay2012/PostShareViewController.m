@@ -37,6 +37,8 @@
 }
 #pragma mark - UIAction method
 -(IBAction)backButtonPressed:(id)sender{
+    self.userImage=nil;
+    [self.textView setText:@""];
     [self.navigationController popViewControllerAnimated:YES];
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate showMenuView];
@@ -54,11 +56,17 @@
     UserPath *userPath=[[UserPath alloc]init];
     [userPath setPathID:[AppHelper generateUDID]];
     [userPath setPathContent:content];
-    [userPath setPathImage:self.userImage];
+    if(self.userImage!=nil){
+        [userPath setPathImage:self.userImage];
+        [userPath setHasImage:[NSNumber numberWithBool:YES]];
+    }else{
+        [userPath setHasImage:[NSNumber numberWithBool:NO]];
+    }
     [userPath save];
     [userPath release];
     
     self.userImage=nil;
+    [self.textView setText:@""];
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate showMenuView];

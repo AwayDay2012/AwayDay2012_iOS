@@ -24,6 +24,7 @@
 @synthesize userNameLabel=_userNameLabel;
 @synthesize userRecordsCountLabel=_userRecordsCountLabel;
 @synthesize operationQueue=_operationQueue;
+@synthesize postShareViewController=_postShareViewController;
 
 - (void)viewDidLoad
 {
@@ -53,7 +54,12 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 -(IBAction)addPathButtonPressed:(id)sender{
-    
+    if(self.postShareViewController==nil){
+        PostShareViewController *psvc=[[PostShareViewController alloc]initWithNibName:@"PostShareViewController" bundle:nil];
+        self.postShareViewController=psvc;
+        [psvc release];
+    }
+    [self.navigationController pushViewController:self.postShareViewController animated:YES];
 }
 -(IBAction)pathImageButtonPressed:(id)sender{
     UIButton *button=(UIButton *)sender;
@@ -162,7 +168,7 @@
         [pathContent setTextColor:[UIColor blackColor]];
         [cell addSubview:pathContent];
         [pathContent release];
-        y=60;
+        y=57;
     }
     
     if(path.hasImage!=nil && path.hasImage.boolValue){
@@ -207,7 +213,7 @@
     }
     
     for(UIView *view in cell.subviews){
-        if(view.tag==tag_view_table_child_view){
+        if(view.tag==tag_view_table_child_view || view.tag==tag_view_table_path_image){
             [view removeFromSuperview];
         }
     }
@@ -245,6 +251,7 @@
     [_userRecordsCountLabel release];
     [self.operationQueue cancelAllOperations];
     [_operationQueue release];
+    [_postShareViewController release];
 }
 
 @end
