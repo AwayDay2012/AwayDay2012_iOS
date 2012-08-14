@@ -20,6 +20,7 @@
 @synthesize textCountLabel=_textCountLabel;
 @synthesize imageIconView=_imageIconView;
 @synthesize userImage=_userImage;
+@synthesize sessionTextLabel=_sessionTextLabel;
 
 - (void)viewDidLoad
 {
@@ -30,6 +31,12 @@
     [self.textView becomeFirstResponder];
     if(self.userImage==nil){
         self.imageIconView.alpha=0.0f;
+    }
+    
+    if(self.session==nil){
+        [self.sessionTextLabel setText:@""];
+    }else{
+        [self.sessionTextLabel setText:[NSString stringWithFormat:@"For %@", self.session.sessionTitle]];
     }
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
@@ -148,6 +155,7 @@
     [_textCountLabel release];
     [_imageIconView release];
     [_userImage release];
+    [_sessionTextLabel release];
 }
 
 @end

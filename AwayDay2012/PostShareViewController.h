@@ -15,6 +15,7 @@
 @property(nonatomic, retain) UIImage *userImage;
 @property(nonatomic, retain) IBOutlet UITextView *textView;
 @property(nonatomic, retain) IBOutlet UILabel *textCountLabel;
+@property(nonatomic, retain) IBOutlet UILabel *sessionTextLabel;
 @property(nonatomic, retain) IBOutlet UIImageView *imageIconView;
 
 -(IBAction)backButtonPressed:(id)sender;
