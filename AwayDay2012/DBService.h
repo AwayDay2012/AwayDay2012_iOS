@@ -23,5 +23,6 @@
 
 +(void)saveUserPath:(UserPath *)path;
 +(NSMutableArray *)getAllUserPath;
++(void)deleteUserPath:(UserPath *)path;
 
 @end

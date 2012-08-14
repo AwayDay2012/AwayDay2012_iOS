@@ -190,4 +190,11 @@
     return result;
 }
 
++(void)deleteUserPath:(UserPath *)path{
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSString *del=[NSString stringWithFormat:@"delete from user_path where path_id='%@'", path.pathID];
+    sqlite3_stmt *stmt;
+    sqlite3_exec(appDelegate.database, [del UTF8String], nil, &stmt, nil);
+}
+
 @end

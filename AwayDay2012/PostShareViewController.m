@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "UserPath.h"
 #import "AppHelper.h"
+#import "ImageService.h"
 
 #define text_length_limit   140
 
@@ -42,9 +43,8 @@
 }
 -(IBAction)sendButtonPressed:(id)sender{
     //to send the share
-    
     NSString *content=self.textView.text;
-    if(content.length==0 || self.userImage==nil){
+    if(content.length==0 && self.userImage==nil){
         UIAlertView *alert=[[UIAlertView alloc]initWithTitle:@"Input something please" message:@"you need to input something or put a photo" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
         [alert show];
         [alert release];
@@ -54,10 +54,15 @@
     UserPath *userPath=[[UserPath alloc]init];
     [userPath setPathID:[AppHelper generateUDID]];
     [userPath setPathContent:content];
+    [userPath setPathImage:self.userImage];
     [userPath save];
     [userPath release];
     
     self.userImage=nil;
+    
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    [appDelegate showMenuView];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 -(IBAction)addImageButtonPressed:(id)sender{
     UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
@@ -116,7 +121,10 @@
 
 #pragma UIImagePickerViewController delegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
-    self.userImage= [info objectForKey:UIImagePickerControllerOriginalImage];
+    @autoreleasepool {
+        self.userImage= [info objectForKey:UIImagePickerControllerOriginalImage];
+        self.userImage=[ImageService scaleImage:self.userImage toResolution:600];
+    }
     [self.imageIconView setAlpha:1.0f];
     [picker dismissModalViewControllerAnimated:YES];
 }

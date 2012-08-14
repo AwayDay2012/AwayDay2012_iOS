@@ -18,6 +18,8 @@
 
 -(IBAction)backButtonPressed:(id)sender;
 -(IBAction)addPathButtonPressed:(id)sender;
+-(IBAction)pathImageButtonPressed:(id)sender;
+-(IBAction)handleTapGesture:(UITapGestureRecognizer *)sender;
 
 /**
  load user joined sessions

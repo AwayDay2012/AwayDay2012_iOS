@@ -39,6 +39,21 @@
     }
     [DBService saveUserPath:self];
 }
+
+-(void)drop{
+    [DBService deleteUserPath:self];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory , NSUserDomainMask, YES);
+    NSString *documentsDir = [paths objectAtIndex:0];
+    documentsDir=[documentsDir stringByAppendingPathComponent:kUserPathImageFolder];
+    documentsDir=[documentsDir stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.jpg", self.pathID]];
+    
+    NSFileManager *fileManager=[NSFileManager defaultManager];
+    if([fileManager fileExistsAtPath:documentsDir]){
+        [fileManager removeItemAtPath:documentsDir error:nil];
+    }
+}
+
 +(NSMutableArray *)getAllUserPath{
     return [DBService getAllUserPath];
 }

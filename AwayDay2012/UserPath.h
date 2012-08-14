@@ -17,6 +17,7 @@
 @property(nonatomic, retain) NSNumber *hasImage;
 
 -(void)save;
+-(void)drop;
 +(NSMutableArray *)getAllUserPath;
 -(UIImage *)loadLocalPathImage;
 
