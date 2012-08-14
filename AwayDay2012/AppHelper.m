@@ -127,13 +127,6 @@
 
 +(NSString *)generateUDID{
     return [NSString stringWithFormat:@"%d", [NSDate timeIntervalSinceReferenceDate]];
-//    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-//    [formatter setDateFormat:@"yyyyMMddHHmmssSSSS"];
-//    NSString *mac=[AppHelper macaddress];
-//    NSString *udid=[NSString stringWithFormat:@"%@%@", mac, [formatter stringFromDate:[NSDate date]]];
-//    udid=[AppHelper md5:udid];
-//    [formatter release];
-//    return udid;
 }
 
 @end
