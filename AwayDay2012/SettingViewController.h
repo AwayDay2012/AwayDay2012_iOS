@@ -12,9 +12,8 @@
 
 @interface SettingViewController : UIViewController
 
-@property (atomic, retain) InputNameViewController *inputNameViewController;
-
-@property (atomic, retain) IBOutlet UILabel *userNameLabel;
+@property (nonatomic, retain) InputNameViewController *inputNameViewController;
+@property (nonatomic, retain) IBOutlet UILabel *userNameLabel;
 
 -(IBAction)goInputNameView:(id)sender;
 

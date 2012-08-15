@@ -29,16 +29,6 @@
     return self;
 }
 
--(IBAction)goInputNameView:(id)sender{
-    if(self.inputNameViewController == nil){
-        InputNameViewController *tempView = [[InputNameViewController alloc] initWithNibName:@"InputNameViewController" bundle:nil];
-        self.inputNameViewController = tempView;
-        [tempView release];
-    }
-    
-    [self presentModalViewController:self.inputNameViewController animated:YES];
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -53,6 +43,17 @@
     [self.userNameLabel setText:username];
 }
 
+#pragma mark - UIAction method
+-(IBAction)goInputNameView:(id)sender{
+    if(self.inputNameViewController == nil){
+        InputNameViewController *tempView = [[InputNameViewController alloc] initWithNibName:@"InputNameViewController" bundle:nil];
+        self.inputNameViewController = tempView;
+        [tempView release];
+    }
+    
+    [self presentModalViewController:self.inputNameViewController animated:YES];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -60,11 +61,6 @@
     [_userNameLabel release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
-}
-
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
 @end

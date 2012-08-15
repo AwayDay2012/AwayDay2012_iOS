@@ -12,6 +12,7 @@
 
 @implementation InputNameViewController
 @synthesize userNameField=_userNameField;
+@synthesize cancelButton=_cancelButton;
 
 - (void)viewDidLoad
 {
@@ -24,6 +25,11 @@
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate hideMenuView];
     [self.userNameField becomeFirstResponder];
+    
+    NSString *userName=[appDelegate.userState objectForKey:kUserNameKey];
+    if(userName!=nil && userName.length>0){
+        [self.userNameField setText:userName];
+    }
 }
 
 -(void)viewDidDisappear:(BOOL)animated{
@@ -48,10 +54,15 @@
     [self dismissModalViewControllerAnimated:YES];
 }
 
+-(IBAction)cancelButtonPressed:(id)sender{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
 - (void)viewDidUnload
 {
     [super viewDidUnload];
     [_userNameField release];
+    [_cancelButton release];
 }
 
 @end

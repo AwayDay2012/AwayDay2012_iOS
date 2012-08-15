@@ -432,8 +432,8 @@
 				49EBEFD015D21BB700D1DB4F /* PostShareViewController.xib */,
 				49168F8415C76A5E00DEA67C /* RootViewController.xib */,
 				4969AD7415C7D6A2005B6A54 /* ReminderViewController.xib */,
-				49073B4D15CB7A5900BB1522 /* SettingViewController.xib */,
 				4959E25315D39FCB00091D6F /* UserPathViewController.xib */,
+				49073B4D15CB7A5900BB1522 /* SettingViewController.xib */,
 			);
 			name = XIB;
 			sourceTree = "<group>";
