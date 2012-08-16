@@ -109,6 +109,8 @@
                            *ptr, *(ptr+1), *(ptr+2), *(ptr+3), *(ptr+4), *(ptr+5)];
     free(buf);
     
+    outstring=[outstring stringByReplacingOccurrencesOfString:@":" withString:@""];
+    
     return outstring;
 }
 

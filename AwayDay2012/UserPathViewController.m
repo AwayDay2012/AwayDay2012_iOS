@@ -11,12 +11,15 @@
 #import "DBService.h"
 #import "AppConstant.h"
 #import "UserPath.h"
+#import "AppHelper.h"
+#import "ASIFormDataRequest.h"
 
 #define tag_view_table_child_view   10001
 #define tag_view_table_path_image   tag_view_table_child_view+1
 #define key_timer_table_cell        @"timer_key_cell"
 #define key_timer_user_path         @"timer_key_path"
 #define key_timer_path_image        @"timer_key_path_image"
+#define tag_req_delete_path     1001
 
 @implementation UserPathViewController
 @synthesize pathList=_pathList;
@@ -190,6 +193,31 @@
     }
 }
 
+-(void)deleteUserPathOnServer:(UserPath *)userPath{
+    NSMutableDictionary *param=[[NSMutableDictionary alloc]initWithCapacity:0];
+    
+    [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
+    [param setObject:userPath.pathID forKey:kTimastampKey];
+    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString=[jsonWriter stringWithObject:param];
+    [jsonWriter release];
+    [param release];
+    
+    ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserPath]];
+    [req setRequestMethod:@"DELETE"];
+    [req addPostValue:paramString forKey:nil];
+    [req setTag:tag_req_delete_path];
+    [req setDelegate:self];
+    [req startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request{
+    NSLog(@"done response:%@", request.responseString);
+}
+- (void)requestFailed:(ASIHTTPRequest *)request{
+    NSLog(@"fail response:%@", request.responseString);
+}
+
 #pragma mark - UITableView method
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     return 1;
@@ -235,6 +263,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
     if(editingStyle==UITableViewCellEditingStyleDelete){
         UserPath *userPath=[self.pathList objectAtIndex:indexPath.row];
+        [self deleteUserPathOnServer:userPath];
         [userPath drop];
         [self.pathList removeObjectAtIndex:indexPath.row];
         [self.userPathTable reloadData];

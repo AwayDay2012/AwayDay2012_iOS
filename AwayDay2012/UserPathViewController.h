@@ -28,4 +28,6 @@
  */
 -(void)loadUserActivity;
 
+-(void)deleteUserPathOnServer:(UserPath *)userPath;
+
 @end

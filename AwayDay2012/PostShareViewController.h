@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "Session.h"
+#import "UserPath.h"
 
 @interface PostShareViewController : UIViewController <UIActionSheetDelegate, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
@@ -21,5 +22,8 @@
 -(IBAction)backButtonPressed:(id)sender;
 -(IBAction)sendButtonPressed:(id)sender;
 -(IBAction)addImageButtonPressed:(id)sender;
+
+-(void)postUserShare2Server;
+-(void)postUserPath2Server:(UserPath *)userPath;
 
 @end

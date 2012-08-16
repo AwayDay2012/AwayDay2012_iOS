@@ -11,8 +11,11 @@
 #import "UserPath.h"
 #import "AppHelper.h"
 #import "ImageService.h"
+#import "ASIFormDataRequest.h"
+#import "AppConstant.h"
 
 #define text_length_limit   140
+#define tag_req_post_user_share 1001
 
 @implementation PostShareViewController
 @synthesize session=_session;
@@ -42,6 +45,7 @@
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate hideMenuView];
 }
+
 #pragma mark - UIAction method
 -(IBAction)backButtonPressed:(id)sender{
     self.userImage=nil;
@@ -60,6 +64,8 @@
         return;
     }
     
+    [self postUserShare2Server];
+    
     UserPath *userPath=[[UserPath alloc]init];
     [userPath setPathID:[AppHelper generateUDID]];
     [userPath setPathContent:content];
@@ -70,14 +76,11 @@
         [userPath setHasImage:[NSNumber numberWithBool:NO]];
     }
     [userPath save];
+    [self postUserPath2Server:userPath];
     [userPath release];
     
-    self.userImage=nil;
-    [self.textView setText:@""];
-    
-    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    [appDelegate showMenuView];
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.textView resignFirstResponder];
+    [AppHelper showInfoView:self.view];
 }
 -(IBAction)addImageButtonPressed:(id)sender{
     UIActionSheet *actionSheet=[[UIActionSheet alloc]initWithTitle:nil delegate:self cancelButtonTitle:nil destructiveButtonTitle:nil otherButtonTitles:nil, nil];
@@ -146,6 +149,87 @@
 - (void)imagePickerControllerDidCancel:(UIImagePickerController *)picker{
     [picker dismissModalViewControllerAnimated:YES];
 }
+
+#pragma mark - util method
+-(void)removeInfoView{
+    [AppHelper removeInfoView:self.view];
+}
+-(void)postUserShare2Server{
+    NSMutableDictionary *param=[[NSMutableDictionary alloc]initWithCapacity:0];
+    if(self.session!=nil){
+        [param setObject:self.session.sessionID forKey:kSessionIDKey];
+    }
+    if(self.userImage!=nil){
+        [param setObject:@"share image content" forKey:kShareImageKey];
+    }
+    
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSString *timestamp=[NSString stringWithFormat:@"%d", [NSDate timeIntervalSinceReferenceDate]];
+    
+    [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
+    [param setObject:self.textView.text forKey:kShareTextKey];
+    [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
+    [param setObject:timestamp forKey:kTimastampKey];
+    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString=[jsonWriter stringWithObject:param];
+    [jsonWriter release];
+    [param release];
+    
+    ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserShare]];
+    [req setRequestMethod:@"POST"];
+    [req addPostValue:paramString forKey:nil];
+    [req setTag:tag_req_post_user_share];
+    [req setDelegate:self];
+    [req startAsynchronous];
+}
+
+-(void)postUserPath2Server:(UserPath *)userPath{
+    NSMutableDictionary *param=[[NSMutableDictionary alloc]initWithCapacity:0];
+    if(self.userImage!=nil){
+        [param setObject:@"share image content" forKey:kPathImageKey];
+    }
+    
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
+    [param setObject:userPath.pathContent forKey:kPathTextKey];
+    [param setObject:[appDelegate.userState objectForKey:kUserNameKey] forKey:kUserNameKey];
+    [param setObject:userPath.pathID forKey:kTimastampKey];
+    SBJsonWriter *jsonWriter=[[SBJsonWriter alloc]init];
+    NSString *paramString=[jsonWriter stringWithObject:param];
+    [jsonWriter release];
+    [param release];
+    
+    ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserPath]];
+    [req setRequestMethod:@"POST"];
+    [req addPostValue:paramString forKey:nil];
+    [req setTag:tag_req_post_user_share];
+    [req setDelegate:self];
+    [req startAsynchronous];
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request{
+    NSLog(@"done response:%@", request.responseString);
+    
+    if(request.tag==tag_req_post_user_share){
+        self.userImage=nil;
+        [self.textView setText:@""];
+        
+        AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+        [appDelegate showMenuView];
+        
+        [AppHelper removeInfoView:self.view];
+        [self.navigationController popViewControllerAnimated:YES];
+    }
+    
+}
+- (void)requestFailed:(ASIHTTPRequest *)request{
+    NSLog(@"fail response:%@", request.responseString);
+    [AppHelper removeInfoView:self.view];
+    [AppHelper showInfoView:self.view withText:@"Operation Failed" withLoading:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
+}
+
 
 - (void)viewDidUnload
 {
