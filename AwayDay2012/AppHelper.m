@@ -128,7 +128,7 @@
 }
 
 +(NSString *)generateUDID{
-    return [NSString stringWithFormat:@"%d", [NSDate timeIntervalSinceReferenceDate]];
+    return [NSString stringWithFormat:@"%d", [[NSDate date] timeIntervalSince1970]];
 }
 
 @end

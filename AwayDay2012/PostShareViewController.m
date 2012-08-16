@@ -164,7 +164,7 @@
     }
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSString *timestamp=[NSString stringWithFormat:@"%d", [NSDate timeIntervalSinceReferenceDate]];
+    NSString *timestamp=[NSString stringWithFormat:@"%d", [[NSDate date] timeIntervalSince1970]];
     
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:self.textView.text forKey:kShareTextKey];
