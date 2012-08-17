@@ -12,6 +12,8 @@
 #import "AppDelegate.h"
 #import "AppConstant.h"
 #import "UserPath.h"
+#import "ASIHttpRequest.h"
+#import "SBJson.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_view_session_detail_view   10002
@@ -79,7 +81,7 @@
         
         [self loadAgendaList];
     }
-    [self updateTopSession];    
+    [self updateTopSession];
 }
 
 #pragma mark - util method
@@ -90,12 +92,18 @@
  load the agenda list and their sessions
  */
 -(void)loadAgendaList{
+//    [self fakeData];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
+    loading=YES;
+}
+
+-(void) fakeData{
     //to load agenda from server, we mock some data for now
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm ZZZ"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
     
-    //agenda day 1
+    //Day 1
     Agenda *agenda=[[Agenda alloc]init];
     [agenda setAgendaDate:[dateFormatter dateFromString:@"2012-9-22 23:59 +0800"]];
     
@@ -139,7 +147,7 @@
     [self.agendaList addObject:agenda];
     [agenda release];
     
-    //agenda day 2
+    //Day 2
     agenda=[[Agenda alloc]init];
     [agenda setAgendaDate:[dateFormatter dateFromString:@"2012-9-23 23:59 +0800"]];
     
@@ -182,10 +190,57 @@
     
     [self.agendaList addObject:agenda];
     [agenda release];
-    
     [dateFormatter release];
+}
+
+-(void)getAgendaListFromServer:(NSString *) urlString{
+    NSURL *url = [NSURL URLWithString:urlString];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
+    [request startSynchronous];
+
+    NSError *error = [request error];
+    NSLog(@"%@",[error description]);
+    if(error==nil){
+        SBJsonParser *parser = [[SBJsonParser alloc] init];
+        NSString *resp = [request responseString];
+        NSLog(@"%@",resp);
+        NSMutableArray *receivedObjects = [parser objectWithString:resp];
+        NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+        [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+        
+        NSDateFormatter *dateFormatter2=[[NSDateFormatter alloc]init];
+        [dateFormatter2 setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
+        [dateFormatter2 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+        
+        for (NSDictionary *object in receivedObjects) {
+            Agenda *agenda = [[Agenda alloc] init];
+            [agenda setAgendaDate:[dateFormatter dateFromString:[object objectForKey:@"agenda_date"]]];
+            NSMutableArray *sessionList = [[NSMutableArray alloc] initWithCapacity:0];
+            NSMutableArray *sessions = [object objectForKey:@"agenda_sessions"];
+            for(NSDictionary *sessionObject in sessions){
+                Session *session = [[Session alloc] init];
+                [session setSessionTitle:[sessionObject objectForKey:@"session_title"]];
+                [session setSessionSpeaker:[sessionObject objectForKey:@"session_speaker"]];
+                [session setSessionID:[sessionObject objectForKey:@"session_id"]];
+                [session setSessionStartTime:[dateFormatter2 dateFromString:[sessionObject objectForKey:@"session_start"]]];
+                NSLog(@"%@",[sessionObject objectForKey:@"session_start"]);
+                [session setSessionEndTime:[dateFormatter2 dateFromString:[sessionObject objectForKey:@"session_end"]]];
+                [session setSessionNote:[sessionObject objectForKey:@"session_note"]];
+                [sessionList addObject:session];
+                [session release];
+            }
+            [agenda setSessions:sessionList];
+            [sessionList release];
+            [self.agendaList addObject:agenda];
+            [agenda release];
+        }
+        
+        [dateFormatter2 release];
+        [dateFormatter release];
+        [parser release];
+    }
     
-    loading=NO;
 }
 
 /**
@@ -432,6 +487,7 @@
 
 #pragma mark - Pull Refresh delegate
 - (void)reloadTableViewDataSource{
+    [self getAgendaListFromServer:@"http://awayday2012.herokuapp.com/sessions_grouped_by_date"];
     loading= YES;
 }
 - (void)doneLoadingTableViewData{
