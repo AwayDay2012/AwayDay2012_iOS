@@ -513,7 +513,6 @@
 
 #pragma mark - Pull Refresh delegate
 - (void)reloadTableViewDataSource{
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
     loading= YES;
 }
 - (void)doneLoadingTableViewData{
@@ -525,6 +524,7 @@
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     [self.refreshView egoRefreshScrollViewDidEndDragging:scrollView];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
 }
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
     loading=YES;
