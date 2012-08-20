@@ -197,7 +197,6 @@
 
 -(void)getAgendaListFromServer:(NSString *) urlString{
     loading=YES;
-    [self.agendaList removeAllObjects];
     NSURL *url = [NSURL URLWithString:urlString];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
@@ -551,6 +550,10 @@
         NSDateFormatter *dateFormatter2=[[NSDateFormatter alloc]init];
         [dateFormatter2 setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
         [dateFormatter2 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+        
+        if(receivedObjects.count>0){
+            [self.agendaList removeAllObjects];
+        }
         
         for (NSDictionary *object in receivedObjects) {
             Agenda *agenda = [[Agenda alloc] init];
