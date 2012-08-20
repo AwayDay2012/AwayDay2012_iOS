@@ -209,39 +209,53 @@
  update the top session area's UI
  */
 -(void)updateTopSession{
+    if(self.agendaList.count==0) return;
     NSDate *today=[NSDate date];
-    for(Agenda *agenda in self.agendaList){
+    
+    int topAgendaIndex=self.agendaList.count-1;
+    Agenda *agenda=[self.agendaList objectAtIndex:topAgendaIndex];
+    int topSessionIndex=agenda.sessions.count-1;
+    
+    for(int i=0;i<self.agendaList.count;i++){
+        Agenda *agenda=[self.agendaList objectAtIndex:i];
         if([[today earlierDate:agenda.agendaDate] isEqualToDate:today]){
-            for(Session *session in agenda.sessions){
+            for(int k=0;k<agenda.sessions.count;k++){
+                Session *session=[agenda.sessions objectAtIndex:k];
                 NSDate *sessionStartTime=session.sessionStartTime;
                 if([[sessionStartTime earlierDate:today] isEqualToDate:today]){
-                    NSIndexPath *path=[NSIndexPath indexPathForRow:[agenda.sessions indexOfObject:session] inSection:[self.agendaList indexOfObject:agenda]];
-                    
-                    [self.agendaTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:NO];
-                    
-                    [self.topSessionTitleLabel setText:session.sessionTitle];
-                    
-                    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
-                    [dateFormatter setDateFormat:@"HH:mm"];
-                    [self.topSessionDurationLabel setText:[NSString stringWithFormat:@"%@ ~ %@", [dateFormatter stringFromDate:session.sessionStartTime], [dateFormatter stringFromDate:session.sessionEndTime]]];
-                    [dateFormatter release];
-                    
-                    NSTimeInterval interval=[session.sessionStartTime timeIntervalSinceDate:today];
-                    
-                    [self.clockView setRestMinutes:[NSNumber numberWithFloat:interval]];
-                    [self.clockView setNeedsDisplay];
-                    
-                    if(interval<12*60*60){
-                        int hour=(int)(interval/3600);
-                        int min=(int)(fmodf(interval, 3600)/60);
-                        [self.topSessionRestTimeLabel setText:[NSString stringWithFormat:@"%d:%d", hour, min]];
-                    }else{
-                        [self.topSessionRestTimeLabel setText:@""];
-                    }
-                    
-                    return;
+                    topSessionIndex=k;
+                    topAgendaIndex=i;
+                    break;
                 }
             }
+        }
+    }
+    
+    agenda=[self.agendaList objectAtIndex:topAgendaIndex];
+    Session *session=[agenda.sessions objectAtIndex:topSessionIndex];
+    NSIndexPath *path=[NSIndexPath indexPathForRow:topSessionIndex inSection:topAgendaIndex];
+    
+    [self.agendaTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:NO];
+    
+    [self.topSessionTitleLabel setText:session.sessionTitle];
+    
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"HH:mm"];
+    [self.topSessionDurationLabel setText:[NSString stringWithFormat:@"%@ ~ %@", [dateFormatter stringFromDate:session.sessionStartTime], [dateFormatter stringFromDate:session.sessionEndTime]]];
+    [dateFormatter release];
+    
+    NSTimeInterval interval=[session.sessionStartTime timeIntervalSinceDate:today];
+    
+    if(interval>0){
+        [self.clockView setRestMinutes:[NSNumber numberWithFloat:interval]];
+        [self.clockView setNeedsDisplay];
+        
+        if(interval<12*60*60){
+            int hour=(int)(interval/3600);
+            int min=(int)(fmodf(interval, 3600)/60);
+            [self.topSessionRestTimeLabel setText:[NSString stringWithFormat:@"%d:%d", hour, min]];
+        }else{
+            [self.topSessionRestTimeLabel setText:@""];
         }
     }
 }
@@ -583,6 +597,7 @@
         [parser release];
         
         [self.agendaTable reloadData];
+        [self updateTopSession];
         loading=NO;
         [AppHelper removeInfoView:self.view];
     }
