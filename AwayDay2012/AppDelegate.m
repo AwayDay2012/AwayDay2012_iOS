@@ -56,6 +56,10 @@
         NSMutableDictionary *dic=[[NSMutableDictionary alloc]init];
         self.userState=dic;
         [dic release];
+        
+        NSMutableArray *userJoinList=[[NSMutableArray alloc]initWithCapacity:0];
+        [self.userState setObject:userJoinList forKey:kUserJoinListKey];
+        [userJoinList release];
     }
     
     if(self.agendaViewController==nil){

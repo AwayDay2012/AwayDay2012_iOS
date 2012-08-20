@@ -12,6 +12,7 @@
 
 extern NSString const *kUserNameKey;
 extern NSString *kUserPathImageFolder;
+extern NSString *kUserJoinListKey;
 
 extern NSString const *kServiceLoadSessionList;
 extern NSString *kServiceUserShare;

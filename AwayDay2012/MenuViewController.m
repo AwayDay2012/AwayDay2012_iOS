@@ -16,6 +16,9 @@
 @implementation MenuViewController
 @synthesize tapImageView=_tapImageView;
 @synthesize chooseFlagImageView=_chooseFlagImageView;
+@synthesize agendaViewButton=_agendaViewButton;
+@synthesize pathViewButton=_pathViewButton;
+@synthesize settingViewButton=_settingViewButton;
 
 - (void)viewDidLoad
 {
@@ -36,7 +39,22 @@
     swipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeGesture:)];
     [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
     [self.view addGestureRecognizer:swipe];
-    [swipe release];    
+    [swipe release];
+    
+    UIImageView *agendaViewIcon=[[UIImageView alloc]initWithFrame:CGRectMake(6, 10, 16, 16)];
+    [agendaViewIcon setImage:[UIImage imageNamed:@"agenda_view_icon.png"]];
+    [self.agendaViewButton addSubview:agendaViewIcon];
+    [agendaViewIcon release];
+    
+    UIImageView *pathViewIcon=[[UIImageView alloc]initWithFrame:CGRectMake(6, 10, 16, 16)];
+    [pathViewIcon setImage:[UIImage imageNamed:@"path_view_icon.png"]];
+    [self.pathViewButton addSubview:pathViewIcon];
+    [pathViewIcon release];
+    
+    UIImageView *settingViewIcon=[[UIImageView alloc]initWithFrame:CGRectMake(6, 10, 16, 16)];
+    [settingViewIcon setImage:[UIImage imageNamed:@"setting_view_icon.png"]];
+    [self.settingViewButton addSubview:settingViewIcon];
+    [settingViewIcon release];
 }
 
 #pragma mark - UIAction method
@@ -80,6 +98,9 @@
     [super viewDidUnload];
     [_tapImageView release];
     [_chooseFlagImageView release];
+    [_agendaViewButton release];
+    [_pathViewButton release];
+    [_settingViewButton release];
 }
 
 @end

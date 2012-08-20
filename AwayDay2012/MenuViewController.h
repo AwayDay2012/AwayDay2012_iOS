@@ -13,6 +13,9 @@
 
 @property(nonatomic, retain) IBOutlet UIImageView *tapImageView;
 @property(nonatomic, retain) IBOutlet UIImageView *chooseFlagImageView;
+@property(nonatomic, retain) IBOutlet UIButton *agendaViewButton;
+@property(nonatomic, retain) IBOutlet UIButton *pathViewButton;
+@property(nonatomic, retain) IBOutlet UIButton *settingViewButton;
 
 -(IBAction)agendaButtonPressed:(id)sender;
 -(IBAction)settingButtonPressed:(id)sender;

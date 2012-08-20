@@ -36,6 +36,21 @@
 				<reference key="NSNextResponder"/>
 				<int key="NSvFlags">292</int>
 				<array class="NSMutableArray" key="NSSubviews">
+					<object class="IBUIImageView" id="1003011232">
+						<reference key="NSNextResponder" ref="995364364"/>
+						<int key="NSvFlags">292</int>
+						<string key="NSFrameSize">{320, 160}</string>
+						<reference key="NSSuperview" ref="995364364"/>
+						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="1009405051"/>
+						<string key="NSReuseIdentifierKey">_NS:9</string>
+						<bool key="IBUIUserInteractionEnabled">NO</bool>
+						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+						<object class="NSCustomResource" key="IBUIImage">
+							<string key="NSClassName">NSImage</string>
+							<string key="NSResourceName">back.png</string>
+						</object>
+					</object>
 					<object class="IBUIImageView" id="1009405051">
 						<reference key="NSNextResponder" ref="995364364"/>
 						<int key="NSvFlags">292</int>
@@ -93,7 +108,7 @@
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
 						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">203</double>
+						<double key="IBUIContentEdgeInsets.right">160</double>
 						<string key="IBUINormalTitle">AGENDA</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -136,8 +151,8 @@
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
 						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">210</double>
-						<string key="IBUINormalTitle">My Path</string>
+						<double key="IBUIContentEdgeInsets.right">185</double>
+						<string key="IBUINormalTitle">PATH</string>
 						<reference key="IBUIHighlightedTitleColor" ref="226158070"/>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -165,7 +180,7 @@
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
 						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">210</double>
+						<double key="IBUIContentEdgeInsets.right">170</double>
 						<string key="IBUINormalTitle">Settings</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -183,7 +198,7 @@
 				<string key="NSFrameSize">{320, 160}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="1009405051"/>
+				<reference key="NSNextKeyView" ref="1003011232"/>
 				<string key="NSReuseIdentifierKey">_NS:9</string>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
@@ -224,6 +239,30 @@
 						<reference key="destination" ref="716472911"/>
 					</object>
 					<int key="connectionID">19</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">agendaViewButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="24346717"/>
+					</object>
+					<int key="connectionID">24</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">pathViewButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="1029303213"/>
+					</object>
+					<int key="connectionID">25</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">settingViewButton</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="904145641"/>
+					</object>
+					<int key="connectionID">26</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
@@ -281,6 +320,7 @@
 							<reference ref="1029303213"/>
 							<reference ref="1009405051"/>
 							<reference ref="716472911"/>
+							<reference ref="1003011232"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -309,6 +349,11 @@
 						<reference key="object" ref="1029303213"/>
 						<reference key="parent" ref="995364364"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">23</int>
+						<reference key="object" ref="1003011232"/>
+						<reference key="parent" ref="995364364"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -318,7 +363,8 @@
 				<string key="-2.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="15.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="17.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="17.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="17.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
@@ -330,7 +376,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">22</int>
+			<int key="maxID">26</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -367,13 +413,28 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="agendaViewButton">UIButton</string>
 						<string key="chooseFlagImageView">UIImageView</string>
+						<string key="pathViewButton">UIButton</string>
+						<string key="settingViewButton">UIButton</string>
 						<string key="tapImageView">UIImageView</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="agendaViewButton">
+							<string key="name">agendaViewButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="chooseFlagImageView">
 							<string key="name">chooseFlagImageView</string>
 							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pathViewButton">
+							<string key="name">pathViewButton</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="settingViewButton">
+							<string key="name">settingViewButton</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tapImageView">
 							<string key="name">tapImageView</string>
@@ -397,6 +458,7 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="action_button.png">{36, 12}</string>
+			<string key="back.png">{640, 960}</string>
 			<string key="choose_flag.png">{8, 87}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1181</string>

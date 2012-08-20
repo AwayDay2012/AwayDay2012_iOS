@@ -92,9 +92,9 @@
  load the agenda list and their sessions
  */
 -(void)loadAgendaList{
-//    [self fakeData];
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
-    loading=YES;
+    [self fakeData];
+//    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
+//    loading=YES;
 }
 
 -(void) fakeData{
@@ -288,10 +288,18 @@
  build the common session cell of the table
  */
 -(void)buildSessionCell:(UITableViewCell *)cell withSession:(Session *)session{
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
+    
     UILabel *sessionTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 240,30)];
     [sessionTitle setTag:tag_cell_view_start];
     [sessionTitle setBackgroundColor:[UIColor clearColor]];
     [sessionTitle setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
+    
+    if([userJoinList containsObject:session.sessionID]){
+        [sessionTitle setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
+    }
+    
     [sessionTitle setFont:[UIFont systemFontOfSize:14.0f]];
     [sessionTitle setShadowColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:120/255.0]];
     [sessionTitle setShadowOffset:CGSizeMake(-0.2f, -0.2f)];
@@ -305,6 +313,11 @@
     [sessionDuration setTag:tag_cell_view_start];
     [sessionDuration setBackgroundColor:[UIColor clearColor]];
     [sessionDuration setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
+    
+    if([userJoinList containsObject:session.sessionID]){
+        [sessionDuration setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
+    }
+    
     [sessionDuration setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionDuration setShadowColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:120/255.0]];
     [sessionDuration setShadowOffset:CGSizeMake(-0.1f, -0.1f)];
@@ -371,6 +384,16 @@
     [path setPathCreateTime:[NSDate date]];
     [path save];
     [path release];
+    
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
+    if(userJoinList==nil){
+        NSMutableArray *list=[[NSMutableArray alloc]initWithCapacity:0];
+        userJoinList=list;
+        [list release];
+    }
+    [userJoinList addObject:session.sessionID];
+    [appDelegate saveUserState];
     
     [AppHelper showInfoView:self.view withText:@"Operation Done!" withLoading:NO];
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];

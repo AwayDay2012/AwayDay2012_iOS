@@ -12,6 +12,7 @@
 
 NSString const *kUserNameKey=@"user_name";
 NSString *kUserPathImageFolder=@"user_path_image";
+NSString *kUserJoinListKey=@"user_join_list";
 
 NSString const *kSessionIDKey=@"session_id";
 NSString const *kSessionTitleKey=@"settion_title";
