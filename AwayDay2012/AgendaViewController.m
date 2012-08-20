@@ -305,7 +305,7 @@
     [sessionTitle setFont:[UIFont systemFontOfSize:14.0f]];
     [sessionTitle setShadowColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:120/255.0]];
     [sessionTitle setShadowOffset:CGSizeMake(-0.2f, -0.2f)];
-    [sessionTitle setText:session.sessionTitle];
+    [sessionTitle setText:session.sessionTitle];    
     [cell addSubview:sessionTitle];
     [sessionTitle release];
     
@@ -333,7 +333,10 @@
  build the selection effect of the choosed session
  */
 -(void)buildSessionDetailView:(UITableViewCell *)cell withSession:(Session *)session{
-    UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 30, 320, cell.frame.size.height-30)];
+    CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(320, 100) lineBreakMode:UILineBreakModeWordWrap];
+    float height=90+size.height;
+    
+    UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 30, 320, height)];
     [detailView setBackgroundColor:[UIColor clearColor]];
     [detailView setTag:tag_cell_view_session_detail_view];
     
@@ -359,7 +362,7 @@
     UITextView *sessionNote=[[UITextView alloc]initWithFrame:CGRectMake(0, 36, 320, 100)];
     [sessionNote setBackgroundColor:[UIColor clearColor]];
     [sessionNote setUserInteractionEnabled:NO];
-    CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:sessionNote.frame.size lineBreakMode:UILineBreakModeWordWrap];
+//    CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:sessionNote.frame.size lineBreakMode:UILineBreakModeWordWrap];
     [sessionNote setFrame:CGRectMake(0, 36, 320, size.height+10)];
     [sessionNote setText:session.sessionNote];
     [sessionNote setTextColor:[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0f]];
@@ -370,7 +373,6 @@
     UIButton *attend=[UIButton buttonWithType:UIButtonTypeCustom];
     [attend setFrame:CGRectMake(30, sessionNote.frame.origin.y+sessionNote.frame.size.height+5, 52, 32)];
     [attend setImage:[UIImage imageNamed:@"join_button.png"] forState:UIControlStateNormal];
-    
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
     if(userJoinList!=nil && [userJoinList containsObject:session.sessionID]){
@@ -378,7 +380,6 @@
     }else{
         [attend setAlpha:1.0f];
     }
-    
     [attend addTarget:self action:@selector(joinButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:attend];
     
@@ -397,7 +398,6 @@
     CATransition *transition=[CATransition animation];
     transition.duration=0.15f;
     [detailView.layer addAnimation:transition forKey:@"add"];
-    
     [cell addSubview:detailView];
     [detailView release];
 }
@@ -407,11 +407,6 @@
     //to create a user path
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
-    if(userJoinList==nil){
-        NSMutableArray *list=[[NSMutableArray alloc]initWithCapacity:0];
-        userJoinList=list;
-        [list release];
-    }
     
     UIButton *joinButton=(UIButton *)sender;
     UITableViewCell *cell=[self.agendaTable cellForRowAtIndexPath:self.selectedCell];
@@ -551,7 +546,7 @@
         self.selectedCell=indexPath;
     }
     
-    [self.agendaTable reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    [self.agendaTable reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 
