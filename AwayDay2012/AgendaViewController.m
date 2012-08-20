@@ -16,6 +16,8 @@
 #import "SBJson.h"
 
 #define tag_cell_view_start 1001
+#define tag_cell_session_title_view tag_cell_view_start+1
+#define tag_cell_session_time_view  tag_cell_view_start+2
 #define tag_cell_view_session_detail_view   10002
 
 @implementation AgendaViewController
@@ -112,7 +114,7 @@
     Session *session=[[Session alloc]init];
     [session setSessionID:@"201209220900"];
     [session setSessionTitle:@"Keynote for Away Day 2012"];
-    [session setSessionNote:@"Keynote for Away Day 2012"];
+    [session setSessionNote:@"Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012"];
     [session setSessionSpeaker:@"John Beck"];
     [session setSessionStartTime:[dateFormatter dateFromString:@"2012-9-22 09:00 +0800"]];
     [session setSessionEndTime:[dateFormatter dateFromString:@"2012-9-22 12:00 +0800"]];
@@ -292,7 +294,7 @@
     NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
     
     UILabel *sessionTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 240,30)];
-    [sessionTitle setTag:tag_cell_view_start];
+    [sessionTitle setTag:tag_cell_session_title_view];
     [sessionTitle setBackgroundColor:[UIColor clearColor]];
     [sessionTitle setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
     
@@ -310,7 +312,7 @@
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"HH:mm"];
     UILabel *sessionDuration=[[UILabel alloc]initWithFrame:CGRectMake(240, 10, 75, 30)];
-    [sessionDuration setTag:tag_cell_view_start];
+    [sessionDuration setTag:tag_cell_session_time_view];
     [sessionDuration setBackgroundColor:[UIColor clearColor]];
     [sessionDuration setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
     
@@ -331,40 +333,69 @@
  build the selection effect of the choosed session
  */
 -(void)buildSessionDetailView:(UITableViewCell *)cell withSession:(Session *)session{
-    UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 30, 320, 110)];
+    UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 30, 320, cell.frame.size.height-30)];
     [detailView setBackgroundColor:[UIColor clearColor]];
     [detailView setTag:tag_cell_view_session_detail_view];
     
-    UITextView *sessionNote=[[UITextView alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
+    UILabel *sessionSpeaker=[[UILabel alloc]initWithFrame:CGRectMake(8, 6, 320, 16)];
+    [sessionSpeaker setBackgroundColor:[UIColor clearColor]];
+    [sessionSpeaker setFont:[UIFont systemFontOfSize:12.0f]];
+    [sessionSpeaker setTextColor:[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0f]];
+    [sessionSpeaker setText:[NSString stringWithFormat:@"Speaker: %@", session.sessionSpeaker]];
+    [detailView addSubview:sessionSpeaker];
+    [sessionSpeaker release];
+    
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"HH:mm"];
+    UILabel *sessionTime=[[UILabel alloc]initWithFrame:CGRectMake(8, 22, 320, 16)];
+    [sessionTime setBackgroundColor:[UIColor clearColor]];
+    [sessionTime setFont:[UIFont systemFontOfSize:12.0f]];
+    [sessionTime setTextColor:[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0f]];
+    [sessionTime setText:[NSString stringWithFormat:@"Time: %@ ~ %@", [formatter stringFromDate:session.sessionStartTime],[formatter stringFromDate:session.sessionEndTime]]];
+    [detailView addSubview:sessionTime];
+    [sessionTime release];
+    [formatter release];
+    
+    UITextView *sessionNote=[[UITextView alloc]initWithFrame:CGRectMake(0, 36, 320, 100)];
     [sessionNote setBackgroundColor:[UIColor clearColor]];
     [sessionNote setUserInteractionEnabled:NO];
+    CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:sessionNote.frame.size lineBreakMode:UILineBreakModeWordWrap];
+    [sessionNote setFrame:CGRectMake(0, 36, 320, size.height+10)];
     [sessionNote setText:session.sessionNote];
     [sessionNote setTextColor:[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0f]];
+    [sessionNote sizeToFit];
     [detailView addSubview:sessionNote];
     [sessionNote release];
     
     UIButton *attend=[UIButton buttonWithType:UIButtonTypeCustom];
-    [attend setFrame:CGRectMake(30, 65, 52, 32)];
+    [attend setFrame:CGRectMake(30, sessionNote.frame.origin.y+sessionNote.frame.size.height+5, 52, 32)];
     [attend setImage:[UIImage imageNamed:@"join_button.png"] forState:UIControlStateNormal];
-    [attend addTarget:self action:@selector(attendButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
+    
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
+    if(userJoinList!=nil && [userJoinList containsObject:session.sessionID]){
+        [attend setAlpha:0.5f];
+    }else{
+        [attend setAlpha:1.0f];
+    }
+    
+    [attend addTarget:self action:@selector(joinButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:attend];
     
     UIButton *remind=[UIButton buttonWithType:UIButtonTypeCustom];
-    [remind setFrame:CGRectMake(134, 65, 52, 32)];
+    [remind setFrame:CGRectMake(134, sessionNote.frame.origin.y+sessionNote.frame.size.height+5, 52, 32)];
     [remind setImage:[UIImage imageNamed:@"reminder_button.png"] forState:UIControlStateNormal];
     [remind addTarget:self action:@selector(remindButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:remind];
     
     UIButton *share=[UIButton buttonWithType:UIButtonTypeCustom];
-    [share setFrame:CGRectMake(234, 65, 52, 32)];
+    [share setFrame:CGRectMake(234, sessionNote.frame.origin.y+sessionNote.frame.size.height+5, 52, 32)];
     [share setImage:[UIImage imageNamed:@"share_button.png"] forState:UIControlStateNormal];
     [share addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:share];
     
     CATransition *transition=[CATransition animation];
     transition.duration=0.15f;
-    transition.type=kCATransitionMoveIn;
-    transition.subtype=kCATransitionFromRight;
     [detailView.layer addAnimation:transition forKey:@"add"];
     
     [cell addSubview:detailView];
@@ -372,19 +403,8 @@
 }
 
 #pragma mark - UIAction method
--(IBAction)attendButtonPressed:(id)sender{
+-(IBAction)joinButtonPressed:(id)sender{
     //to create a user path
-    
-    Agenda *agenda=[self.agendaList objectAtIndex:self.selectedCell.section];
-    Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
-    
-    UserPath *path=[[UserPath alloc]init];
-    [path setPathID:[AppHelper generateUDID]];
-    [path setPathContent:[NSString stringWithFormat:@"Join %@", session.sessionTitle]];
-    [path setPathCreateTime:[NSDate date]];
-    [path save];
-    [path release];
-    
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
     if(userJoinList==nil){
@@ -392,10 +412,38 @@
         userJoinList=list;
         [list release];
     }
-    [userJoinList addObject:session.sessionID];
+    
+    UIButton *joinButton=(UIButton *)sender;
+    UITableViewCell *cell=[self.agendaTable cellForRowAtIndexPath:self.selectedCell];
+    UILabel *sessionTitleLabel=(UILabel *)[cell viewWithTag:tag_cell_session_title_view];
+    UILabel *sessionTimeLabel=(UILabel *)[cell viewWithTag:tag_cell_session_time_view];
+    
+    Agenda *agenda=[self.agendaList objectAtIndex:self.selectedCell.section];
+    Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
+    
+    if([userJoinList containsObject:session.sessionID]){
+        [userJoinList removeObject:session.sessionID];
+        [joinButton setAlpha:1.0f];
+        [sessionTitleLabel setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
+        [sessionTimeLabel setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
+        [AppHelper showInfoView:self.view withText:@"Cancelled!" withLoading:NO];
+    }else{
+        UserPath *path=[[UserPath alloc]init];
+        [path setPathID:[AppHelper generateUDID]];
+        [path setPathContent:[NSString stringWithFormat:@"Join %@", session.sessionTitle]];
+        [path setPathCreateTime:[NSDate date]];
+        [path save];
+        [path release];
+        
+        [userJoinList addObject:session.sessionID];
+        [joinButton setAlpha:0.5f];
+        [sessionTitleLabel setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
+        [sessionTimeLabel setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
+        [AppHelper showInfoView:self.view withText:@"Joined!" withLoading:NO];
+    }
+    
     [appDelegate saveUserState];
     
-    [AppHelper showInfoView:self.view withText:@"Operation Done!" withLoading:NO];
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
 -(IBAction)remindButtonPressed:(id)sender{
@@ -433,7 +481,11 @@
 }
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     if(indexPath.section==self.selectedCell.section && indexPath.row==self.selectedCell.row){
-        return 140.0f;
+        Agenda *agenda=[self.agendaList objectAtIndex:self.selectedCell.section];
+        Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
+        CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(320, 100) lineBreakMode:UILineBreakModeWordWrap];
+        float height=120+size.height;
+        return height;
     }else{
         return 50.0f;
     }
@@ -490,11 +542,6 @@
     UITableViewCell *lastSelectedCell=[self.agendaTable cellForRowAtIndexPath:self.selectedCell];
     if(lastSelectedCell!=nil){
         if([lastSelectedCell viewWithTag:tag_cell_view_session_detail_view]!=nil){
-            CATransition *transition=[CATransition animation];
-            transition.duration=0.15f;
-            transition.type=kCATransitionMoveIn;
-            transition.subtype=kCATransitionFromLeft;
-            [[lastSelectedCell viewWithTag:tag_cell_view_session_detail_view].layer addAnimation:transition forKey:@"remove"];
             [[lastSelectedCell viewWithTag:tag_cell_view_session_detail_view] removeFromSuperview];
         }
     }
@@ -504,7 +551,7 @@
         self.selectedCell=indexPath;
     }
     
-    [self.agendaTable reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    [self.agendaTable reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
 
 

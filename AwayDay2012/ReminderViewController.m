@@ -69,9 +69,12 @@
     }
     
     if(!found){
-        [self.remindTimeLabel setText:@""];
+        [self.remindTimeLabel setTextColor:[UIColor darkGrayColor]];
+        [self.remindTimeLabel setText:@"No Alarm"];
         [self.timePicker selectRow:0 inComponent:0 animated:NO];
         self.choosedTime=[NSNumber numberWithInt:0];
+    }else{
+        [self.remindTimeLabel setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
     }
 }
 
@@ -187,6 +190,12 @@
     NSString *key=[self.remindTimeKeyArray objectAtIndex:row];
     self.choosedTime=[self.remindTimeList objectForKey:key];
     [self.remindTimeLabel setText:key];
+    
+    if(self.choosedTime==nil || self.choosedTime.intValue==0){
+        [self.remindTimeLabel setTextColor:[UIColor lightGrayColor]];
+    }else{
+        [self.remindTimeLabel setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
+    }
 }
 
 - (void)viewDidUnload

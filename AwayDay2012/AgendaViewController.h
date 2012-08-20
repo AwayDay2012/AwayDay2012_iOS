@@ -55,7 +55,7 @@
  */
 -(void)buildSessionDetailView:(UITableViewCell *)cell withSession:(Session *)session;
 
--(IBAction)attendButtonPressed:(id)sender;
+-(IBAction)joinButtonPressed:(id)sender;
 -(IBAction)remindButtonPressed:(id)sender;
 -(IBAction)shareButtonPressed:(id)sender;
 
