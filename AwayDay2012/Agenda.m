@@ -24,7 +24,7 @@
     }
     return self;
 }
--(Agenda *)createAgenda:(NSDictionary *) agendaProperties{
++(Agenda *)createAgenda:(NSDictionary *) agendaProperties{
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
     [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
@@ -38,7 +38,7 @@
         [sessionList addObject:[session createSession:sessionObject]];
         [session release];
     }
-    [agenda setSessions:sessionList];
+    [agenda.sessions addObjectsFromArray:sessionList];
     [sessionList release];
     [agenda autorelease];
     [dateFormatter release];

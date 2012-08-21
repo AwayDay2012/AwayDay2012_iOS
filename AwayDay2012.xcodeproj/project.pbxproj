@@ -13,8 +13,8 @@
 		49073B4F15CB7A5900BB1522 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49073B4D15CB7A5900BB1522 /* SettingViewController.xib */; };
 		490B91E015D4B60E00539E2A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 490B91DF15D4B60E00539E2A /* libsqlite3.dylib */; };
 		490B91EC15D4B78B00539E2A /* DBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 490B91EB15D4B78B00539E2A /* DBService.m */; };
-		4913EADE15E35A4C00C93E43 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4913EADD15E35A4C00C93E43 /* user_db.sqlite */; };
-		4913EADF15E35A6300C93E43 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4913EADD15E35A4C00C93E43 /* user_db.sqlite */; };
+		4913EAED15E3688C00C93E43 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4913EAEC15E3688C00C93E43 /* user_db.sqlite */; };
+		4913EAEE15E368A700C93E43 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4913EAEC15E3688C00C93E43 /* user_db.sqlite */; };
 		49168F5215C769D300DEA67C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5115C769D300DEA67C /* UIKit.framework */; };
 		49168F5415C769D300DEA67C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5315C769D300DEA67C /* Foundation.framework */; };
 		49168F5615C769D300DEA67C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5515C769D300DEA67C /* CoreGraphics.framework */; };
@@ -134,7 +134,7 @@
 		490B91DF15D4B60E00539E2A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		490B91EA15D4B78B00539E2A /* DBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBService.h; sourceTree = "<group>"; };
 		490B91EB15D4B78B00539E2A /* DBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBService.m; sourceTree = "<group>"; };
-		4913EADD15E35A4C00C93E43 /* user_db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = user_db.sqlite; sourceTree = "<group>"; };
+		4913EAEC15E3688C00C93E43 /* user_db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = user_db.sqlite; sourceTree = "<group>"; };
 		49168F4D15C769D300DEA67C /* AwayDay2012.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwayDay2012.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49168F5115C769D300DEA67C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49168F5315C769D300DEA67C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -406,7 +406,7 @@
 		49168F8015C76A3A00DEA67C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				4913EADD15E35A4C00C93E43 /* user_db.sqlite */,
+				4913EAEC15E3688C00C93E43 /* user_db.sqlite */,
 				49EC240315CA129000DF9B34 /* Image */,
 				49168F8715C76A6700DEA67C /* XIB */,
 				49168F5815C769D300DEA67C /* Supporting Files */,
@@ -655,7 +655,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4913EADF15E35A6300C93E43 /* user_db.sqlite in Resources */,
+				4913EAEE15E368A700C93E43 /* user_db.sqlite in Resources */,
 				4934F9F215CA6B2D00427597 /* blackArrow.png in Resources */,
 				4934F9F315CA6B2D00427597 /* blackArrow@2x.png in Resources */,
 				4934F9F415CA6B2D00427597 /* blueArrow.png in Resources */,
@@ -705,7 +705,7 @@
 				4934F9EF15CA671700427597 /* grayArrow@2x.png in Resources */,
 				4934F9F015CA671700427597 /* whiteArrow.png in Resources */,
 				4934F9F115CA671700427597 /* whiteArrow@2x.png in Resources */,
-				4913EADE15E35A4C00C93E43 /* user_db.sqlite in Resources */,
+				4913EAED15E3688C00C93E43 /* user_db.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

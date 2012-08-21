@@ -96,7 +96,34 @@
  load the agenda list and their sessions
  */
 -(void)loadAgendaList{
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
+    NSMutableArray *allSessions=[DBService getLocalAgendaList];
+    
+    NSMutableDictionary *tempAgendaMapping=[[NSMutableDictionary alloc]initWithCapacity:0];
+    
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    for(Session *session in allSessions){
+        NSString *sessionDateStr=[dateFormatter stringFromDate:session.sessionStartTime];
+        Agenda *agenda=[tempAgendaMapping objectForKey:sessionDateStr];
+        if(agenda==nil){
+            agenda=[[Agenda alloc]init];
+            [agenda autorelease];
+            [agenda setAgendaDate:session.sessionStartTime];
+            
+            NSMutableArray *list=[[NSMutableArray alloc]initWithCapacity:0];
+            [agenda setSessions:list];
+            [list release];
+        }
+        [agenda.sessions addObject:session];
+        [tempAgendaMapping setObject:agenda forKey:sessionDateStr];
+    }
+    
+    [dateFormatter release];
+    
+    [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
+    [tempAgendaMapping release];
+    
+//    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
 }
 
 -(void)getAgendaListFromServer:(NSString *) urlString{
@@ -427,6 +454,10 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell.backgroundView setBackgroundColor:[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0f]];
     
+    for(Agenda *agenda in self.agendaList){
+        NSLog(@"%@", agenda.agendaDate);
+    }
+    
     Agenda *agenda=[self.agendaList objectAtIndex:indexPath.section];
     Session *session=[agenda.sessions objectAtIndex:indexPath.row];
     
@@ -459,20 +490,16 @@
 - (void)reloadTableViewDataSource{
     loading= YES;
 }
-- (void)doneLoadingTableViewData{
-    loading= NO;
-    [self.refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.agendaTable];
-}
 - (void)scrollViewDidScroll:(UIScrollView *)scrollView{
     [self.refreshView egoRefreshScrollViewDidScroll:scrollView];
 }
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     [self.refreshView egoRefreshScrollViewDidEndDragging:scrollView];
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
+    
 }
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
     loading=YES;
-    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
 }
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
     return loading;
@@ -487,24 +514,26 @@
         SBJsonParser *parser = [[SBJsonParser alloc] init];
         NSString *resp = [request responseString];
         NSMutableArray *receivedObjects = [parser objectWithString:resp];
+        [parser release];
         
         if(receivedObjects.count>0){
             [self.agendaList removeAllObjects];
             [DBService deleteAllSessions];
+            
+            for (NSDictionary *object in receivedObjects) {
+                Agenda *agenda = [Agenda createAgenda:object];
+                [self.agendaList addObject:agenda];
+                [DBService saveSessionList:agenda.sessions];
+            }
+            
+            [self.agendaTable reloadData];
+            [self updateTopSession];
         }
         
-        for (NSDictionary *object in receivedObjects) {
-            Agenda *agenda = [[Agenda alloc] init];
-            [self.agendaList addObject:[agenda createAgenda:object]];
-            [agenda release];
-        }
-        
-        [parser release];
-        
-        [self.agendaTable reloadData];
-        [self updateTopSession];
         loading=NO;
         [AppHelper removeInfoView:self.view];
+        
+        [self.refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.agendaTable];
     }
 }
 - (void)requestFailed:(ASIHTTPRequest *)request{

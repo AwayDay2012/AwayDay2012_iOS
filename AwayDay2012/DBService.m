@@ -24,7 +24,7 @@
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd HH:mm ZZZ"];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
     
     sqlite3_stmt *stmt;
     sqlite3_prepare_v2(appDelegate.database, [sql UTF8String], -1, &stmt, NULL);
@@ -43,7 +43,11 @@
         if(sessionTitle!=nil)[session setSessionTitle:[NSString stringWithUTF8String:sessionTitle]];
         if(sessionDescription!=nil)[session setSessionNote:[NSString stringWithUTF8String:sessionDescription]];
         if(sessionSpeaker!=nil)[session setSessionSpeaker:[NSString stringWithUTF8String:sessionSpeaker]];
-        if(sessionStart!=nil)[session setSessionStartTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionStart]]];
+        if(sessionStart!=nil){
+            NSString *timeStr=[NSString stringWithUTF8String:sessionStart];
+            NSDate *start=[formatter dateFromString:timeStr];
+            [session setSessionStartTime:start];
+        }
         if(sessionEnd!=nil)[session setSessionEndTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionEnd]]];
         if(sessionLocation!=nil)[session setSessionAddress:[NSString stringWithUTF8String:sessionLocation]];
         
@@ -58,18 +62,24 @@
 
 +(void)deleteAllSessions{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSString *del=@"delete from session_lis";
+    NSString *del=@"delete from session_list";
     sqlite3_stmt *stmt;
-    sqlite3_exec(appDelegate.database, [del UTF8String], nil, &stmt, nil);
+    char *errorMsg;
+    if(sqlite3_exec(appDelegate.database, [del UTF8String], nil, &stmt, &errorMsg)!=SQLITE_OK){
+        NSLog(@"%@", [NSString stringWithUTF8String:errorMsg]);
+    }
 }
 +(void)saveSessionList:(NSArray *)sessionList{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     sqlite3_stmt *stmt;
-    
+    char *errorMsg;
     for(Session *session in sessionList){
-        NSString *save=[NSString stringWithFormat:@"insert into session_lis(session_id,session_title,session_description,session_speaker,session_start,session_end,session_location) values('%@','%@','%@','%@','%@','%@','%@')", [session sessionID], [session sessionTitle], [session sessionNote],[session sessionSpeaker], [session sessionStartTime], [session sessionEndTime], [session sessionAddress]];
+        NSString *save=[NSString stringWithFormat:@"insert into session_list(session_id,session_title,session_description,session_speaker,session_start,session_end,session_location) values('%@','%@','%@','%@','%@','%@','%@')", [session sessionID], [session sessionTitle], [session sessionNote],[session sessionSpeaker], [session sessionStartTime], [session sessionEndTime], [session sessionAddress]];
         
-        sqlite3_exec(appDelegate.database, [save UTF8String], nil, &stmt, nil);
+        
+        if(sqlite3_exec(appDelegate.database, [save UTF8String], nil, &stmt, &errorMsg)!=SQLITE_OK){
+            NSLog(@"%@", [NSString stringWithUTF8String:errorMsg]);
+        }
     }
 }
 
@@ -79,7 +89,7 @@
     NSMutableArray *result=[[NSMutableArray alloc]initWithCapacity:0];
     [result autorelease];
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSString *sql=@"select * from session_lis where session_id in (";
+    NSString *sql=@"select * from session_list where session_id in (";
     for(NSString *sid in list){
         sql=[sql stringByAppendingFormat:@"%@,",sid];
     }
