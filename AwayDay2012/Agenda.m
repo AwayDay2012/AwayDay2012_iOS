@@ -7,6 +7,7 @@
 //
 
 #import "Agenda.h"
+#import "Session.h"
 
 @implementation Agenda
 @synthesize agendaDate=_agendaDate;
@@ -22,6 +23,26 @@
         }
     }
     return self;
+}
+-(Agenda *)createAgenda:(NSDictionary *) agendaProperties{
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+    [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+    
+    Agenda *agenda = [[Agenda alloc] init];
+    [agenda setAgendaDate:[dateFormatter dateFromString:[agendaProperties objectForKey:@"agenda_date"]]];
+    NSMutableArray *sessionList = [[NSMutableArray alloc] initWithCapacity:0];
+    NSMutableArray *sessions = [agendaProperties objectForKey:@"agenda_sessions"];
+    for(NSDictionary *sessionObject in sessions){
+        Session *session = [[Session alloc] init];
+        [sessionList addObject:[session createSession:sessionObject]];
+        [session release];
+    }
+    [agenda setSessions:sessionList];
+    [sessionList release];
+    [agenda autorelease];
+    [dateFormatter release];
+    return agenda;
 }
 
 -(void)dealloc{

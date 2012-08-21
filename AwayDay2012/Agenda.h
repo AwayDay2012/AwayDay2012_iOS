@@ -13,4 +13,6 @@
 @property(nonatomic, retain) NSDate *agendaDate;
 @property(nonatomic, retain) NSMutableArray *sessions;
 
+-(Agenda *)createAgenda:(NSDictionary *) agendaProperties;
+
 @end
