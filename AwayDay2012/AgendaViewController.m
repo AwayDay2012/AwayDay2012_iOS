@@ -95,8 +95,8 @@
  load the agenda list and their sessions
  */
 -(void)loadAgendaList{
-//    [self fakeData];
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
+    [self fakeData];
+//    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
 }
 
 -(void) fakeData{
@@ -555,7 +555,7 @@
     if(request.tag==tag_req_load_session_list){
         SBJsonParser *parser = [[SBJsonParser alloc] init];
         NSString *resp = [request responseString];
-        NSLog(@"%@",resp);
+//        NSLog(@"%@",resp);
         NSMutableArray *receivedObjects = [parser objectWithString:resp];
         NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
         [dateFormatter setDateFormat:@"yyyy-MM-dd"];
@@ -580,7 +580,7 @@
                 [session setSessionSpeaker:[sessionObject objectForKey:@"session_speaker"]];
                 [session setSessionID:[sessionObject objectForKey:@"session_id"]];
                 [session setSessionStartTime:[dateFormatter2 dateFromString:[sessionObject objectForKey:@"session_start"]]];
-                NSLog(@"%@",[sessionObject objectForKey:@"session_start"]);
+//                NSLog(@"%@",[sessionObject objectForKey:@"session_start"]);
                 [session setSessionEndTime:[dateFormatter2 dateFromString:[sessionObject objectForKey:@"session_end"]]];
                 [session setSessionNote:[sessionObject objectForKey:@"session_note"]];
                 [sessionList addObject:session];
@@ -604,7 +604,10 @@
 }
 - (void)requestFailed:(ASIHTTPRequest *)request{
     if(request.tag==tag_req_load_session_list){
-        
+        NSLog(@"%@", [request.error localizedDescription]);
+        [self.refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.agendaTable];
+        [AppHelper showInfoView:self.view withText:@"Failed" withLoading:NO];
+        [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
     }
 }
 

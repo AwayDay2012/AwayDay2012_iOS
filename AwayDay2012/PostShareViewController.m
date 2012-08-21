@@ -13,6 +13,7 @@
 #import "ImageService.h"
 #import "ASIFormDataRequest.h"
 #import "AppConstant.h"
+#import "GTMBase64.h"
 
 #define text_length_limit   140
 #define tag_req_post_user_share 1001
@@ -160,11 +161,12 @@
         [param setObject:self.session.sessionID forKey:kSessionIDKey];
     }
     if(self.userImage!=nil){
-        [param setObject:@"share image content" forKey:kShareImageKey];
+        [param setObject:[AppHelper base64EncodeImage:self.userImage] forKey:kShareImageKey];
     }
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSString *timestamp=[NSString stringWithFormat:@"%d", [[NSDate date] timeIntervalSince1970]];
+    NSTimeInterval interval=[[NSDate date] timeIntervalSince1970];
+    NSString *timestamp=[NSString stringWithFormat:@"%d", (long)interval];
     
     [param setObject:[AppHelper macaddress] forKey:kDeviceIDKey];
     [param setObject:self.textView.text forKey:kShareTextKey];
@@ -186,7 +188,8 @@
 -(void)postUserPath2Server:(UserPath *)userPath{
     NSMutableDictionary *param=[[NSMutableDictionary alloc]initWithCapacity:0];
     if(self.userImage!=nil){
-        [param setObject:@"share image content" forKey:kPathImageKey];
+        //we don't need to submit path's image for now
+//        [param setObject:[AppHelper base64DecodeImage:self.userImage] forKey:kShareImageKey];
     }
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
