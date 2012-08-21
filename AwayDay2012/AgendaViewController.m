@@ -555,7 +555,6 @@
     if(request.tag==tag_req_load_session_list){
         SBJsonParser *parser = [[SBJsonParser alloc] init];
         NSString *resp = [request responseString];
-        NSLog(@"%@",resp);
         NSMutableArray *receivedObjects = [parser objectWithString:resp];
         
         if(receivedObjects.count>0){
@@ -578,7 +577,10 @@
 }
 - (void)requestFailed:(ASIHTTPRequest *)request{
     if(request.tag==tag_req_load_session_list){
-        NSLog(@"%@",[[request error] description]);
+        NSLog(@"%@", [request.error localizedDescription]);
+        [self.refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.agendaTable];
+        [AppHelper showInfoView:self.view withText:@"Failed" withLoading:NO];
+        [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
     }
 }
 

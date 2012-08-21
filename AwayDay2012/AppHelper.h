@@ -17,5 +17,6 @@
 +(NSString *)macaddress;
 +(NSString *)md5:(NSString *)str;
 +(NSString *)generateUDID;
++(NSString *)base64EncodeImage:(UIImage *)image;
 
 @end

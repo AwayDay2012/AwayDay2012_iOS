@@ -82,6 +82,8 @@
 		4969AD6915C7A0AC005B6A54 /* SessionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969AD6815C7A0AC005B6A54 /* SessionAddress.m */; };
 		4969AD7515C7D6A2005B6A54 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969AD7315C7D6A2005B6A54 /* ReminderViewController.m */; };
 		4969AD7615C7D6A2005B6A54 /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4969AD7415C7D6A2005B6A54 /* ReminderViewController.xib */; };
+		49851F9F15E328A7007A665A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 49851F9D15E328A7007A665A /* GTMBase64.m */; };
+		49851FA115E329A6007A665A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 49851F9D15E328A7007A665A /* GTMBase64.m */; };
 		499A34FD15E1D8CA006EBC8E /* agenda_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 499A34FA15E1D8CA006EBC8E /* agenda_view_icon.png */; };
 		499A34FE15E1D8CA006EBC8E /* path_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 499A34FB15E1D8CA006EBC8E /* path_view_icon.png */; };
 		499A34FF15E1D8CA006EBC8E /* setting_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 499A34FC15E1D8CA006EBC8E /* setting_view_icon.png */; };
@@ -231,6 +233,9 @@
 		4969AD7215C7D6A2005B6A54 /* ReminderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReminderViewController.h; sourceTree = "<group>"; };
 		4969AD7315C7D6A2005B6A54 /* ReminderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReminderViewController.m; sourceTree = "<group>"; };
 		4969AD7415C7D6A2005B6A54 /* ReminderViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ReminderViewController.xib; path = AwayDay2012/ReminderViewController.xib; sourceTree = "<group>"; };
+		49851F9C15E328A7007A665A /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		49851F9D15E328A7007A665A /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		49851F9E15E328A7007A665A /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
 		499A34FA15E1D8CA006EBC8E /* agenda_view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = agenda_view_icon.png; sourceTree = "<group>"; };
 		499A34FB15E1D8CA006EBC8E /* path_view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_view_icon.png; sourceTree = "<group>"; };
 		499A34FC15E1D8CA006EBC8E /* setting_view_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = setting_view_icon.png; sourceTree = "<group>"; };
@@ -569,6 +574,9 @@
 		49EC240F15CA1AC300DF9B34 /* Helper */ = {
 			isa = PBXGroup;
 			children = (
+				49851F9C15E328A7007A665A /* GTMBase64.h */,
+				49851F9D15E328A7007A665A /* GTMBase64.m */,
+				49851F9E15E328A7007A665A /* GTMDefines.h */,
 				49EC241015CA1AD800DF9B34 /* AppHelper.h */,
 				49EC241115CA1AD800DF9B34 /* AppHelper.m */,
 				49EBEFC115D20D2500D1DB4F /* AppConstant.h */,
@@ -724,6 +732,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49851FA115E329A6007A665A /* GTMBase64.m in Sources */,
 				4934FA0215CA705200427597 /* AgendaViewController.m in Sources */,
 				4934F9E115CA668600427597 /* EGORefreshTableHeaderView.m in Sources */,
 				49168F5E15C769D300DEA67C /* main.m in Sources */,
@@ -777,6 +786,7 @@
 				4934FA0115CA703200427597 /* AgendaViewController.m in Sources */,
 				49B99D3815D888F0009B02A8 /* DBServiceTest.m in Sources */,
 				49D5882215DA24FB00A8DA72 /* ImageServiceTest.m in Sources */,
+				49851F9F15E328A7007A665A /* GTMBase64.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
