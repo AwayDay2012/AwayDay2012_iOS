@@ -40,6 +40,7 @@
     [session setSessionStartTime:[dateFormatter2 dateFromString:[sessionProperies objectForKey:@"session_start"]]];
     [session setSessionEndTime:[dateFormatter2 dateFromString:[sessionProperies objectForKey:@"session_end"]]];
     [session setSessionNote:[sessionProperies objectForKey:@"session_note"]];
+    [session setSessionAddress:[sessionProperies objectForKey:@"session_location"]];
     [session autorelease];
     [dateFormatter2 release];
     return session;

@@ -495,30 +495,7 @@
         
         for (NSDictionary *object in receivedObjects) {
             Agenda *agenda = [[Agenda alloc] init];
-<<<<<<< HEAD
             [self.agendaList addObject:[agenda createAgenda:object]];
-=======
-            [agenda setAgendaDate:[dateFormatter dateFromString:[object objectForKey:@"agenda_date"]]];
-            NSMutableArray *sessionList = [[NSMutableArray alloc] initWithCapacity:0];
-            NSMutableArray *sessions = [object objectForKey:@"agenda_sessions"];
-            for(NSDictionary *sessionObject in sessions){
-                Session *session = [[Session alloc] init];
-                [session setSessionTitle:[sessionObject objectForKey:@"session_title"]];
-                [session setSessionSpeaker:[sessionObject objectForKey:@"session_speaker"]];
-                [session setSessionID:[sessionObject objectForKey:@"session_id"]];
-                [session setSessionStartTime:[dateFormatter2 dateFromString:[sessionObject objectForKey:@"session_start"]]];
-//                NSLog(@"%@",[sessionObject objectForKey:@"session_start"]);
-                [session setSessionEndTime:[dateFormatter2 dateFromString:[sessionObject objectForKey:@"session_end"]]];
-                [session setSessionNote:[sessionObject objectForKey:@"session_note"]];
-                [session setSessionAddress:[sessionObject objectForKey:@"session_location"]];
-                [sessionList addObject:session];
-                [session release];
-            }
-            [agenda setSessions:sessionList];
-            [DBService saveSessionList:sessionList];
-            [sessionList release];
-            [self.agendaList addObject:agenda];
->>>>>>> added the local SessionList loading
             [agenda release];
         }
         
