@@ -100,6 +100,7 @@
     
     if (sysctl(mib, 6, buf, &len, NULL, 0) < 0) {
         printf("Error: sysctl, take 2");
+        free(buf);
         return NULL;
     }
     
@@ -129,7 +130,8 @@
 }
 
 +(NSString *)generateUDID{
-    return [NSString stringWithFormat:@"%d", [[NSDate date] timeIntervalSince1970]];
+    NSTimeInterval interval=[[NSDate date] timeIntervalSince1970];
+    return [NSString stringWithFormat:@"%ld", (long)interval];
 }
 
 +(NSString *)base64EncodeImage:(UIImage *)image{

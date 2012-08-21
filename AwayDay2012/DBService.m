@@ -16,17 +16,60 @@
 @implementation DBService
 
 #pragma mark - session list method
-+(void)saveSessionList:(NSArray *)sessionList{
++(NSMutableArray *)getLocalAgendaList{
+    NSMutableArray *result=[[NSMutableArray alloc]initWithCapacity:0];
+    
+    NSString *sql=@"select * from session_list order by session_start";
+    
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    
+    NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm ZZZ"];
+    
+    sqlite3_stmt *stmt;
+    sqlite3_prepare_v2(appDelegate.database, [sql UTF8String], -1, &stmt, NULL);
+    while(sqlite3_step(stmt) == SQLITE_ROW){
+        char *sessionID=(char *)sqlite3_column_text(stmt, 1);
+        char *sessionTitle=(char *)sqlite3_column_text(stmt, 2);
+        char *sessionDescription=(char *)sqlite3_column_text(stmt, 3);
+        char *sessionSpeaker=(char *)sqlite3_column_text(stmt, 4);
+        char *sessionStart=(char *)sqlite3_column_text(stmt, 5);
+        char *sessionEnd=(char *)sqlite3_column_text(stmt, 6);
+        char *sessionLocation=(char *)sqlite3_column_text(stmt, 7);
+        
+        Session *session=[[Session alloc]init];
+        
+        if(sessionID!=nil)[session setSessionID:[NSString stringWithUTF8String:sessionID]];
+        if(sessionTitle!=nil)[session setSessionTitle:[NSString stringWithUTF8String:sessionTitle]];
+        if(sessionDescription!=nil)[session setSessionNote:[NSString stringWithUTF8String:sessionDescription]];
+        if(sessionSpeaker!=nil)[session setSessionSpeaker:[NSString stringWithUTF8String:sessionSpeaker]];
+        if(sessionStart!=nil)[session setSessionStartTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionStart]]];
+        if(sessionEnd!=nil)[session setSessionEndTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionEnd]]];
+        if(sessionLocation!=nil)[session setSessionAddress:[NSString stringWithUTF8String:sessionLocation]];
+        
+        [result addObject:session];
+        [session release];
+    }
+    [formatter release];
+    if(stmt)sqlite3_finalize(stmt);
+    [result autorelease];
+    return result;
+}
+
++(void)deleteAllSessions{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSString *del=@"delete from session_lis";
     sqlite3_stmt *stmt;
     sqlite3_exec(appDelegate.database, [del UTF8String], nil, &stmt, nil);
+}
++(void)saveSessionList:(NSArray *)sessionList{
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    sqlite3_stmt *stmt;
     
-    for(NSDictionary *session in sessionList){
-        NSString *save=[NSString stringWithFormat:@"insert into session_lis(session_id,session_title,session_description,session_speaker,session_start,session_end,session_location) values('%@','%@','%@','%@','%@','%@','%@')", [session objectForKey:kSessionIDKey], [session objectForKey:kSessionTitleKey], [session objectForKey:kSessionDescriptionKey],[session objectForKey:kSessionSpeakerKey], [session objectForKey:kSessionStartKey], [session objectForKey:kSessionEndKey], [session objectForKey:kSessionLocationKey]];
+    for(Session *session in sessionList){
+        NSString *save=[NSString stringWithFormat:@"insert into session_lis(session_id,session_title,session_description,session_speaker,session_start,session_end,session_location) values('%@','%@','%@','%@','%@','%@','%@')", [session sessionID], [session sessionTitle], [session sessionNote],[session sessionSpeaker], [session sessionStartTime], [session sessionEndTime], [session sessionAddress]];
         
         sqlite3_exec(appDelegate.database, [save UTF8String], nil, &stmt, nil);
-        sqlite3_reset(stmt);
     }
 }
 
@@ -65,12 +108,7 @@
         if(sessionSpeaker!=nil)[session setSessionSpeaker:[NSString stringWithUTF8String:sessionSpeaker]];
         if(sessionStart!=nil)[session setSessionStartTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionStart]]];
         if(sessionEnd!=nil)[session setSessionEndTime:[formatter dateFromString:[NSString stringWithUTF8String:sessionEnd]]];
-        if(sessionLocation!=nil){
-            SessionAddress *add=[[SessionAddress alloc]init];
-            [add setAddress:[NSString stringWithUTF8String:sessionLocation]];
-            [session setSessionAddress:add];
-            [add release];
-        }
+        if(sessionLocation!=nil)[session setSessionAddress:[NSString stringWithUTF8String:sessionLocation]];
         
         [result addObject:session];
         [session release];

@@ -13,6 +13,8 @@
 		49073B4F15CB7A5900BB1522 /* SettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49073B4D15CB7A5900BB1522 /* SettingViewController.xib */; };
 		490B91E015D4B60E00539E2A /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 490B91DF15D4B60E00539E2A /* libsqlite3.dylib */; };
 		490B91EC15D4B78B00539E2A /* DBService.m in Sources */ = {isa = PBXBuildFile; fileRef = 490B91EB15D4B78B00539E2A /* DBService.m */; };
+		4913EADE15E35A4C00C93E43 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4913EADD15E35A4C00C93E43 /* user_db.sqlite */; };
+		4913EADF15E35A6300C93E43 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4913EADD15E35A4C00C93E43 /* user_db.sqlite */; };
 		49168F5215C769D300DEA67C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5115C769D300DEA67C /* UIKit.framework */; };
 		49168F5415C769D300DEA67C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5315C769D300DEA67C /* Foundation.framework */; };
 		49168F5615C769D300DEA67C /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5515C769D300DEA67C /* CoreGraphics.framework */; };
@@ -48,7 +50,6 @@
 		4934FA0115CA703200427597 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4934F9FF15CA703200427597 /* AgendaViewController.m */; };
 		4934FA0215CA705200427597 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4934F9FF15CA703200427597 /* AgendaViewController.m */; };
 		493697CA15C8D86400941C94 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493697C915C8D86400941C94 /* QuartzCore.framework */; };
-		49541F6915D9E0150051948A /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 49541F6815D9E0150051948A /* user_db.sqlite */; };
 		4959E24C15D39BA100091D6F /* UserPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959E24B15D39BA100091D6F /* UserPath.m */; };
 		4959E25115D39DD200091D6F /* UserPathViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959E24F15D39DD200091D6F /* UserPathViewController.m */; };
 		4959E25415D39FCB00091D6F /* UserPathViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4959E25315D39FCB00091D6F /* UserPathViewController.xib */; };
@@ -87,7 +88,6 @@
 		499A34FD15E1D8CA006EBC8E /* agenda_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 499A34FA15E1D8CA006EBC8E /* agenda_view_icon.png */; };
 		499A34FE15E1D8CA006EBC8E /* path_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 499A34FB15E1D8CA006EBC8E /* path_view_icon.png */; };
 		499A34FF15E1D8CA006EBC8E /* setting_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 499A34FC15E1D8CA006EBC8E /* setting_view_icon.png */; };
-		49A0C62A15D9E14100083B9F /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 49541F6815D9E0150051948A /* user_db.sqlite */; };
 		49A0C63215D9F9B900083B9F /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A0C63115D9F9B900083B9F /* ImageService.m */; };
 		49B99D3415D887A5009B02A8 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B99D3315D887A5009B02A8 /* Reminder.m */; };
 		49B99D3815D888F0009B02A8 /* DBServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B99D3715D888F0009B02A8 /* DBServiceTest.m */; };
@@ -134,6 +134,7 @@
 		490B91DF15D4B60E00539E2A /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
 		490B91EA15D4B78B00539E2A /* DBService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBService.h; sourceTree = "<group>"; };
 		490B91EB15D4B78B00539E2A /* DBService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBService.m; sourceTree = "<group>"; };
+		4913EADD15E35A4C00C93E43 /* user_db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = user_db.sqlite; sourceTree = "<group>"; };
 		49168F4D15C769D300DEA67C /* AwayDay2012.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AwayDay2012.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		49168F5115C769D300DEA67C /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		49168F5315C769D300DEA67C /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -168,7 +169,6 @@
 		4934F9FF15CA703200427597 /* AgendaViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AgendaViewController.m; sourceTree = "<group>"; };
 		4934FA0015CA703200427597 /* AgendaViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AgendaViewController.h; sourceTree = "<group>"; };
 		493697C915C8D86400941C94 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		49541F6815D9E0150051948A /* user_db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; path = user_db.sqlite; sourceTree = "<group>"; };
 		4959E24A15D39BA100091D6F /* UserPath.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPath.h; sourceTree = "<group>"; };
 		4959E24B15D39BA100091D6F /* UserPath.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPath.m; sourceTree = "<group>"; };
 		4959E24E15D39DD200091D6F /* UserPathViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPathViewController.h; sourceTree = "<group>"; };
@@ -406,7 +406,7 @@
 		49168F8015C76A3A00DEA67C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				49541F6815D9E0150051948A /* user_db.sqlite */,
+				4913EADD15E35A4C00C93E43 /* user_db.sqlite */,
 				49EC240315CA129000DF9B34 /* Image */,
 				49168F8715C76A6700DEA67C /* XIB */,
 				49168F5815C769D300DEA67C /* Supporting Files */,
@@ -655,7 +655,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49A0C62A15D9E14100083B9F /* user_db.sqlite in Resources */,
+				4913EADF15E35A6300C93E43 /* user_db.sqlite in Resources */,
 				4934F9F215CA6B2D00427597 /* blackArrow.png in Resources */,
 				4934F9F315CA6B2D00427597 /* blackArrow@2x.png in Resources */,
 				4934F9F415CA6B2D00427597 /* blueArrow.png in Resources */,
@@ -705,7 +705,7 @@
 				4934F9EF15CA671700427597 /* grayArrow@2x.png in Resources */,
 				4934F9F015CA671700427597 /* whiteArrow.png in Resources */,
 				4934F9F115CA671700427597 /* whiteArrow@2x.png in Resources */,
-				49541F6915D9E0150051948A /* user_db.sqlite in Resources */,
+				4913EADE15E35A4C00C93E43 /* user_db.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

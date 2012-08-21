@@ -13,6 +13,8 @@
 
 @interface DBService : NSObject
 
++(NSMutableArray *)getLocalAgendaList;
++(void)deleteAllSessions;
 +(void)saveSessionList:(NSArray *)sessionList;
 +(NSMutableArray *)getSessionListBySessionIDList:(NSMutableArray *)list;
 

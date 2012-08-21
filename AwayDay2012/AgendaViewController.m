@@ -14,6 +14,7 @@
 #import "UserPath.h"
 #import "ASIHttpRequest.h"
 #import "SBJson.h"
+#import "DBService.h"
 
 #define tag_cell_view_start 1001
 #define tag_cell_session_title_view tag_cell_view_start+1
@@ -95,104 +96,7 @@
  load the agenda list and their sessions
  */
 -(void)loadAgendaList{
-    [self fakeData];
-//    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
-}
-
--(void) fakeData{
-    //to load agenda from server, we mock some data for now
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm ZZZ"];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
-    
-    //Day 1
-    Agenda *agenda=[[Agenda alloc]init];
-    [agenda setAgendaDate:[dateFormatter dateFromString:@"2012-9-22 23:59 +0800"]];
-    
-    NSMutableArray *sessions=[[NSMutableArray alloc]initWithCapacity:0];
-    
-    Session *session=[[Session alloc]init];
-    [session setSessionID:@"201209220900"];
-    [session setSessionTitle:@"Keynote for Away Day 2012"];
-    [session setSessionNote:@"Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012,Keynote for Away Day 2012"];
-    [session setSessionSpeaker:@"John Beck"];
-    [session setSessionStartTime:[dateFormatter dateFromString:@"2012-9-22 09:00 +0800"]];
-    [session setSessionEndTime:[dateFormatter dateFromString:@"2012-9-22 12:00 +0800"]];
-    SessionAddress *add=[[SessionAddress alloc]init];
-    [add setAddress:@"Beijing China"];
-    [add setLatitude:[NSNumber numberWithFloat:104.29871874]];
-    [add setLongitude:[NSNumber numberWithFloat:41.09891783]];
-    [session setSessionAddress:add];
-    [add release];
-    [sessions addObject:session];
-    [session release];
-    
-    session=[[Session alloc]init];
-    [session setSessionID:@"201209221300"];
-    [session setSessionTitle:@"A Better Way for Delivery Works"];
-    [session setSessionNote:@"A Better Way for Delivery Works"];
-    [session setSessionSpeaker:@"Micheal Jing"];
-    [session setSessionStartTime:[dateFormatter dateFromString:@"2012-9-22 13:00 +0800"]];
-    [session setSessionEndTime:[dateFormatter dateFromString:@"2012-9-22 15:00 +0800"]];
-    add=[[SessionAddress alloc]init];
-    [add setAddress:@"Beijing China"];
-    [add setLatitude:[NSNumber numberWithFloat:104.29871874]];
-    [add setLongitude:[NSNumber numberWithFloat:41.09891783]];
-    [session setSessionAddress:add];
-    [add release];
-    [sessions addObject:session];
-    [session release];
-    
-    [agenda setSessions:sessions];
-    [sessions release];
-    
-    [self.agendaList addObject:agenda];
-    [agenda release];
-    
-    //Day 2
-    agenda=[[Agenda alloc]init];
-    [agenda setAgendaDate:[dateFormatter dateFromString:@"2012-9-23 23:59 +0800"]];
-    
-    sessions=[[NSMutableArray alloc]initWithCapacity:0];
-    
-    session=[[Session alloc]init];
-    [session setSessionID:@"201209230900"];
-    [session setSessionTitle:@"Bird Watching"];
-    [session setSessionNote:@"Bird Watchin"];
-    [session setSessionSpeaker:@"Kevin Ma"];
-    [session setSessionStartTime:[dateFormatter dateFromString:@"2012-9-23 09:00 +0800"]];
-    [session setSessionEndTime:[dateFormatter dateFromString:@"2012-9-23 12:00 +0800"]];
-    add=[[SessionAddress alloc]init];
-    [add setAddress:@"Beijing China"];
-    [add setLatitude:[NSNumber numberWithFloat:104.29871874]];
-    [add setLongitude:[NSNumber numberWithFloat:41.09891783]];
-    [session setSessionAddress:add];
-    [add release];
-    [sessions addObject:session];
-    [session release];
-    
-    session=[[Session alloc]init];
-    [session setSessionID:@"201209231300"];
-    [session setSessionTitle:@"Moon Walker Project"];
-    [session setSessionNote:@"A pratice for moon walker"];
-    [session setSessionSpeaker:@"Lim Jiang"];
-    [session setSessionStartTime:[dateFormatter dateFromString:@"2012-9-23 13:00 +0800"]];
-    [session setSessionEndTime:[dateFormatter dateFromString:@"2012-9-23 15:00 +0800"]];
-    add=[[SessionAddress alloc]init];
-    [add setAddress:@"Beijing China"];
-    [add setLatitude:[NSNumber numberWithFloat:104.29871874]];
-    [add setLongitude:[NSNumber numberWithFloat:41.09891783]];
-    [session setSessionAddress:add];
-    [add release];
-    [sessions addObject:session];
-    [session release];
-    
-    [agenda setSessions:sessions];
-    [sessions release];
-    
-    [self.agendaList addObject:agenda];
-    [agenda release];
-    [dateFormatter release];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
 }
 
 -(void)getAgendaListFromServer:(NSString *) urlString{
@@ -203,6 +107,28 @@
     [request setTag:tag_req_load_session_list];
     [request startAsynchronous];
     [AppHelper showInfoView:self.view withText:@"Loading..." withLoading:YES];
+}
+
+-(NSMutableArray *)checkSessionJoinConflict:(Session *)session{
+    AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
+    NSMutableArray *userJoinList=(NSMutableArray *)[appDelegate.userState objectForKey:kUserJoinListKey];
+    NSMutableArray *joinedSessionList=[DBService getSessionListBySessionIDList:userJoinList];
+    if(joinedSessionList==nil || joinedSessionList.count==0) return nil;
+    
+    
+    NSMutableArray *result=[[NSMutableArray alloc]initWithCapacity:0];
+    for(Session *joinedSession in joinedSessionList){
+        NSDate *joinedSessionStart=joinedSession.sessionStartTime;
+        NSDate *joinedSessionEnd=joinedSession.sessionEndTime;
+        
+        if([[joinedSessionStart laterDate:session.sessionEndTime] isEqualToDate:session.sessionEndTime] || 
+           [[joinedSessionEnd earlierDate:session.sessionStartTime] isEqualToDate:joinedSessionEnd]){
+            [result addObject:joinedSession];
+        }
+    }
+    
+    [result autorelease];
+    return result;
 }
 
 /**
@@ -390,6 +316,11 @@
     Agenda *agenda=[self.agendaList objectAtIndex:self.selectedCell.section];
     Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
     
+    NSMutableArray *conflictList=[self checkSessionJoinConflict:session];
+    if(conflictList!=nil && conflictList.count>0){
+        //need to handle session confiction
+    }
+    
     if([userJoinList containsObject:session.sessionID]){
         [userJoinList removeObject:session.sessionID];
         [joinButton setAlpha:1.0f];
@@ -559,11 +490,35 @@
         
         if(receivedObjects.count>0){
             [self.agendaList removeAllObjects];
+            [DBService deleteAllSessions];
         }
         
         for (NSDictionary *object in receivedObjects) {
             Agenda *agenda = [[Agenda alloc] init];
+<<<<<<< HEAD
             [self.agendaList addObject:[agenda createAgenda:object]];
+=======
+            [agenda setAgendaDate:[dateFormatter dateFromString:[object objectForKey:@"agenda_date"]]];
+            NSMutableArray *sessionList = [[NSMutableArray alloc] initWithCapacity:0];
+            NSMutableArray *sessions = [object objectForKey:@"agenda_sessions"];
+            for(NSDictionary *sessionObject in sessions){
+                Session *session = [[Session alloc] init];
+                [session setSessionTitle:[sessionObject objectForKey:@"session_title"]];
+                [session setSessionSpeaker:[sessionObject objectForKey:@"session_speaker"]];
+                [session setSessionID:[sessionObject objectForKey:@"session_id"]];
+                [session setSessionStartTime:[dateFormatter2 dateFromString:[sessionObject objectForKey:@"session_start"]]];
+//                NSLog(@"%@",[sessionObject objectForKey:@"session_start"]);
+                [session setSessionEndTime:[dateFormatter2 dateFromString:[sessionObject objectForKey:@"session_end"]]];
+                [session setSessionNote:[sessionObject objectForKey:@"session_note"]];
+                [session setSessionAddress:[sessionObject objectForKey:@"session_location"]];
+                [sessionList addObject:session];
+                [session release];
+            }
+            [agenda setSessions:sessionList];
+            [DBService saveSessionList:sessionList];
+            [sessionList release];
+            [self.agendaList addObject:agenda];
+>>>>>>> added the local SessionList loading
             [agenda release];
         }
         

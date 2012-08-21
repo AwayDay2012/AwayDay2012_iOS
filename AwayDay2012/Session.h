@@ -17,7 +17,7 @@
 @property(nonatomic, retain) NSString *sessionSpeaker;
 @property(nonatomic, retain) NSDate *sessionStartTime;
 @property(nonatomic, retain) NSDate *sessionEndTime;
-@property(nonatomic, retain) SessionAddress *sessionAddress;
+@property(nonatomic, retain) NSString *sessionAddress;
 
 -(Session *)createSession:(NSDictionary *)sessionProperies;
 

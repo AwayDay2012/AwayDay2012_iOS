@@ -8,8 +8,18 @@
 
 #import "DBServiceTest.h"
 #import "AppHelper.h"
+#import "Session.h"
 
 @implementation DBServiceTest
+
+-(void)testGetLocalAgendaList{
+    NSMutableArray *list=[DBService getLocalAgendaList];
+    STAssertNotNil(list, @"agenda list is nil");
+    STAssertTrue(list.count>0, @"agenda list is empty");
+    for(NSObject *obj in list){
+        STAssertTrue([obj isKindOfClass:[Session class]], @"wrong element type");
+    }
+}
 
 -(void)testSaveSessionList{
     [DBService saveSessionList:nil];
