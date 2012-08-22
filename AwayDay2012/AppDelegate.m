@@ -9,6 +9,7 @@
 
 #import "AppDelegate.h"
 #import "AppConstant.h"
+#import "DBService.h"
 
 #define away_day_user_state_key @"away_day_2012_user_state"
 #define away_day_user_db_name   @"user_db.sqlite"

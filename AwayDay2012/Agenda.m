@@ -27,7 +27,7 @@
 +(Agenda *)createAgenda:(NSDictionary *) agendaProperties{
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
     [dateFormatter setDateFormat:@"yyyy-MM-dd"];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     
     Agenda *agenda = [[Agenda alloc] init];
     [agenda setAgendaDate:[dateFormatter dateFromString:[agendaProperties objectForKey:@"agenda_date"]]];

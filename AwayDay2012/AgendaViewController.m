@@ -292,7 +292,6 @@
     UITextView *sessionNote=[[UITextView alloc]initWithFrame:CGRectMake(0, 36, 320, 100)];
     [sessionNote setBackgroundColor:[UIColor clearColor]];
     [sessionNote setUserInteractionEnabled:NO];
-//    CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:sessionNote.frame.size lineBreakMode:UILineBreakModeWordWrap];
     [sessionNote setFrame:CGRectMake(0, 36, 320, size.height+10)];
     [sessionNote setText:session.sessionNote];
     [sessionNote setTextColor:[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0f]];
@@ -512,6 +511,8 @@
     if(request.tag==tag_req_load_session_list){
         SBJsonParser *parser = [[SBJsonParser alloc] init];
         NSString *resp = [request responseString];
+        resp=[resp stringByReplacingOccurrencesOfString:@"(null)" withString:@""];
+        resp=[resp stringByReplacingOccurrencesOfString:@"'" withString:@"\'"];
         NSMutableArray *receivedObjects = [parser objectWithString:resp];
         [parser release];
         

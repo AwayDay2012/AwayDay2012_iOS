@@ -31,7 +31,7 @@
 -(Session *)createSession:(NSDictionary *)sessionProperies{
     NSDateFormatter *dateFormatter2=[[NSDateFormatter alloc]init];
     [dateFormatter2 setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss'Z'"];
-    [dateFormatter2 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:8*60*60]];
+    [dateFormatter2 setTimeZone:[NSTimeZone timeZoneForSecondsFromGMT:0]];
     
     Session *session = [[Session alloc] init];
     [session setSessionTitle:[sessionProperies objectForKey:@"session_title"]];
@@ -39,7 +39,11 @@
     [session setSessionID:[sessionProperies objectForKey:@"session_id"]];
     [session setSessionStartTime:[dateFormatter2 dateFromString:[sessionProperies objectForKey:@"session_start"]]];
     [session setSessionEndTime:[dateFormatter2 dateFromString:[sessionProperies objectForKey:@"session_end"]]];
-    [session setSessionNote:[sessionProperies objectForKey:@"session_note"]];
+    
+    NSString *note=[sessionProperies objectForKey:@"session_description"];
+    if(note==nil) note=@"";
+    if([note isEqual:[NSNull null]])note=@"";
+    [session setSessionNote:note];
     [session setSessionAddress:[sessionProperies objectForKey:@"session_location"]];
     [session autorelease];
     [dateFormatter2 release];
