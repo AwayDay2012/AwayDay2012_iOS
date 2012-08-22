@@ -123,17 +123,20 @@
     [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
     [tempAgendaMapping release];
     
-//    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:NO];
 }
 
--(void)getAgendaListFromServer:(NSString *) urlString{
+-(void)getAgendaListFromServer:(NSString *) urlString showLoading:(BOOL)showLoading{
     loading=YES;
     NSURL *url = [NSURL URLWithString:urlString];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
     [request setTag:tag_req_load_session_list];
     [request startAsynchronous];
-    [AppHelper showInfoView:self.view withText:@"Loading..." withLoading:YES];
+    
+    if(showLoading){
+        [AppHelper showInfoView:self.view withText:@"Loading..." withLoading:YES];
+    }
 }
 
 -(NSMutableArray *)checkSessionJoinConflict:(Session *)session{
@@ -454,10 +457,6 @@
     [cell setSelectionStyle:UITableViewCellSelectionStyleNone];
     [cell.backgroundView setBackgroundColor:[UIColor colorWithRed:245/255.0 green:245/255.0 blue:245/255.0 alpha:1.0f]];
     
-    for(Agenda *agenda in self.agendaList){
-        NSLog(@"%@", agenda.agendaDate);
-    }
-    
     Agenda *agenda=[self.agendaList objectAtIndex:indexPath.section];
     Session *session=[agenda.sessions objectAtIndex:indexPath.row];
     
@@ -499,7 +498,7 @@
 }
 - (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
     loading=YES;
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:YES];
 }
 - (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
     return loading;

@@ -10,7 +10,7 @@
 
 @implementation AppConstant
 
-NSString const *kUserNameKey=@"user_name";
+NSString const *kUserNameKey=@"username";
 NSString *kUserPathImageFolder=@"user_path_image";
 NSString *kUserJoinListKey=@"user_join_list";
 

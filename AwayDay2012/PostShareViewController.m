@@ -179,7 +179,8 @@
     
     ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserShare]];
     [req setRequestMethod:@"POST"];
-    [req addPostValue:paramString forKey:nil];
+    [req addRequestHeader:@"Content-Type" value:@"application/json"];
+    [req appendPostData:[paramString dataUsingEncoding:NSUTF8StringEncoding]];
     [req setTag:tag_req_post_user_share];
     [req setDelegate:self];
     [req startAsynchronous];
@@ -205,6 +206,8 @@
     
     ASIFormDataRequest *req=[ASIFormDataRequest requestWithURL:[NSURL URLWithString:kServiceUserPath]];
     [req setRequestMethod:@"POST"];
+    [req addRequestHeader:@"Content-Type" value:@"application/json"];
+    [req appendPostData:[paramString dataUsingEncoding:NSUTF8StringEncoding]];
     [req addPostValue:paramString forKey:nil];
     [req setTag:tag_req_post_user_share];
     [req setDelegate:self];
