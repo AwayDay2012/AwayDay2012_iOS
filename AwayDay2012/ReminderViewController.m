@@ -55,6 +55,10 @@
     for(UILocalNotification *notification in [[UIApplication sharedApplication]scheduledLocalNotifications]){
         if(notification.userInfo!=nil && notification.userInfo.count>0){
             NSString *sessionID=[notification.userInfo objectForKey:key_notification_session_id];
+            if(sessionID==nil || ![sessionID isKindOfClass:[NSString class]]){
+                [[UIApplication sharedApplication] cancelLocalNotification:notification];
+                continue;
+            }
             if([sessionID isEqualToString:self.session.sessionID]){
                 found=YES;
                 NSNumber *timeIndex=[notification.userInfo objectForKey:key_notification_time_index];

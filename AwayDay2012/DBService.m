@@ -74,7 +74,11 @@
     sqlite3_stmt *stmt;
     char *errorMsg;
     for(Session *session in sessionList){
-        NSString *save=[NSString stringWithFormat:@"insert into session_list(session_id,session_title,session_description,session_speaker,session_start,session_end,session_location) values('%@','%@','%@','%@','%@','%@','%@')", [session sessionID], [session sessionTitle], [session sessionNote],[session sessionSpeaker], [session sessionStartTime], [session sessionEndTime], [session sessionAddress]];
+        NSString *title=[session.sessionTitle stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+        NSString *note=[session.sessionNote stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+        NSString *address=[session.sessionAddress stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+        NSString *speaker=[session.sessionSpeaker stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+        NSString *save=[NSString stringWithFormat:@"insert into session_list(session_id,session_title,session_description,session_speaker,session_start,session_end,session_location) values('%@','%@','%@','%@','%@','%@','%@')", [session sessionID], title, note,speaker, [session sessionStartTime], [session sessionEndTime], address];
         
         
         if(sqlite3_exec(appDelegate.database, [save UTF8String], nil, &stmt, &errorMsg)!=SQLITE_OK){
@@ -195,8 +199,10 @@
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss ZZZ"];
     
+    NSString *content=[path.pathContent stringByReplacingOccurrencesOfString:@"'" withString:@"''"];
+    
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
-    NSString *save=[NSString stringWithFormat:@"insert into user_path(path_id, path_content, create_time, has_image) values('%@','%@','%@', %d)",path.pathID, path.pathContent, [formatter stringFromDate:[NSDate date]], path.hasImage.intValue];
+    NSString *save=[NSString stringWithFormat:@"insert into user_path(path_id, path_content, create_time, has_image) values('%@','%@','%@', %d)",path.pathID, content, [formatter stringFromDate:[NSDate date]], path.hasImage.intValue];
     [formatter release];
     
     sqlite3_stmt *stmt;

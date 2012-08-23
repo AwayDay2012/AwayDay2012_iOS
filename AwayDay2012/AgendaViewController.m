@@ -258,8 +258,8 @@
     CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(320, 100) lineBreakMode:UILineBreakModeWordWrap];
     float height=90+size.height;
     
-    UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 30, 320, height)];
-    [detailView setBackgroundColor:[UIColor clearColor]];
+    UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
+    [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"back.png"]]];
     [detailView setTag:tag_cell_view_session_detail_view];
     
     UILabel *sessionSpeaker=[[UILabel alloc]initWithFrame:CGRectMake(8, 6, 320, 16)];
