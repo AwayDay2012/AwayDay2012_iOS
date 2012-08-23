@@ -55,6 +55,10 @@
     [settingViewIcon setImage:[UIImage imageNamed:@"setting_view_icon.png"]];
     [self.settingViewButton addSubview:settingViewIcon];
     [settingViewIcon release];
+    
+    [self.agendaViewButton setTitleColor:[UIColor colorWithRed:79/255.0 green:79/255.0 blue:79/255.0 alpha:1.0f] forState:UIControlStateNormal];
+    [self.pathViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
+    [self.settingViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
 }
 
 #pragma mark - UIAction method
@@ -63,19 +67,25 @@
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.agendaViewController] animated:NO];
     
     [self.chooseFlagImageView setFrame:CGRectMake(0, 38, 4, 43)];
-    [self handleTapGesture:nil];
+    [self.agendaViewButton setTitleColor:[UIColor colorWithRed:79/255.0 green:79/255.0 blue:79/255.0 alpha:1.0f] forState:UIControlStateNormal];
+    [self.pathViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
+    [self.settingViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
 }
 -(IBAction)myPathButtonPressed:(id)sender{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.userPathViewController] animated:NO];
     [self.chooseFlagImageView setFrame:CGRectMake(0, 83, 4, 43)];
-    [self handleTapGesture:nil];
+    [self.agendaViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
+    [self.pathViewButton setTitleColor:[UIColor colorWithRed:79/255.0 green:79/255.0 blue:79/255.0 alpha:1.0f] forState:UIControlStateNormal];
+    [self.settingViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
 }
 -(IBAction)settingButtonPressed:(id)sender{
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate.navigationController setViewControllers:[NSArray arrayWithObject:appDelegate.settingViewController] animated:NO];
     [self.chooseFlagImageView setFrame:CGRectMake(0, 123, 4, 43)];
-    [self handleTapGesture:nil];
+    [self.agendaViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
+    [self.pathViewButton setTitleColor:[UIColor colorWithRed:157/255.0 green:157/255.0 blue:157/255.0 alpha:1.0f] forState:UIControlStateNormal];
+    [self.settingViewButton setTitleColor:[UIColor colorWithRed:79/255.0 green:79/255.0 blue:79/255.0 alpha:1.0f] forState:UIControlStateNormal];
 }
 
 -(IBAction)handleTapGesture:(UITapGestureRecognizer *)sender{

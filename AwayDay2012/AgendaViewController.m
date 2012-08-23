@@ -41,16 +41,6 @@
     self.selectedCell=[NSIndexPath indexPathForRow:-1 inSection:-1];
     loading=NO;
     
-    UISwipeGestureRecognizer *swipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeGesture:)];
-    [swipe setDirection:UISwipeGestureRecognizerDirectionUp];
-    [self.view addGestureRecognizer:swipe];
-    [swipe release];
-    
-    swipe=[[UISwipeGestureRecognizer alloc]initWithTarget:self action:@selector(handleSwipeGesture:)];
-    [swipe setDirection:UISwipeGestureRecognizerDirectionDown];
-    [self.view addGestureRecognizer:swipe];
-    [swipe release];
-    
     if(self.refreshView==nil){
         EGORefreshTableHeaderView *view=[[EGORefreshTableHeaderView alloc]initWithFrame:CGRectMake(0, -200, 320, 200)];
         self.refreshView=view;
@@ -131,6 +121,7 @@
     NSURL *url = [NSURL URLWithString:urlString];
     ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     [request setDelegate:self];
+    [request setTimeOutSeconds:10.0f];
     [request setTag:tag_req_load_session_list];
     [request startAsynchronous];
     
@@ -206,13 +197,9 @@
         [self.clockView setRestMinutes:[NSNumber numberWithFloat:interval]];
         [self.clockView setNeedsDisplay];
         
-        if(interval<12*60*60){
-            int hour=(int)(interval/3600);
-            int min=(int)(fmodf(interval, 3600)/60);
-            [self.topSessionRestTimeLabel setText:[NSString stringWithFormat:@"%d:%d", hour, min]];
-        }else{
-            [self.topSessionRestTimeLabel setText:@""];
-        }
+        int hour=(int)(interval/3600);
+        int min=(int)(fmodf(interval, 3600)/60);
+        [self.topSessionRestTimeLabel setText:[NSString stringWithFormat:@"%d:%d", hour, min]];
     }
 }
 
@@ -223,13 +210,18 @@
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
     
-    UILabel *sessionTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 240,30)];
+    UILabel *sessionTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 236,30)];
     [sessionTitle setTag:tag_cell_session_title_view];
     [sessionTitle setBackgroundColor:[UIColor clearColor]];
     [sessionTitle setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
     
     if([userJoinList containsObject:session.sessionID]){
         [sessionTitle setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
+    }
+    
+    NSDate *today=[NSDate date];
+    if([[today earlierDate:session.sessionEndTime] isEqualToDate:session.sessionEndTime]){
+        [sessionTitle setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
     }
     
     [sessionTitle setFont:[UIFont systemFontOfSize:14.0f]];
@@ -273,41 +265,50 @@
     UILabel *sessionSpeaker=[[UILabel alloc]initWithFrame:CGRectMake(8, 6, 320, 16)];
     [sessionSpeaker setBackgroundColor:[UIColor clearColor]];
     [sessionSpeaker setFont:[UIFont systemFontOfSize:12.0f]];
-    [sessionSpeaker setTextColor:[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0f]];
+    [sessionSpeaker setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
     [sessionSpeaker setText:[NSString stringWithFormat:@"Speaker: %@", session.sessionSpeaker]];
     [detailView addSubview:sessionSpeaker];
     [sessionSpeaker release];
     
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"HH:mm"];
-    UILabel *sessionTime=[[UILabel alloc]initWithFrame:CGRectMake(8, 22, 320, 16)];
+    UILabel *sessionTime=[[UILabel alloc]initWithFrame:CGRectMake(8, 22, 110, 16)];
     [sessionTime setBackgroundColor:[UIColor clearColor]];
     [sessionTime setFont:[UIFont systemFontOfSize:12.0f]];
-    [sessionTime setTextColor:[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0f]];
+    [sessionTime setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
     [sessionTime setText:[NSString stringWithFormat:@"Time: %@ ~ %@", [formatter stringFromDate:session.sessionStartTime],[formatter stringFromDate:session.sessionEndTime]]];
     [detailView addSubview:sessionTime];
     [sessionTime release];
     [formatter release];
     
+    UILabel *sessionLocation=[[UILabel alloc] initWithFrame:CGRectMake(125, 22, 290, 16)];
+    [sessionLocation setBackgroundColor:[UIColor clearColor]];
+    [sessionLocation setFont:[UIFont systemFontOfSize:12.0f]];
+    [sessionLocation setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
+    [sessionLocation setText:[NSString stringWithFormat:@"Room: %@", session.sessionAddress]];
+    [detailView addSubview:sessionLocation];
+    [sessionLocation release];
+    
     UITextView *sessionNote=[[UITextView alloc]initWithFrame:CGRectMake(0, 36, 320, 100)];
     [sessionNote setBackgroundColor:[UIColor clearColor]];
     [sessionNote setUserInteractionEnabled:NO];
-    [sessionNote setFrame:CGRectMake(0, 36, 320, size.height+10)];
+    [sessionNote setFrame:CGRectMake(0, 36, 320, size.height+14)];
     [sessionNote setText:session.sessionNote];
-    [sessionNote setTextColor:[UIColor colorWithRed:150/255.0 green:150/255.0 blue:150/255.0 alpha:1.0f]];
+    [sessionNote setFont:[UIFont systemFontOfSize:13.0f]];
+    [sessionNote setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
     [sessionNote sizeToFit];
     [detailView addSubview:sessionNote];
     [sessionNote release];
     
     UIButton *attend=[UIButton buttonWithType:UIButtonTypeCustom];
     [attend setFrame:CGRectMake(30, sessionNote.frame.origin.y+sessionNote.frame.size.height+5, 52, 32)];
-    [attend setImage:[UIImage imageNamed:@"join_button.png"] forState:UIControlStateNormal];
+    
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
     if(userJoinList!=nil && [userJoinList containsObject:session.sessionID]){
-        [attend setAlpha:0.5f];
+        [attend setImage:[UIImage imageNamed:@"unjoin_button.png"] forState:UIControlStateNormal];
     }else{
-        [attend setAlpha:1.0f];
+        [attend setImage:[UIImage imageNamed:@"join_button.png"] forState:UIControlStateNormal];
     }
     [attend addTarget:self action:@selector(joinButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:attend];
@@ -352,7 +353,7 @@
     
     if([userJoinList containsObject:session.sessionID]){
         [userJoinList removeObject:session.sessionID];
-        [joinButton setAlpha:1.0f];
+        [joinButton setImage:[UIImage imageNamed:@"join_button.png"] forState:UIControlStateNormal];
         [sessionTitleLabel setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
         [sessionTimeLabel setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
         [AppHelper showInfoView:self.view withText:@"Cancelled!" withLoading:NO];
@@ -365,7 +366,7 @@
         [path release];
         
         [userJoinList addObject:session.sessionID];
-        [joinButton setAlpha:0.5f];
+        [joinButton setImage:[UIImage imageNamed:@"unjoin_button.png"] forState:UIControlStateNormal];
         [sessionTitleLabel setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
         [sessionTimeLabel setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
         [AppHelper showInfoView:self.view withText:@"Joined!" withLoading:NO];
@@ -419,21 +420,39 @@
         return 50.0f;
     }
 }
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 40.0f;
+}
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 50)];
+    UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
     [view autorelease];
     
     Agenda *agenda=[self.agendaList objectAtIndex:section];
-    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
-    [dateFormatter setDateStyle:NSDateFormatterMediumStyle];
     
-    UILabel *label=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 240, 30)];
-    [label setBackgroundColor:[UIColor clearColor]];
-    [label setTextColor:[UIColor colorWithRed:29/255.0 green:207/255.0 blue:219/255.0 alpha:1.0f]];
-    [label setFont:[UIFont systemFontOfSize:16.0f]];
-    [label setText:[dateFormatter stringFromDate:agenda.agendaDate]];
-    [view addSubview:label];
-    [label release];
+    NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
+    NSLocale *locale=[[NSLocale alloc]initWithLocaleIdentifier:@"en_US"];
+    [dateFormatter setLocale:locale];
+    [locale release];
+    [dateFormatter setDateFormat:@"d"];
+    
+    UILabel *monthLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 15, 40, 24)];
+    [monthLabel setBackgroundColor:[UIColor clearColor]];
+    [monthLabel setTextColor:[UIColor colorWithRed:29/255.0 green:207/255.0 blue:219/255.0 alpha:1.0f]];
+    [monthLabel setFont:[UIFont systemFontOfSize:30.0f]];
+    [monthLabel setText:[dateFormatter stringFromDate:agenda.agendaDate]];
+    [view addSubview:monthLabel];
+    [monthLabel release];
+    
+    [dateFormatter setDateFormat:@"MMM, yyyy"];;
+    UILabel *dateLabel=[[UILabel alloc] initWithFrame:CGRectMake(50, 20, 80, 20)];
+    [dateLabel setBackgroundColor:[UIColor clearColor]];
+    [dateLabel setTextColor:[UIColor colorWithRed:29/255.0 green:207/255.0 blue:219/255.0 alpha:1.0f]];
+    [dateLabel setFont:[UIFont systemFontOfSize:15.0f]];
+    NSString *text=[dateFormatter stringFromDate:agenda.agendaDate];
+    text=[text uppercaseString];
+    [dateLabel setText:text];
+    [view addSubview:dateLabel];
+    [dateLabel release];
     
     [dateFormatter release];
     
@@ -539,6 +558,8 @@
 - (void)requestFailed:(ASIHTTPRequest *)request{
     if(request.tag==tag_req_load_session_list){
         NSLog(@"%@", [request.error localizedDescription]);
+        [AppHelper removeInfoView:self.view];
+        loading=NO;
         [self.refreshView egoRefreshScrollViewDataSourceDidFinishedLoading:self.agendaTable];
         [AppHelper showInfoView:self.view withText:@"Failed" withLoading:NO];
         [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];

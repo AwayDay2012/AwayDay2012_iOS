@@ -2,19 +2,19 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1296</int>
-		<string key="IBDocument.SystemVersion">11D2001</string>
-		<string key="IBDocument.InterfaceBuilderVersion">2182</string>
-		<string key="IBDocument.AppKitVersion">1138.32</string>
-		<string key="IBDocument.HIToolboxVersion">568.00</string>
+		<string key="IBDocument.SystemVersion">11E53</string>
+		<string key="IBDocument.InterfaceBuilderVersion">2549</string>
+		<string key="IBDocument.AppKitVersion">1138.47</string>
+		<string key="IBDocument.HIToolboxVersion">569.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-			<string key="NS.object.0">1181</string>
+			<string key="NS.object.0">1498</string>
 		</object>
 		<array key="IBDocument.IntegratedClassDependencies">
+			<string>IBProxyObject</string>
 			<string>IBUIButton</string>
 			<string>IBUIImageView</string>
 			<string>IBUIView</string>
-			<string>IBProxyObject</string>
 		</array>
 		<array key="IBDocument.PluginDependencies">
 			<string>com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -112,7 +112,7 @@
 						<string key="IBUINormalTitle">AGENDA</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
 							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC42Nzg0MzEzNzI1IDAuNjc4NDMxMzcyNSAwLjY3ODQzMTM3MjUAA</bytes>
+							<bytes key="NSRGB">MC4zMDk4MDM5MjE2IDAuMzA5ODAzOTIxNiAwLjMwOTgwMzkyMTYAA</bytes>
 						</object>
 						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
@@ -154,7 +154,7 @@
 						<double key="IBUIContentEdgeInsets.right">185</double>
 						<string key="IBUINormalTitle">PATH</string>
 						<reference key="IBUIHighlightedTitleColor" ref="226158070"/>
-						<object class="NSColor" key="IBUINormalTitleColor">
+						<object class="NSColor" key="IBUINormalTitleColor" id="179523933">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zMDk4MDM5MjE2IDAuMzA5ODAzOTIxNiAwLjMwOTgwMzkyMTYAA</bytes>
 						</object>
@@ -168,7 +168,6 @@
 						<string key="NSFrame">{{12, 123}, {308, 37}}</string>
 						<reference key="NSSuperview" ref="995364364"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<string key="NSReuseIdentifierKey">_NS:9</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<object class="IBUIAccessibilityConfiguration" key="IBUIAccessibilityConfiguration">
@@ -180,16 +179,13 @@
 						<double key="IBUIContentEdgeInsets.top">0.0</double>
 						<double key="IBUIContentEdgeInsets.bottom">0.0</double>
 						<double key="IBUIContentEdgeInsets.left">0.0</double>
-						<double key="IBUIContentEdgeInsets.right">170</double>
-						<string key="IBUINormalTitle">Settings</string>
+						<double key="IBUIContentEdgeInsets.right">154</double>
+						<string key="IBUINormalTitle">SETTING</string>
 						<object class="NSColor" key="IBUIHighlightedTitleColor">
-							<int key="NSColorSpace">1</int>
-							<bytes key="NSRGB">MC42Nzg0MzEzNzI1IDAuNjc4NDMxMzcyNSAwLjY3ODQzMTM3MjUAA</bytes>
-						</object>
-						<object class="NSColor" key="IBUINormalTitleColor">
 							<int key="NSColorSpace">1</int>
 							<bytes key="NSRGB">MC4zMDk4MDM5MjE2IDAuMzA5ODAzOTIxNiAwLjMwOTgwMzkyMTYAA</bytes>
 						</object>
+						<reference key="IBUINormalTitleColor" ref="179523933"/>
 						<reference key="IBUINormalTitleShadowColor" ref="226158070"/>
 						<reference key="IBUIFontDescription" ref="885803567"/>
 						<reference key="IBUIFont" ref="560741749"/>
@@ -367,7 +363,7 @@
 				<string key="23.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="4.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="5.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
-				<real value="1" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
+				<real value="0.0" key="5.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="7.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<real value="1" key="7.IBUIButtonInspectorSelectedStateConfigurationMetadataKey"/>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -461,6 +457,6 @@
 			<string key="back.png">{640, 960}</string>
 			<string key="choose_flag.png">{8, 87}</string>
 		</dictionary>
-		<string key="IBCocoaTouchPluginVersion">1181</string>
+		<string key="IBCocoaTouchPluginVersion">1498</string>
 	</data>
 </archive>
