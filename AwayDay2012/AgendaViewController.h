@@ -18,12 +18,14 @@
 #import "InputNameViewController.h"
 #import "PostShareViewController.h"
 #import "SBJson.h"
+#import "Reminder.h"
 
 @interface AgendaViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, EGORefreshTableHeaderDelegate>{
     BOOL loading;
 }
 
 @property(nonatomic, retain) NSMutableArray *agendaList;
+@property(nonatomic, retain) NSMutableArray *reminderList;
 @property(nonatomic, retain) IBOutlet UILabel *topSessionTitleLabel;
 @property(nonatomic, retain) IBOutlet UILabel *topSessionDurationLabel;
 @property(nonatomic, retain) IBOutlet UITableView *agendaTable;

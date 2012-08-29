@@ -67,7 +67,7 @@
                 }
                 NSString *key=[self.remindTimeKeyArray objectAtIndex:timeIndex.intValue];
                 [self.remindTimeLabel setText:key];
-                self.choosedTime=[NSNumber numberWithInt:[self.timePicker selectedRowInComponent:0]];
+                self.choosedTime=[self.remindTimeList objectForKey:key];
             }
         }
     }
@@ -156,7 +156,7 @@
     
     Reminder *reminder=[[Reminder alloc]init];
     [reminder setSessionID:self.session.sessionID];
-    [reminder setReminderMinute:[NSNumber numberWithInt:[self.timePicker selectedRowInComponent:0]]];
+    [reminder setReminderMinute:self.choosedTime];
     [reminder save];
     [reminder release];
 }

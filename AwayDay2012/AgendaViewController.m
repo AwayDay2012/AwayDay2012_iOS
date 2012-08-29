@@ -35,6 +35,7 @@
 @synthesize refreshView=_refreshView;
 @synthesize inputNameViewController=_inputNameViewController;
 @synthesize postShareViewController=_postShareViewController;
+@synthesize reminderList=_reminderList;
 
 - (void)viewDidLoad
 {
@@ -76,6 +77,12 @@
         
         [self loadAgendaList];
     }
+    
+    if(self.reminderList!=nil){
+        [self.reminderList removeAllObjects];
+    }
+    self.reminderList=[Reminder getAllReminder];
+    
     [self updateTopSession];
 }
 
@@ -114,7 +121,7 @@
     [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
     [tempAgendaMapping release];
     
-//    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:YES];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:YES];
 }
 
 -(void)getAgendaListFromServer:(NSString *) urlString showLoading:(BOOL)showLoading{
@@ -337,7 +344,9 @@
     
     UIButton *remind=[UIButton buttonWithType:UIButtonTypeCustom];
     [remind setFrame:CGRectMake(134, y, 52, 32)];
+    
     [remind setImage:[UIImage imageNamed:@"reminder_button.png"] forState:UIControlStateNormal];
+    
     [remind addTarget:self action:@selector(remindButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:remind];
     
@@ -608,6 +617,7 @@
     [_refreshView release];
     [_inputNameViewController release];
     [_postShareViewController release];
+    [_reminderList release];
 }
 
 @end
