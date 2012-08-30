@@ -346,6 +346,14 @@
     [remind setFrame:CGRectMake(134, y, 52, 32)];
     
     [remind setImage:[UIImage imageNamed:@"reminder_button.png"] forState:UIControlStateNormal];
+    for(UILocalNotification *notification in [[UIApplication sharedApplication]scheduledLocalNotifications]){
+        if(notification.userInfo!=nil && notification.userInfo.count>0){
+            NSString *sessionID=[notification.userInfo objectForKey:@"session_id"];
+            if([sessionID isEqualToString:session.sessionID]){
+                [remind setImage:[UIImage imageNamed:@"unreminder_button.png"] forState:UIControlStateNormal];
+            }
+        }
+    }
     
     [remind addTarget:self action:@selector(remindButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:remind];
@@ -561,7 +569,6 @@
 - (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
     return [NSDate date];
 }
-
 #pragma mark - Netowork callback method
 - (void)requestFinished:(ASIHTTPRequest *)request{
     if(request.tag==tag_req_load_session_list){

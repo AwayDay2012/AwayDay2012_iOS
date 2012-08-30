@@ -36,7 +36,8 @@
     Session *session = [[Session alloc] init];
     [session setSessionTitle:[sessionProperies objectForKey:@"session_title"]];
     [session setSessionSpeaker:[sessionProperies objectForKey:@"session_speaker"]];
-    [session setSessionID:[[sessionProperies objectForKey:@"session_id"] stringValue]];
+    NSNumber *sessionID=[sessionProperies objectForKey:@"session_id"];
+    [session setSessionID:[sessionID stringValue]];
     [session setSessionStartTime:[dateFormatter2 dateFromString:[sessionProperies objectForKey:@"session_start"]]];
     [session setSessionEndTime:[dateFormatter2 dateFromString:[sessionProperies objectForKey:@"session_end"]]];
     
