@@ -12,9 +12,11 @@
 
 @interface SettingViewController : UIViewController
 
-@property (nonatomic, retain) InputNameViewController *inputNameViewController;
-@property (nonatomic, retain) IBOutlet UILabel *userNameLabel;
+@property (nonatomic, retain) IBOutlet UITextField *userNameField;
 
--(IBAction)goInputNameView:(id)sender;
+-(IBAction)saveButtonPressed:(id)sender;
+-(IBAction)handleTap:(UITapGestureRecognizer *)sender;
+
+-(void)removeInfoView;
 
 @end

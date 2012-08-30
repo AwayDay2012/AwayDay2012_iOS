@@ -657,7 +657,7 @@
 		49168F4415C769D200DEA67C /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0430;
+				LastUpgradeCheck = 0440;
 			};
 			buildConfigurationList = 49168F4715C769D200DEA67C /* Build configuration list for PBXProject "AwayDay2012" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -864,7 +864,8 @@
 					armv6,
 					armv7,
 				);
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -874,11 +875,14 @@
 					"$(inherited)",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
+				PROVISIONING_PROFILE = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -891,15 +895,19 @@
 					armv6,
 					armv7,
 				);
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ThoughtWorks Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ThoughtWorks Inc";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_THUMB_SUPPORT = NO;
+				GCC_VERSION = "";
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -908,7 +916,10 @@
 		49168F7B15C769D300DEA67C /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				ARCHS = (
+					arvm6,
+					armv7,
+				);
 				CODE_SIGN_IDENTITY = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -925,16 +936,19 @@
 		49168F7C15C769D300DEA67C /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Developer: Zhe Wang (H9BG74PN7L)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Zhe Wang (H9BG74PN7L)";
+				ARCHS = (
+					arvm6,
+					armv7,
+				);
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ThoughtWorks Inc";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ThoughtWorks Inc";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AwayDay2012/AwayDay2012-Prefix.pch";
 				INFOPLIST_FILE = "AwayDay2012/AwayDay2012-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "3E90C66B-52CE-45C4-AEB3-D5B4B27D4FEF";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E90C66B-52CE-45C4-AEB3-D5B4B27D4FEF";
+				PROVISIONING_PROFILE = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "A1F51B42-A2D2-4B42-8AF2-AD29ED61D56E";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
@@ -949,6 +963,7 @@
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AwayDay2012/AwayDay2012-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "AwayDay2012Tests/AwayDay2012Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
@@ -960,12 +975,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AwayDay2012.app/AwayDay2012";
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AwayDay2012/AwayDay2012-Prefix.pch";
+				GCC_THUMB_SUPPORT = NO;
 				INFOPLIST_FILE = "AwayDay2012Tests/AwayDay2012Tests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";

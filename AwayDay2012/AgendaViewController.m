@@ -82,8 +82,13 @@
         [self.reminderList removeAllObjects];
     }
     self.reminderList=[Reminder getAllReminder];
-    
-    [self updateTopSession];
+}
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    if(self.agendaList!=nil && self.agendaList.count>0){
+        [self updateTopSession];
+    }
 }
 
 #pragma mark - util method

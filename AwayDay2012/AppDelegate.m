@@ -179,7 +179,7 @@
     NSArray *documentPaths=NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
     NSString *documentsDir=[documentPaths objectAtIndex:0];
     NSString *databasePath=[documentsDir stringByAppendingPathComponent:databaseName];
-    NSLog(@"%@", databasePath);
+//    NSLog(@"%@", databasePath);
     sqlite3_open([databasePath UTF8String], &database);
 }
 

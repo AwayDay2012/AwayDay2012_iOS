@@ -133,7 +133,6 @@
  */
 -(void)scheduleNotificationForCurrentSession{
     NSDate *fireDate=[self.session.sessionStartTime dateByAddingTimeInterval:self.choosedTime.intValue * 60];
-    NSLog(@"fire date:%@", fireDate);
     
     NSMutableDictionary *userInfo=[[NSMutableDictionary alloc]initWithCapacity:2];
     [userInfo setObject:self.session.sessionID forKey:key_notification_session_id];

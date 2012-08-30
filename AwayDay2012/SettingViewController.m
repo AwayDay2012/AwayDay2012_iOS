@@ -9,6 +9,7 @@
 #import "SettingViewController.h"
 #import "AppDelegate.h"
 #import "AppConstant.h"
+#import "AppHelper.h"
 
 @interface SettingViewController ()
 
@@ -16,9 +17,7 @@
 
 @implementation SettingViewController
 
-@synthesize inputNameViewController = _inputNameViewController;
-
-@synthesize userNameLabel = _userNameLabel;
+@synthesize userNameField = _userNameField;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -33,32 +32,42 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Settings"];
-    // Do any additional setup after loading the view from its nib.
+    
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
+    [self.view addGestureRecognizer:tap];
+    [tap release];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *username = [delegate.userState objectForKey:kUserNameKey];
-    [self.userNameLabel setText:username];
+    [self.userNameField setText:username];
+}
+
+#pragma mark - util method
+-(void)removeInfoView{
+    [AppHelper removeInfoView:self.view];
 }
 
 #pragma mark - UIAction method
--(IBAction)goInputNameView:(id)sender{
-    if(self.inputNameViewController == nil){
-        InputNameViewController *tempView = [[InputNameViewController alloc] initWithNibName:@"InputNameViewController" bundle:nil];
-        self.inputNameViewController = tempView;
-        [tempView release];
-    }
+-(IBAction)saveButtonPressed:(id)sender{
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
+    [delegate.userState setObject:self.userNameField.text forKey:kUserNameKey];
+    [delegate saveUserState];
     
-    [self presentModalViewController:self.inputNameViewController animated:YES];
+    [AppHelper showInfoView:self.view withText:@"Saved!" withLoading:NO];
+    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
+}
+
+-(IBAction)handleTap:(UITapGestureRecognizer *)sender{
+    [self.userNameField resignFirstResponder];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    [_inputNameViewController release];
-    [_userNameLabel release];
+    [_userNameField release];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
