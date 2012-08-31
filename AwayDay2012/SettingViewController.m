@@ -32,10 +32,6 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Settings"];
-    
-    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleTap:)];
-    [self.view addGestureRecognizer:tap];
-    [tap release];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -43,6 +39,7 @@
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     NSString *username = [delegate.userState objectForKey:kUserNameKey];
     [self.userNameField setText:username];
+    [self.userNameField becomeFirstResponder];
 }
 
 #pragma mark - util method
@@ -52,16 +49,13 @@
 
 #pragma mark - UIAction method
 -(IBAction)saveButtonPressed:(id)sender{
+    [self.userNameField resignFirstResponder];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.userState setObject:self.userNameField.text forKey:kUserNameKey];
     [delegate saveUserState];
     
     [AppHelper showInfoView:self.view withText:@"Saved!" withLoading:NO];
-    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
-}
-
--(IBAction)handleTap:(UITapGestureRecognizer *)sender{
-    [self.userNameField resignFirstResponder];
+    [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
 }
 
 - (void)viewDidUnload
