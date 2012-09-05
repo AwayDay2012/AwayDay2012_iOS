@@ -227,7 +227,6 @@
         [AppHelper removeInfoView:self.view];
         [self.navigationController popViewControllerAnimated:YES];
     }
-    
 }
 - (void)requestFailed:(ASIHTTPRequest *)request{
     NSLog(@"fail response:%@", request.responseString);
