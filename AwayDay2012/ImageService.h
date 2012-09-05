@@ -12,4 +12,6 @@
 
 +(UIImage *)scaleImage:(UIImage *)image toResolution:(int)resolution;
 
++ (UIImage*)imageByScalingAndCroppingForSize:(UIImage *)image toSize:(CGSize)targetSize;
+
 @end

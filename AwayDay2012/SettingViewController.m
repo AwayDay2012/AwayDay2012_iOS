@@ -49,6 +49,13 @@
 
 #pragma mark - UIAction method
 -(IBAction)saveButtonPressed:(id)sender{
+    if(self.userNameField.text.length==0){
+        UIAlertView *alert=[[UIAlertView alloc] initWithTitle:@"Name is blank" message:@"Please input your name" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil, nil];
+        [alert show];
+        [alert release];
+        return;
+    }
+    
     [self.userNameField resignFirstResponder];
     AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate.userState setObject:self.userNameField.text forKey:kUserNameKey];

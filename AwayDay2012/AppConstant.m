@@ -31,7 +31,7 @@ NSString const *kPathTextKey=@"text_content";
 NSString const *kPathImageKey=@"image_content";
 
 NSString const *kServiceLoadSessionList=@"http://awayday2012.herokuapp.com/sessions_grouped_by_date";
-NSString *kServiceUserShare=@"http://awayday2012.herokuapp.com/share";
 NSString *kServiceUserPath=@"http://awayday2012.herokuapp.com/moment";
+NSString *kServiceUserShare=@"http://awayday2012.herokuapp.com/share";
 
 @end

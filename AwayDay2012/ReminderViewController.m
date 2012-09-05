@@ -141,9 +141,10 @@
     UILocalNotification *notification=[[UILocalNotification alloc]init];
     [notification setFireDate:fireDate];
     [notification setTimeZone:[NSTimeZone defaultTimeZone]];
+    [notification setSoundName:UILocalNotificationDefaultSoundName];
     [notification setApplicationIconBadgeNumber:[[UIApplication sharedApplication]applicationIconBadgeNumber]+1];
     
-    NSString *text=[self.remindTimeList.allKeys objectAtIndex:[self.timePicker selectedRowInComponent:0]];
+    NSString *text=[self.remindTimeKeyArray objectAtIndex:[self.timePicker selectedRowInComponent:0]];
     text=[text stringByAppendingFormat:@" %@", self.session.sessionTitle];
     [notification setAlertBody:text];
     

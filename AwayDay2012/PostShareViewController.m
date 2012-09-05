@@ -45,6 +45,8 @@
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     [appDelegate hideMenuView];
+    
+    [self.textCountLabel setText:[NSString stringWithFormat:@"%d/%d", self.textView.text.length, text_length_limit]];
 }
 
 #pragma mark - UIAction method
@@ -142,7 +144,11 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
     @autoreleasepool {
         self.userImage= [info objectForKey:UIImagePickerControllerOriginalImage];
-        self.userImage=[ImageService scaleImage:self.userImage toResolution:600];
+        float xratio=self.userImage.size.width/600.0f;
+        float yratio=self.userImage.size.height/600.0f;
+        if(xratio>1.0f || yratio>1.0f){
+            self.userImage=[ImageService imageByScalingAndCroppingForSize:self.userImage toSize:CGSizeMake(self.userImage.size.width/xratio, self.userImage.size.height/yratio)];
+        }
     }
     [self.imageIconView setAlpha:1.0f];
     [picker dismissModalViewControllerAnimated:YES];
