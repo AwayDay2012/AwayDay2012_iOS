@@ -576,7 +576,7 @@
 }
 #pragma mark - Netowork callback method
 - (void)requestFinished:(ASIHTTPRequest *)request{
-    NSLog(@"%@", request.responseString);
+//    NSLog(@"%@", request.responseString);
     if(request.tag==tag_req_load_session_list){
         SBJsonParser *parser = [[SBJsonParser alloc] init];
         NSString *resp = [request responseString];
