@@ -32,6 +32,10 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Settings"];
+    
+    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
+    [self.view addGestureRecognizer:tap];
+    [tap release];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
@@ -63,6 +67,9 @@
     
     [AppHelper showInfoView:self.view withText:@"Saved!" withLoading:NO];
     [NSTimer scheduledTimerWithTimeInterval:1.0f target:self selector:@selector(removeInfoView) userInfo:nil repeats:NO];
+}
+-(IBAction)handleTap:(UITapGestureRecognizer *)sender{
+    [self.userNameField resignFirstResponder];
 }
 
 - (void)viewDidUnload
