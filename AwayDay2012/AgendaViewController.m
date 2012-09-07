@@ -69,7 +69,6 @@
         [self presentModalViewController:self.inputNameViewController animated:NO];
     }
     
-    [self.agendaTable setSeparatorColor:[UIColor colorWithRed:280/255.0 green:280/255.0 blue:280/255.0 alpha:1.0f]];
     if(self.agendaList==nil){
         NSMutableArray *array=[[NSMutableArray alloc]init];
         self.agendaList=array;
@@ -334,6 +333,7 @@
     [detailView addSubview:sessionNote];
     [sessionNote release];
     
+    y+=3;
     UIButton *attend=[UIButton buttonWithType:UIButtonTypeCustom];
     [attend setFrame:CGRectMake(30, y, 52, 32)];
     
@@ -400,7 +400,7 @@
         [joinButton setImage:[UIImage imageNamed:@"join_button.png"] forState:UIControlStateNormal];
         [sessionTitleLabel setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
         [sessionTimeLabel setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
-        [AppHelper showInfoView:self.view withText:@"Cancelled!" withLoading:NO];
+        [AppHelper showInfoView:self.view withText:@"Left!" withLoading:NO];
     }else{
         UserPath *path=[[UserPath alloc]init];
         [path setPathID:[AppHelper generateUDID]];
@@ -477,6 +477,8 @@
     UIView *view=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, 40)];
     [view autorelease];
     
+    [view setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"back.png"]]];
+    
     Agenda *agenda=[self.agendaList objectAtIndex:section];
     
     NSDateFormatter *dateFormatter=[[NSDateFormatter alloc]init];
@@ -485,7 +487,7 @@
     [locale release];
     [dateFormatter setDateFormat:@"d"];
     
-    UILabel *monthLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 15, 40, 24)];
+    UILabel *monthLabel=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 40, 24)];
     [monthLabel setBackgroundColor:[UIColor clearColor]];
     [monthLabel setTextColor:[UIColor colorWithRed:29/255.0 green:207/255.0 blue:219/255.0 alpha:1.0f]];
     [monthLabel setFont:[UIFont systemFontOfSize:30.0f]];
@@ -494,7 +496,7 @@
     [monthLabel release];
     
     [dateFormatter setDateFormat:@"MMM, yyyy"];;
-    UILabel *dateLabel=[[UILabel alloc] initWithFrame:CGRectMake(50, 20, 80, 20)];
+    UILabel *dateLabel=[[UILabel alloc] initWithFrame:CGRectMake(50, 15, 80, 20)];
     [dateLabel setBackgroundColor:[UIColor clearColor]];
     [dateLabel setTextColor:[UIColor colorWithRed:29/255.0 green:207/255.0 blue:219/255.0 alpha:1.0f]];
     [dateLabel setFont:[UIFont systemFontOfSize:15.0f]];

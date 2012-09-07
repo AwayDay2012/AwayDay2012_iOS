@@ -32,10 +32,6 @@
 {
     [super viewDidLoad];
     [self setTitle:@"Settings"];
-    
-    UITapGestureRecognizer *tap=[[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleTap:)];
-    [self.view addGestureRecognizer:tap];
-    [tap release];
 }
 
 - (void) viewWillAppear:(BOOL)animated{
