@@ -197,9 +197,9 @@
     
     Agenda *agenda=[self.agendaList objectAtIndex:topAgendaIndex];
     Session *session=[agenda.sessions objectAtIndex:topSessionIndex];
-    NSIndexPath *path=[NSIndexPath indexPathForRow:topSessionIndex inSection:topAgendaIndex];
+//    NSIndexPath *path=[NSIndexPath indexPathForRow:topSessionIndex inSection:topAgendaIndex];
     
-    [self.agendaTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:NO];
+//    [self.agendaTable scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionTop animated:NO];
     
     [self.topSessionTitleLabel setText:session.sessionTitle];
     
