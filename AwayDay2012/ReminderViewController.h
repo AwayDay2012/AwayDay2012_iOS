@@ -13,6 +13,7 @@
 @interface ReminderViewController : UIViewController <UIPickerViewDelegate, UIPickerViewDataSource>
 
 @property(nonatomic, retain) Session *session;
+@property(nonatomic, retain) IBOutlet UIImageView *remindIconView;
 @property(nonatomic, retain) NSMutableArray *remindTimeKeyArray;
 @property(nonatomic, retain) NSMutableDictionary *remindTimeList;
 @property(nonatomic, retain) IBOutlet UILabel *remindTimeLabel;

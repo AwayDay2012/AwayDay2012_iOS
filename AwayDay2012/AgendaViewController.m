@@ -273,7 +273,7 @@
 -(void)buildSessionDetailView:(UITableViewCell *)cell withSession:(Session *)session{
     CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(320, 100) lineBreakMode:UILineBreakModeWordWrap];
     CGSize titleSize=[session.sessionTitle sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(310, 100)];
-    float height=105+titleSize.height+size.height;
+    float height=125+titleSize.height+size.height;
     
     UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
     [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"back.png"]]];
@@ -312,7 +312,8 @@
     [sessionTime release];
     [formatter release];
     
-    UILabel *sessionLocation=[[UILabel alloc] initWithFrame:CGRectMake(125, y, 290, 16)];
+    y+=sessionTime.frame.size.height;
+    UILabel *sessionLocation=[[UILabel alloc] initWithFrame:CGRectMake(8, y, 290, 16)];
     [sessionLocation setBackgroundColor:[UIColor clearColor]];
     [sessionLocation setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionLocation setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
@@ -373,6 +374,13 @@
     transition.duration=0.15f;
     [detailView.layer addAnimation:transition forKey:@"add"];
     [cell addSubview:detailView];
+    
+    float detaily=self.selectedCell.row*50+detailView.frame.size.height;
+    float tabley=self.agendaTable.contentOffset.y+self.agendaTable.frame.size.height;
+    if(detaily>tabley){
+        [self.agendaTable setContentOffset:CGPointMake(0, self.agendaTable.contentOffset.y+(detaily - tabley)+40) animated:YES];
+    }
+    
     [detailView release];
 }
 
@@ -464,7 +472,7 @@
         Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
         CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(320, 100) lineBreakMode:UILineBreakModeWordWrap];
         CGSize titleSize=[session.sessionTitle sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(310, 100)];
-        float height=110+titleSize.height+size.height;
+        float height=126+titleSize.height+size.height;
         return height;
     }else{
         return 50.0f;
