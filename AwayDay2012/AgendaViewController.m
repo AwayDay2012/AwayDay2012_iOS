@@ -237,7 +237,7 @@
     }
     
     [sessionTitle setFont:[UIFont systemFontOfSize:14.0f]];
-    [sessionTitle setText:session.sessionTitle];    
+    [sessionTitle setText:session.sessionTitle];
     [cell addSubview:sessionTitle];
     [sessionTitle release];
     
