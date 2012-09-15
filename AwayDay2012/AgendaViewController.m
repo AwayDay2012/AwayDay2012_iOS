@@ -113,7 +113,7 @@
     [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
     [tempAgendaMapping release];
     
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:NO];
+    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:YES];
 }
 
 -(void)getAgendaListFromServer:(NSString *) urlString showLoading:(BOOL)showLoading{
@@ -159,13 +159,18 @@
     if(self.agendaList.count==0) return;
     NSDate *today=[NSDate date];
     
+    NSDateFormatter *df=[[NSDateFormatter alloc]init];
+    [df setDateFormat:@"yyyy-MM-dd"];
+    NSString *todayString=[df stringFromDate:today];
+    
     int topAgendaIndex=self.agendaList.count-1;
     Agenda *agenda=[self.agendaList objectAtIndex:topAgendaIndex];
     int topSessionIndex=agenda.sessions.count-1;
     
     for(int i=0;i<self.agendaList.count;i++){
         Agenda *agenda=[self.agendaList objectAtIndex:i];
-        if([[today earlierDate:agenda.agendaDate] isEqualToDate:today]){
+        NSString *agendaDateString=[df stringFromDate:agenda.agendaDate];
+        if([todayString isEqualToString:agendaDateString]){
             for(int k=0;k<agenda.sessions.count;k++){
                 Session *session=[agenda.sessions objectAtIndex:k];
                 NSDate *sessionStartTime=session.sessionStartTime;
@@ -177,6 +182,7 @@
             }
         }
     }
+    [df release];
     
     agenda=[self.agendaList objectAtIndex:topAgendaIndex];
     Session *session=[agenda.sessions objectAtIndex:topSessionIndex];
@@ -219,11 +225,6 @@
         [sessionTitle setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
     }
     
-    NSDate *today=[NSDate date];
-    if([[today earlierDate:session.sessionEndTime] isEqualToDate:session.sessionEndTime]){
-        [sessionTitle setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
-    }
-    
     [sessionTitle setFont:[UIFont systemFontOfSize:14.0f]];
     [sessionTitle setShadowColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:120/255.0]];
     [sessionTitle setShadowOffset:CGSizeMake(-0.2f, -0.2f)];
@@ -240,6 +241,12 @@
     
     if([userJoinList containsObject:session.sessionID]){
         [sessionDuration setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
+    }
+    
+    NSDate *today=[NSDate date];
+    if([[today earlierDate:session.sessionEndTime] isEqualToDate:session.sessionEndTime]){
+        [sessionTitle setTextColor:[UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1.0f]];
+        [sessionDuration setTextColor:[UIColor colorWithRed:170/255.0 green:170/255.0 blue:170/255.0 alpha:1.0f]];
     }
     
     [sessionDuration setFont:[UIFont systemFontOfSize:12.0f]];
