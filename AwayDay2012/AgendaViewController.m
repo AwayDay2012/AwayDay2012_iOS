@@ -113,7 +113,7 @@
     [self.agendaList addObjectsFromArray:tempAgendaMapping.allValues];
     [tempAgendaMapping release];
     
-    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:YES];
+//    [self getAgendaListFromServer:(NSString *)kServiceLoadSessionList showLoading:YES];
 }
 
 -(void)getAgendaListFromServer:(NSString *) urlString showLoading:(BOOL)showLoading{
@@ -263,23 +263,36 @@
  */
 -(void)buildSessionDetailView:(UITableViewCell *)cell withSession:(Session *)session{
     CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(320, 100) lineBreakMode:UILineBreakModeWordWrap];
-    float height=90+size.height;
+    CGSize titleSize=[session.sessionTitle sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(310, 100)];
+    float height=110+titleSize.height+size.height;
     
     UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
     [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"back.png"]]];
     [detailView setTag:tag_cell_view_session_detail_view];
     
-    UILabel *sessionSpeaker=[[UILabel alloc]initWithFrame:CGRectMake(8, 6, 320, 16)];
+    int y=8;
+    UITextView *sessionTitle=[[UITextView alloc]initWithFrame:CGRectMake(2, y, 310, titleSize.height+10)];
+    [sessionTitle setBackgroundColor:[UIColor clearColor]];
+    [sessionTitle setText:session.sessionTitle];
+    [sessionTitle setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
+    [sessionTitle setFont:[UIFont systemFontOfSize:14.0f]];
+    [sessionTitle setUserInteractionEnabled:NO];
+    [detailView addSubview:sessionTitle];
+    y+=sessionTitle.frame.size.height;
+    [sessionTitle release];
+    
+    UILabel *sessionSpeaker=[[UILabel alloc]initWithFrame:CGRectMake(8, y, 320, 16)];
     [sessionSpeaker setBackgroundColor:[UIColor clearColor]];
     [sessionSpeaker setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionSpeaker setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
     [sessionSpeaker setText:[NSString stringWithFormat:@"Speaker: %@", session.sessionSpeaker]];
     [detailView addSubview:sessionSpeaker];
+    y+=sessionSpeaker.frame.size.height;
     [sessionSpeaker release];
     
     NSDateFormatter *formatter=[[NSDateFormatter alloc]init];
     [formatter setDateFormat:@"HH:mm"];
-    UILabel *sessionTime=[[UILabel alloc]initWithFrame:CGRectMake(8, 22, 110, 16)];
+    UILabel *sessionTime=[[UILabel alloc]initWithFrame:CGRectMake(8, y, 110, 16)];
     [sessionTime setBackgroundColor:[UIColor clearColor]];
     [sessionTime setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionTime setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
@@ -288,27 +301,29 @@
     [sessionTime release];
     [formatter release];
     
-    UILabel *sessionLocation=[[UILabel alloc] initWithFrame:CGRectMake(125, 22, 290, 16)];
+    UILabel *sessionLocation=[[UILabel alloc] initWithFrame:CGRectMake(125, y, 290, 16)];
     [sessionLocation setBackgroundColor:[UIColor clearColor]];
     [sessionLocation setFont:[UIFont systemFontOfSize:12.0f]];
     [sessionLocation setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
     [sessionLocation setText:[NSString stringWithFormat:@"Room: %@", session.sessionAddress]];
     [detailView addSubview:sessionLocation];
+    y+=sessionLocation.frame.size.height;
     [sessionLocation release];
     
-    UITextView *sessionNote=[[UITextView alloc]initWithFrame:CGRectMake(0, 36, 320, 100)];
+    UITextView *sessionNote=[[UITextView alloc]initWithFrame:CGRectMake(0, y, 320, 100)];
     [sessionNote setBackgroundColor:[UIColor clearColor]];
     [sessionNote setUserInteractionEnabled:NO];
-    [sessionNote setFrame:CGRectMake(0, 36, 320, size.height+14)];
+    [sessionNote setFrame:CGRectMake(0, y, 320, size.height+14)];
     [sessionNote setText:session.sessionNote];
     [sessionNote setFont:[UIFont systemFontOfSize:13.0f]];
     [sessionNote setTextColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:1.0f]];
     [sessionNote sizeToFit];
+    y+=sessionNote.frame.size.height;
     [detailView addSubview:sessionNote];
     [sessionNote release];
     
     UIButton *attend=[UIButton buttonWithType:UIButtonTypeCustom];
-    [attend setFrame:CGRectMake(30, sessionNote.frame.origin.y+sessionNote.frame.size.height+5, 52, 32)];
+    [attend setFrame:CGRectMake(30, y, 52, 32)];
     
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
@@ -321,13 +336,13 @@
     [detailView addSubview:attend];
     
     UIButton *remind=[UIButton buttonWithType:UIButtonTypeCustom];
-    [remind setFrame:CGRectMake(134, sessionNote.frame.origin.y+sessionNote.frame.size.height+5, 52, 32)];
+    [remind setFrame:CGRectMake(134, y, 52, 32)];
     [remind setImage:[UIImage imageNamed:@"reminder_button.png"] forState:UIControlStateNormal];
     [remind addTarget:self action:@selector(remindButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:remind];
     
     UIButton *share=[UIButton buttonWithType:UIButtonTypeCustom];
-    [share setFrame:CGRectMake(234, sessionNote.frame.origin.y+sessionNote.frame.size.height+5, 52, 32)];
+    [share setFrame:CGRectMake(234, y, 52, 32)];
     [share setImage:[UIImage imageNamed:@"share_button.png"] forState:UIControlStateNormal];
     [share addTarget:self action:@selector(shareButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
     [detailView addSubview:share];
@@ -421,7 +436,8 @@
         Agenda *agenda=[self.agendaList objectAtIndex:self.selectedCell.section];
         Session *session=[agenda.sessions objectAtIndex:self.selectedCell.row];
         CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(320, 100) lineBreakMode:UILineBreakModeWordWrap];
-        float height=120+size.height;
+        CGSize titleSize=[session.sessionTitle sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(310, 100)];
+        float height=110+titleSize.height+size.height;
         return height;
     }else{
         return 50.0f;
