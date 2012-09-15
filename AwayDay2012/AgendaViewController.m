@@ -165,7 +165,6 @@
     NSString *todayString=[df stringFromDate:today];
     
     int topAgendaIndex=0;
-    Agenda *agenda=[self.agendaList objectAtIndex:topAgendaIndex];
     int topSessionIndex=0;
     
     for(int i=0;i<self.agendaList.count;i++){
@@ -185,7 +184,7 @@
     }
     [df release];
     
-    agenda=[self.agendaList objectAtIndex:topAgendaIndex];
+    Agenda *agenda=[self.agendaList objectAtIndex:topAgendaIndex];
     Session *session=[agenda.sessions objectAtIndex:topSessionIndex];
     NSIndexPath *path=[NSIndexPath indexPathForRow:topSessionIndex inSection:topAgendaIndex];
     
