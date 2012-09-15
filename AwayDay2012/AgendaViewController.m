@@ -19,6 +19,7 @@
 #define tag_cell_view_start 1001
 #define tag_cell_session_title_view tag_cell_view_start+1
 #define tag_cell_session_time_view  tag_cell_view_start+2
+#define tag_cell_session_detail_title_view 2001
 #define tag_cell_view_session_detail_view   10002
 #define tag_req_load_session_list   10003
 
@@ -163,9 +164,9 @@
     [df setDateFormat:@"yyyy-MM-dd"];
     NSString *todayString=[df stringFromDate:today];
     
-    int topAgendaIndex=self.agendaList.count-1;
+    int topAgendaIndex=0;
     Agenda *agenda=[self.agendaList objectAtIndex:topAgendaIndex];
-    int topSessionIndex=agenda.sessions.count-1;
+    int topSessionIndex=0;
     
     for(int i=0;i<self.agendaList.count;i++){
         Agenda *agenda=[self.agendaList objectAtIndex:i];
@@ -216,7 +217,7 @@
     AppDelegate *appDelegate=(AppDelegate *)[[UIApplication sharedApplication]delegate];
     NSMutableArray *userJoinList=[appDelegate.userState objectForKey:kUserJoinListKey];
     
-    UILabel *sessionTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 236,30)];
+    UILabel *sessionTitle=[[UILabel alloc]initWithFrame:CGRectMake(10, 10, 230,30)];
     [sessionTitle setTag:tag_cell_session_title_view];
     [sessionTitle setBackgroundColor:[UIColor clearColor]];
     [sessionTitle setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
@@ -226,8 +227,6 @@
     }
     
     [sessionTitle setFont:[UIFont systemFontOfSize:14.0f]];
-    [sessionTitle setShadowColor:[UIColor colorWithRed:120/255.0 green:120/255.0 blue:120/255.0 alpha:120/255.0]];
-    [sessionTitle setShadowOffset:CGSizeMake(-0.2f, -0.2f)];
     [sessionTitle setText:session.sessionTitle];    
     [cell addSubview:sessionTitle];
     [sessionTitle release];
@@ -264,17 +263,19 @@
 -(void)buildSessionDetailView:(UITableViewCell *)cell withSession:(Session *)session{
     CGSize size=[session.sessionNote sizeWithFont:[UIFont systemFontOfSize:12.0f] constrainedToSize:CGSizeMake(320, 100) lineBreakMode:UILineBreakModeWordWrap];
     CGSize titleSize=[session.sessionTitle sizeWithFont:[UIFont systemFontOfSize:14.0f] constrainedToSize:CGSizeMake(310, 100)];
-    float height=110+titleSize.height+size.height;
+    float height=105+titleSize.height+size.height;
     
     UIView *detailView=[[UIView alloc]initWithFrame:CGRectMake(0, 0, 320, height)];
     [detailView setBackgroundColor:[UIColor colorWithPatternImage:[UIImage imageNamed:@"back.png"]]];
     [detailView setTag:tag_cell_view_session_detail_view];
     
     int y=8;
+    UILabel *view=(UILabel *)[cell viewWithTag:tag_cell_session_title_view];
     UITextView *sessionTitle=[[UITextView alloc]initWithFrame:CGRectMake(2, y, 310, titleSize.height+10)];
+    [sessionTitle setTag:tag_cell_session_detail_title_view];
     [sessionTitle setBackgroundColor:[UIColor clearColor]];
     [sessionTitle setText:session.sessionTitle];
-    [sessionTitle setTextColor:[UIColor colorWithRed:78/255.0 green:78/255.0 blue:78/255.0 alpha:1.0f]];
+    [sessionTitle setTextColor:view.textColor];
     [sessionTitle setFont:[UIFont systemFontOfSize:14.0f]];
     [sessionTitle setUserInteractionEnabled:NO];
     [detailView addSubview:sessionTitle];
@@ -392,6 +393,11 @@
         [sessionTitleLabel setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
         [sessionTimeLabel setTextColor:[UIColor colorWithRed:214/255.0 green:95/255.0 blue:54/255.0 alpha:1.0f]];
         [AppHelper showInfoView:self.view withText:@"Joined!" withLoading:NO];
+    }
+    
+    UITextView *detailTitleView=(UITextView *)[cell viewWithTag:tag_cell_session_detail_title_view];
+    if(detailTitleView!=nil){
+        [detailTitleView setTextColor:sessionTitleLabel.textColor];
     }
     
     [appDelegate saveUserState];
