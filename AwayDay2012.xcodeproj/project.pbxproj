@@ -928,15 +928,15 @@
 					arvm6,
 					armv7,
 				);
-				CODE_SIGN_IDENTITY = "iPhone Developer: xuehai zeng (U284U92R2M)";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xuehai zeng (U284U92R2M)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: xue hai zeng (3H37WKV5BM)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "AwayDay2012/AwayDay2012-Prefix.pch";
 				INFOPLIST_FILE = "AwayDay2012/AwayDay2012-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 4.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "";
+				PROVISIONING_PROFILE = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F90BA770-2BC7-4226-8DBB-20C299A119BF";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
