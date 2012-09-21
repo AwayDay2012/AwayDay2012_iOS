@@ -23,6 +23,7 @@
 
 -(void)testSaveSessionList{
     [DBService saveSessionList:nil];
+    STAssertTrue(1==2, nil);
 }
 
 -(void)testGetSessionListBySessionIDList{
