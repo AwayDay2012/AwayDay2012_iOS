@@ -17,7 +17,6 @@
 		490C468315EDE780008F1CA9 /* path_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C467D15EDE780008F1CA9 /* path_view_icon.png */; };
 		490C468515EDE780008F1CA9 /* setting_view_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C467F15EDE780008F1CA9 /* setting_view_icon.png */; };
 		490C468815EDF7F1008F1CA9 /* unreminder_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 490C468715EDF7F1008F1CA9 /* unreminder_button.png */; };
-		4913EB0415E4B02500C93E43 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4913EB0315E4B02500C93E43 /* user_db.sqlite */; };
 		4913EB0515E4B03500C93E43 /* user_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = 4913EB0315E4B02500C93E43 /* user_db.sqlite */; };
 		49168F5215C769D300DEA67C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5115C769D300DEA67C /* UIKit.framework */; };
 		49168F5415C769D300DEA67C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5315C769D300DEA67C /* Foundation.framework */; };
@@ -25,26 +24,12 @@
 		49168F5C15C769D300DEA67C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49168F5A15C769D300DEA67C /* InfoPlist.strings */; };
 		49168F5E15C769D300DEA67C /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 49168F5D15C769D300DEA67C /* main.m */; };
 		49168F6215C769D300DEA67C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 49168F6115C769D300DEA67C /* AppDelegate.m */; };
-		49168F6A15C769D300DEA67C /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F6915C769D300DEA67C /* SenTestingKit.framework */; };
-		49168F6B15C769D300DEA67C /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5115C769D300DEA67C /* UIKit.framework */; };
-		49168F6C15C769D300DEA67C /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5315C769D300DEA67C /* Foundation.framework */; };
-		49168F7415C769D300DEA67C /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49168F7215C769D300DEA67C /* InfoPlist.strings */; };
-		49168F7715C769D300DEA67C /* AwayDay2012Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 49168F7615C769D300DEA67C /* AwayDay2012Tests.m */; };
 		49168F8615C76A5E00DEA67C /* RootViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 49168F8415C76A5E00DEA67C /* RootViewController.xib */; };
 		49168F9315C775CB00DEA67C /* Agenda.m in Sources */ = {isa = PBXBuildFile; fileRef = 49168F9215C775CB00DEA67C /* Agenda.m */; };
 		49168F9A15C7764800DEA67C /* Session.m in Sources */ = {isa = PBXBuildFile; fileRef = 49168F9915C7764800DEA67C /* Session.m */; };
 		492B859615EF2C0B00802F8F /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 492B859515EF2C0B00802F8F /* Default.png */; };
 		492B859915EF2C0F00802F8F /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 492B859815EF2C0F00802F8F /* Default@2x.png */; };
-		4934F9DF15CA65CE00427597 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4934F9DE15CA65CE00427597 /* EGORefreshTableHeaderView.m */; };
 		4934F9E115CA668600427597 /* EGORefreshTableHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4934F9DE15CA65CE00427597 /* EGORefreshTableHeaderView.m */; };
-		4934F9EA15CA671700427597 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E215CA671700427597 /* blackArrow.png */; };
-		4934F9EB15CA671700427597 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E315CA671700427597 /* blackArrow@2x.png */; };
-		4934F9EC15CA671700427597 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E415CA671700427597 /* blueArrow.png */; };
-		4934F9ED15CA671700427597 /* blueArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E515CA671700427597 /* blueArrow@2x.png */; };
-		4934F9EE15CA671700427597 /* grayArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E615CA671700427597 /* grayArrow.png */; };
-		4934F9EF15CA671700427597 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E715CA671700427597 /* grayArrow@2x.png */; };
-		4934F9F015CA671700427597 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E815CA671700427597 /* whiteArrow.png */; };
-		4934F9F115CA671700427597 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E915CA671700427597 /* whiteArrow@2x.png */; };
 		4934F9F215CA6B2D00427597 /* blackArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E215CA671700427597 /* blackArrow.png */; };
 		4934F9F315CA6B2D00427597 /* blackArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E315CA671700427597 /* blackArrow@2x.png */; };
 		4934F9F415CA6B2D00427597 /* blueArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E415CA671700427597 /* blueArrow.png */; };
@@ -53,7 +38,6 @@
 		4934F9F715CA6B2D00427597 /* grayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E715CA671700427597 /* grayArrow@2x.png */; };
 		4934F9F815CA6B2D00427597 /* whiteArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E815CA671700427597 /* whiteArrow.png */; };
 		4934F9F915CA6B2D00427597 /* whiteArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4934F9E915CA671700427597 /* whiteArrow@2x.png */; };
-		4934FA0115CA703200427597 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4934F9FF15CA703200427597 /* AgendaViewController.m */; };
 		4934FA0215CA705200427597 /* AgendaViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4934F9FF15CA703200427597 /* AgendaViewController.m */; };
 		493697CA15C8D86400941C94 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493697C915C8D86400941C94 /* QuartzCore.framework */; };
 		4959E24C15D39BA100091D6F /* UserPath.m in Sources */ = {isa = PBXBuildFile; fileRef = 4959E24B15D39BA100091D6F /* UserPath.m */; };
@@ -93,19 +77,20 @@
 		4969AD6915C7A0AC005B6A54 /* SessionAddress.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969AD6815C7A0AC005B6A54 /* SessionAddress.m */; };
 		4969AD7515C7D6A2005B6A54 /* ReminderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4969AD7315C7D6A2005B6A54 /* ReminderViewController.m */; };
 		4969AD7615C7D6A2005B6A54 /* ReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4969AD7415C7D6A2005B6A54 /* ReminderViewController.xib */; };
-		49851F9F15E328A7007A665A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 49851F9D15E328A7007A665A /* GTMBase64.m */; };
 		49851FA115E329A6007A665A /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = 49851F9D15E328A7007A665A /* GTMBase64.m */; };
 		49A0C63215D9F9B900083B9F /* ImageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A0C63115D9F9B900083B9F /* ImageService.m */; };
 		49B762D515F6F94600C5CFAA /* unjoin_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B762D315F6F94600C5CFAA /* unjoin_button.png */; };
 		49B762D615F6F94600C5CFAA /* join_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B762D415F6F94600C5CFAA /* join_button.png */; };
 		49B99D3415D887A5009B02A8 /* Reminder.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B99D3315D887A5009B02A8 /* Reminder.m */; };
-		49B99D3815D888F0009B02A8 /* DBServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49B99D3715D888F0009B02A8 /* DBServiceTest.m */; };
-		49B99D3915D889F2009B02A8 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 493697C915C8D86400941C94 /* QuartzCore.framework */; };
 		49B99D5E15D8D80B009B02A8 /* path_content_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 49B99D5D15D8D80B009B02A8 /* path_content_back.png */; };
 		49D3032815FDA5E10031752F /* unreminder_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D3032715FDA5E10031752F /* unreminder_icon.png */; };
+		49D32444160C575300B9CE19 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F6915C769D300DEA67C /* SenTestingKit.framework */; };
+		49D32445160C575300B9CE19 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5115C769D300DEA67C /* UIKit.framework */; };
+		49D32446160C575300B9CE19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49168F5315C769D300DEA67C /* Foundation.framework */; };
+		49D3244C160C575300B9CE19 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 49D3244A160C575300B9CE19 /* InfoPlist.strings */; };
+		49D3244F160C575300B9CE19 /* AwayDay2012Test.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D3244E160C575300B9CE19 /* AwayDay2012Test.m */; };
 		49D5881E15DA1FAA00A8DA72 /* share_post_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D5881B15DA1FAA00A8DA72 /* share_post_button.png */; };
 		49D5881F15DA1FAA00A8DA72 /* share_text_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 49D5881C15DA1FAA00A8DA72 /* share_text_back.png */; };
-		49D5882215DA24FB00A8DA72 /* ImageServiceTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D5882115DA24FB00A8DA72 /* ImageServiceTest.m */; };
 		49D96BEA15C8EABB00E1C5C8 /* TopSessionClockView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49D96BE915C8EABB00E1C5C8 /* TopSessionClockView.m */; };
 		49E1B4E515E5CFD9008844F9 /* share_image_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E1B4E315E5CFD9008844F9 /* share_image_icon.png */; };
 		49E1B4E615E5CFD9008844F9 /* share_image_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 49E1B4E415E5CFD9008844F9 /* share_image_icon@2x.png */; };
@@ -124,16 +109,6 @@
 		49EC241B15CA2CE400DF9B34 /* reminder_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EC241815CA2CE400DF9B34 /* reminder_button.png */; };
 		49EC241C15CA2CE400DF9B34 /* share_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 49EC241915CA2CE400DF9B34 /* share_button.png */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		49168F6D15C769D300DEA67C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 49168F4415C769D200DEA67C /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 49168F4C15C769D300DEA67C;
-			remoteInfo = AwayDay2012;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		49073B4615CB774A00BB1522 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
@@ -160,12 +135,7 @@
 		49168F5F15C769D300DEA67C /* AwayDay2012-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AwayDay2012-Prefix.pch"; sourceTree = "<group>"; };
 		49168F6015C769D300DEA67C /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		49168F6115C769D300DEA67C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		49168F6815C769D300DEA67C /* AwayDay2012Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwayDay2012Tests.octest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49168F6915C769D300DEA67C /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
-		49168F7115C769D300DEA67C /* AwayDay2012Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AwayDay2012Tests-Info.plist"; sourceTree = "<group>"; };
-		49168F7315C769D300DEA67C /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		49168F7515C769D300DEA67C /* AwayDay2012Tests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AwayDay2012Tests.h; sourceTree = "<group>"; };
-		49168F7615C769D300DEA67C /* AwayDay2012Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AwayDay2012Tests.m; sourceTree = "<group>"; };
 		49168F8415C76A5E00DEA67C /* RootViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = RootViewController.xib; path = AwayDay2012/RootViewController.xib; sourceTree = "<group>"; };
 		49168F9115C775CB00DEA67C /* Agenda.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Agenda.h; sourceTree = "<group>"; };
 		49168F9215C775CB00DEA67C /* Agenda.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Agenda.m; sourceTree = "<group>"; };
@@ -263,14 +233,20 @@
 		49B762D415F6F94600C5CFAA /* join_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = join_button.png; sourceTree = "<group>"; };
 		49B99D3215D887A5009B02A8 /* Reminder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Reminder.h; sourceTree = "<group>"; };
 		49B99D3315D887A5009B02A8 /* Reminder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Reminder.m; sourceTree = "<group>"; };
-		49B99D3615D888F0009B02A8 /* DBServiceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBServiceTest.h; sourceTree = "<group>"; };
-		49B99D3715D888F0009B02A8 /* DBServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBServiceTest.m; sourceTree = "<group>"; };
+		49B99D3615D888F0009B02A8 /* DBServiceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DBServiceTest.h; path = AwayDay2012Tests/DBServiceTest.h; sourceTree = SOURCE_ROOT; };
+		49B99D3715D888F0009B02A8 /* DBServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DBServiceTest.m; path = AwayDay2012Tests/DBServiceTest.m; sourceTree = SOURCE_ROOT; };
 		49B99D5D15D8D80B009B02A8 /* path_content_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = path_content_back.png; sourceTree = "<group>"; };
 		49D3032715FDA5E10031752F /* unreminder_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = unreminder_icon.png; sourceTree = "<group>"; };
+		49D32443160C575300B9CE19 /* AwayDay2012Test.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AwayDay2012Test.octest; sourceTree = BUILT_PRODUCTS_DIR; };
+		49D32449160C575300B9CE19 /* AwayDay2012Test-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "AwayDay2012Test-Info.plist"; sourceTree = "<group>"; };
+		49D3244B160C575300B9CE19 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		49D3244D160C575300B9CE19 /* AwayDay2012Test.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AwayDay2012Test.h; sourceTree = "<group>"; };
+		49D3244E160C575300B9CE19 /* AwayDay2012Test.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AwayDay2012Test.m; sourceTree = "<group>"; };
+		49D32450160C575300B9CE19 /* AwayDay2012Test-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AwayDay2012Test-Prefix.pch"; sourceTree = "<group>"; };
 		49D5881B15DA1FAA00A8DA72 /* share_post_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_post_button.png; sourceTree = "<group>"; };
 		49D5881C15DA1FAA00A8DA72 /* share_text_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_text_back.png; sourceTree = "<group>"; };
-		49D5882015DA24FB00A8DA72 /* ImageServiceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageServiceTest.h; sourceTree = "<group>"; };
-		49D5882115DA24FB00A8DA72 /* ImageServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageServiceTest.m; sourceTree = "<group>"; };
+		49D5882015DA24FB00A8DA72 /* ImageServiceTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ImageServiceTest.h; path = AwayDay2012Tests/ImageServiceTest.h; sourceTree = SOURCE_ROOT; };
+		49D5882115DA24FB00A8DA72 /* ImageServiceTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ImageServiceTest.m; path = AwayDay2012Tests/ImageServiceTest.m; sourceTree = SOURCE_ROOT; };
 		49D96BE815C8EABB00E1C5C8 /* TopSessionClockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TopSessionClockView.h; sourceTree = "<group>"; };
 		49D96BE915C8EABB00E1C5C8 /* TopSessionClockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TopSessionClockView.m; sourceTree = "<group>"; };
 		49E1B4E315E5CFD9008844F9 /* share_image_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = share_image_icon.png; sourceTree = "<group>"; };
@@ -312,14 +288,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49168F6415C769D300DEA67C /* Frameworks */ = {
+		49D3243F160C575300B9CE19 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49B99D3915D889F2009B02A8 /* QuartzCore.framework in Frameworks */,
-				49168F6A15C769D300DEA67C /* SenTestingKit.framework in Frameworks */,
-				49168F6B15C769D300DEA67C /* UIKit.framework in Frameworks */,
-				49168F6C15C769D300DEA67C /* Foundation.framework in Frameworks */,
+				49D32444160C575300B9CE19 /* SenTestingKit.framework in Frameworks */,
+				49D32445160C575300B9CE19 /* UIKit.framework in Frameworks */,
+				49D32446160C575300B9CE19 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -346,7 +321,7 @@
 				49687589160455A7000BD587 /* Icon.png */,
 				49168F5715C769D300DEA67C /* AwayDay2012 */,
 				49168F8015C76A3A00DEA67C /* Resource */,
-				49168F6F15C769D300DEA67C /* AwayDay2012Tests */,
+				49D32447160C575300B9CE19 /* AwayDay2012Test */,
 				49168F5015C769D300DEA67C /* Frameworks */,
 				49168F4E15C769D300DEA67C /* Products */,
 			);
@@ -356,7 +331,7 @@
 			isa = PBXGroup;
 			children = (
 				49168F4D15C769D300DEA67C /* AwayDay2012.app */,
-				49168F6815C769D300DEA67C /* AwayDay2012Tests.octest */,
+				49D32443160C575300B9CE19 /* AwayDay2012Test.octest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -404,29 +379,6 @@
 			);
 			name = "Supporting Files";
 			path = AwayDay2012;
-			sourceTree = "<group>";
-		};
-		49168F6F15C769D300DEA67C /* AwayDay2012Tests */ = {
-			isa = PBXGroup;
-			children = (
-				49168F7515C769D300DEA67C /* AwayDay2012Tests.h */,
-				49168F7615C769D300DEA67C /* AwayDay2012Tests.m */,
-				49168F7015C769D300DEA67C /* Supporting Files */,
-				49B99D3615D888F0009B02A8 /* DBServiceTest.h */,
-				49B99D3715D888F0009B02A8 /* DBServiceTest.m */,
-				49D5882015DA24FB00A8DA72 /* ImageServiceTest.h */,
-				49D5882115DA24FB00A8DA72 /* ImageServiceTest.m */,
-			);
-			path = AwayDay2012Tests;
-			sourceTree = "<group>";
-		};
-		49168F7015C769D300DEA67C /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				49168F7115C769D300DEA67C /* AwayDay2012Tests-Info.plist */,
-				49168F7215C769D300DEA67C /* InfoPlist.strings */,
-			);
-			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		49168F8015C76A3A00DEA67C /* Resource */ = {
@@ -554,6 +506,30 @@
 			path = ASIHttp;
 			sourceTree = "<group>";
 		};
+		49D32447160C575300B9CE19 /* AwayDay2012Test */ = {
+			isa = PBXGroup;
+			children = (
+				49B99D3615D888F0009B02A8 /* DBServiceTest.h */,
+				49B99D3715D888F0009B02A8 /* DBServiceTest.m */,
+				49D5882015DA24FB00A8DA72 /* ImageServiceTest.h */,
+				49D5882115DA24FB00A8DA72 /* ImageServiceTest.m */,
+				49D3244D160C575300B9CE19 /* AwayDay2012Test.h */,
+				49D3244E160C575300B9CE19 /* AwayDay2012Test.m */,
+				49D32448160C575300B9CE19 /* Supporting Files */,
+			);
+			path = AwayDay2012Test;
+			sourceTree = "<group>";
+		};
+		49D32448160C575300B9CE19 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				49D32449160C575300B9CE19 /* AwayDay2012Test-Info.plist */,
+				49D3244A160C575300B9CE19 /* InfoPlist.strings */,
+				49D32450160C575300B9CE19 /* AwayDay2012Test-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		49D96BE615C8EA8B00E1C5C8 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,23 +614,22 @@
 			productReference = 49168F4D15C769D300DEA67C /* AwayDay2012.app */;
 			productType = "com.apple.product-type.application";
 		};
-		49168F6715C769D300DEA67C /* AwayDay2012Tests */ = {
+		49D32442160C575300B9CE19 /* AwayDay2012Test */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 49168F7D15C769D300DEA67C /* Build configuration list for PBXNativeTarget "AwayDay2012Tests" */;
+			buildConfigurationList = 49D32451160C575300B9CE19 /* Build configuration list for PBXNativeTarget "AwayDay2012Test" */;
 			buildPhases = (
-				49168F6315C769D300DEA67C /* Sources */,
-				49168F6415C769D300DEA67C /* Frameworks */,
-				49168F6515C769D300DEA67C /* Resources */,
-				49168F6615C769D300DEA67C /* ShellScript */,
+				49D3243E160C575300B9CE19 /* Sources */,
+				49D3243F160C575300B9CE19 /* Frameworks */,
+				49D32440160C575300B9CE19 /* Resources */,
+				49D32441160C575300B9CE19 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				49168F6E15C769D300DEA67C /* PBXTargetDependency */,
 			);
-			name = AwayDay2012Tests;
-			productName = AwayDay2012Tests;
-			productReference = 49168F6815C769D300DEA67C /* AwayDay2012Tests.octest */;
+			name = AwayDay2012Test;
+			productName = AwayDay2012Test;
+			productReference = 49D32443160C575300B9CE19 /* AwayDay2012Test.octest */;
 			productType = "com.apple.product-type.bundle";
 		};
 /* End PBXNativeTarget section */
@@ -678,7 +653,7 @@
 			projectRoot = "";
 			targets = (
 				49168F4C15C769D300DEA67C /* AwayDay2012 */,
-				49168F6715C769D300DEA67C /* AwayDay2012Tests */,
+				49D32442160C575300B9CE19 /* AwayDay2012Test */,
 			);
 		};
 /* End PBXProject section */
@@ -736,27 +711,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49168F6515C769D300DEA67C /* Resources */ = {
+		49D32440160C575300B9CE19 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49168F7415C769D300DEA67C /* InfoPlist.strings in Resources */,
-				4934F9EA15CA671700427597 /* blackArrow.png in Resources */,
-				4934F9EB15CA671700427597 /* blackArrow@2x.png in Resources */,
-				4934F9EC15CA671700427597 /* blueArrow.png in Resources */,
-				4934F9ED15CA671700427597 /* blueArrow@2x.png in Resources */,
-				4934F9EE15CA671700427597 /* grayArrow.png in Resources */,
-				4934F9EF15CA671700427597 /* grayArrow@2x.png in Resources */,
-				4934F9F015CA671700427597 /* whiteArrow.png in Resources */,
-				4934F9F115CA671700427597 /* whiteArrow@2x.png in Resources */,
-				4913EB0415E4B02500C93E43 /* user_db.sqlite in Resources */,
+				49D3244C160C575300B9CE19 /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		49168F6615C769D300DEA67C /* ShellScript */ = {
+		49D32441160C575300B9CE19 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -821,28 +787,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		49168F6315C769D300DEA67C /* Sources */ = {
+		49D3243E160C575300B9CE19 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49168F7715C769D300DEA67C /* AwayDay2012Tests.m in Sources */,
-				4934F9DF15CA65CE00427597 /* EGORefreshTableHeaderView.m in Sources */,
-				4934FA0115CA703200427597 /* AgendaViewController.m in Sources */,
-				49B99D3815D888F0009B02A8 /* DBServiceTest.m in Sources */,
-				49D5882215DA24FB00A8DA72 /* ImageServiceTest.m in Sources */,
-				49851F9F15E328A7007A665A /* GTMBase64.m in Sources */,
+				49D3244F160C575300B9CE19 /* AwayDay2012Test.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		49168F6E15C769D300DEA67C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 49168F4C15C769D300DEA67C /* AwayDay2012 */;
-			targetProxy = 49168F6D15C769D300DEA67C /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		49168F5A15C769D300DEA67C /* InfoPlist.strings */ = {
@@ -853,10 +806,10 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		49168F7215C769D300DEA67C /* InfoPlist.strings */ = {
+		49D3244A160C575300B9CE19 /* InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				49168F7315C769D300DEA67C /* en */,
+				49D3244B160C575300B9CE19 /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -961,41 +914,42 @@
 			};
 			name = Release;
 		};
-		49168F7E15C769D300DEA67C /* Debug */ = {
+		49D32452160C575300B9CE19 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AwayDay2012.app/AwayDay2012";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
-				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AwayDay2012/AwayDay2012-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
-				INFOPLIST_FILE = "AwayDay2012Tests/AwayDay2012Tests-Info.plist";
+				GCC_PREFIX_HEADER = "AwayDay2012Test/AwayDay2012Test-Prefix.pch";
+				INFOPLIST_FILE = "AwayDay2012Test/AwayDay2012Test-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Debug;
 		};
-		49168F7F15C769D300DEA67C /* Release */ = {
+		49D32453160C575300B9CE19 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/AwayDay2012.app/AwayDay2012";
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(DEVELOPER_LIBRARY_DIR)/Frameworks",
+					"\"$(SDKROOT)/Developer/Library/Frameworks\"",
+					"\"$(DEVELOPER_LIBRARY_DIR)/Frameworks\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "AwayDay2012/AwayDay2012-Prefix.pch";
-				GCC_THUMB_SUPPORT = NO;
-				INFOPLIST_FILE = "AwayDay2012Tests/AwayDay2012Tests-Info.plist";
+				GCC_PREFIX_HEADER = "AwayDay2012Test/AwayDay2012Test-Prefix.pch";
+				INFOPLIST_FILE = "AwayDay2012Test/AwayDay2012Test-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = octest;
 			};
 			name = Release;
@@ -1021,14 +975,13 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		49168F7D15C769D300DEA67C /* Build configuration list for PBXNativeTarget "AwayDay2012Tests" */ = {
+		49D32451160C575300B9CE19 /* Build configuration list for PBXNativeTarget "AwayDay2012Test" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				49168F7E15C769D300DEA67C /* Debug */,
-				49168F7F15C769D300DEA67C /* Release */,
+				49D32452160C575300B9CE19 /* Debug */,
+				49D32453160C575300B9CE19 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
